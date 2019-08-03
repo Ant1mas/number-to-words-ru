@@ -10,6 +10,7 @@ const config = {
     filename: 'bundle.js',
     path: distPath,
     libraryTarget: "umd",
+    globalObject: "this",
   },
   module: {
     rules: [

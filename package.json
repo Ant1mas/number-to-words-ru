@@ -1,6 +1,6 @@
 {
   "name": "number-to-words-ru",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convert a number into words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
