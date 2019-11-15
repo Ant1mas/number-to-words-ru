@@ -1,112 +1,258 @@
-number-to-words-ru
-=========
-Convert a number into words on russian language.
+<h1 align="center">number-to-words-ru</h1>
+<div align="center">
+  Convert a number into words on russian language.
+
+  🔢 ➡ 🔡
+</div>
+
+# What does this module do
+1234567.89 ➡ Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 89 копеек
+
+123.45 ➡ Сто двадцать три рубля **сорок пять** копеек
+
+-345.21 ➡ **Минус** триста сорок пять рублей 21 копейка
+
+450.3 ➡ Четыреста пятьдесят **долларов** 30 **центов**
+
+122.00572 ➡ Сто двадцать две **целых** пятьсот семьдесят две **стотысячных**
+
+5/123 ➡ Пять сто двадцать третьих
+
+# Features
+- **Max 306** digits **before point** and **305** digits **after point** can be converted in words (if typed as String).
+- Use any **own custom currency**.
+- Convert number in words without real currency ("целых", "десятых", "стотысячных" etc.)
+- Convert **number with slash** in words.
+- **Auto round to 2 digits** after point long number with currency.
+- **Hide part** before point or after point.
+- **Hide currency** in part before point or in part after point.
+- **Do not convert in words** part before point or after point or minus sign.
+
 # Installation
+Install with npm:
+```bash
+npm install number-to-words-ru
 ```
-$ npm install --save number-to-words-ru
+Install with yarn:
+```bash
+yarn add number-to-words-ru
 ```
+
 # Usage
 ```js
 const numberToWordsRu = require('number-to-words-ru');
 // or
 import numberToWordsRu from 'number-to-words-ru'; // ES6
 
-numberToWordsRu.convert(104);
+
+
+// use without options
+numberToWordsRu.convert('104');
 // Сто четыре рубля 00 копеек
 
-numberToWordsRu.convert(-4201512.21);
+// or with options
+numberToWordsRu.convert('-4201512.21', {
+  currency: 'rub',
+  convertMinusSignToWord: true,
+  showNumberParts: {
+    integer: true,
+    fractional: true,
+  },
+  convertNumbertToWords: {
+    integer: true,
+    fractional: false,
+  },
+  showCurrency: {
+    integer: true,
+    fractional: true,
+  },
+});
 // Минус четыре миллиона двести одна тысяча пятьсот двенадцать рублей 21 копейка
 ```
+
 # API
 
-## `numberToWordsRu.convert(number[, options])`
+## Methods
 
-Convert number into words.
+- [convert(number[, options])](#methods-convert)
 
-### *Arguments*
+------------------------
 
-`number` {Number | String}
+**<p id="methods-convert">`convert(number[, options])`</p>**
 
-Number to convert into words.
+*Convert number into words.*
+
+Return value is *String*.
+
+`number` {String | Number}
+
+*Number to convert into words.*
+
+If typed as *Number* max value is **9'007'199'254'740'991** (limit of Javascript).
+
+If typed as *String* max value is **10<sup>305</sup>** (306 digits) before point and **10<sup>304</sup>** (305 digits) after point.
 
 `options` {Object}
 
-Output options.
+*Convert options.*
 
-`-| onlyNumber` {Boolean}
+Full options object:
 
-Show without currency.
-
-**Default**: `false`
-
-`-| currency` {'rub' | 'usd' | 'eur' | false | {Object}}
-
-Select currency.
-
-- *false*: Show without currency. For example *Пять целых одная сотая*.
-
-Own currency object example:
-
-```
+```js
 {
-  currencyNameCases: ['рубль', 'рубля', 'рублей'], // Integer currency names
-  decimalNameCases: ['копейка', 'копейки', 'копеек'], // Decimal number currency names
-  currencyValueCase: 1, // Integer name. 0 => 'одна', 1 => 'один'
-  decimalValueCase: 0, // Decimal number name. 0 => 'две', 1 => 'два'
+  currency: 'rub',
+  convertMinusSignToWord: true,
+  showNumberParts: {
+    integer: true,
+    fractional: true,
+  },
+  convertNumbertToWords: {
+    integer: true,
+    fractional: false,
+  },
+  showCurrency: {
+    integer: true,
+    fractional: true,
+  },
 }
 ```
 
+### Options object
+
+`currency` {String | Object}
+
+*Select currency.*
+
 **Default**: `'rub'`
 
-`-| showDecimal` {Boolean}
+String values:
 
-Show decimal.
+| String value  | Description | Example |
+| ------------- | ------------- | ------------- |
+| `'rub'`  | Russian ruble  | 124 **рубля** 42 **копейки**  |
+| `'usd'`  | Dollar  | 124 **доллара** 42 **цента**  |
+| `'eur'`  | Euro  | 124 **евро** 42 **цента**  |
+| `'number'`  | Number without currency  | 124 **целых** 42 **сотых**  |
+
+
+Own currency **object** example:
+
+```js
+{
+  currencyNameCases: ['рубль', 'рубля', 'рублей'], // Integer currency names
+  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'], // Fractional number currency names
+  currencyNounGender: {
+    integer: 0, // 0 => 'один', 1 => 'одна'
+    fractionalPart: 1 // 0 => 'два', 1 => 'две'
+  }
+}
+```
+
+`convertMinusSignToWord` {Boolean}
+
+*Convert minus sign to word.*
 
 **Default**: `true`
 
-`-| decimalWords` {Boolean}
+`showNumberParts` {Object}
 
-Convert decimal part to words.
+*Show parts of number.*
 
-**Default**: `false`
+Object:
+
+```js
+showNumberParts: {
+  integer: true,
+  fractional: true
+}
+```
+
+`convertNumbertToWords` {Object}
+
+*Convert to words parts of number.*
+
+Object:
+
+```js
+convertNumbertToWords: {
+  integer: true,
+  fractional: false
+}
+```
+
+`showCurrency` {Object}
+
+*Show currency in parts of number.*
+
+Object:
+
+```js
+showCurrency: {
+  integer: true,
+  fractional: true
+}
+```
+
 
 # Examples
 
 ```js
-numberToWordsRu.convert(905.65, {
-  onlyNumber: true,
-});
-// Девятьсот пять
-
-numberToWordsRu.convert(1473.31, {
+const converted = numberToWordsRu.convert('-905.645', {
   currency: 'usd',
-});
-// Одна тысяча четыреста семьдесят три доллара 31 цент
-
-numberToWordsRu.convert(22473.01, {
-  currency: false,
-});
-// Двадцать две тысячи четыреста семьдесят три целых 01 сотая
-
-numberToWordsRu.convert(4000155.04, {
-  currency: {
-    currencyNameCases: ['юань', 'юаня', 'юаней'],
-    decimalNameCases: ['фынь', 'фыня', 'фыней'],
-    currencyValueCase: 1,
-    decimalValueCase: 1,
+  convertNumbertToWords : {
+    integer: true,
+    fractional: true,
   },
 });
-// Четыре миллиона сто пятьдесят пять юаней 04 фыня
+// converted === 'Минус девятьсот пять долларов шестьдесят пять центов'
+```
 
-numberToWordsRu.convert(684682.48, {
-  showDecimal: false,
+```js
+const converted = numberToWordsRu.convert('8952.41', {
+  currency: {
+    currencyNameCases: ['юань', 'юаня', 'юаней'],
+    fractionalPartNameCases: ['фынь', 'фыня', 'фыней'],
+    currencyNounGender: {
+      integer: 0,
+      fractionalPart: 0,
+    },
+  },
 });
-// Шестьсот восемьдесят четыре тысячи шестьсот восемьдесят два рубля
+// converted === 'Восемь тысяч девятьсот пятьдесят два юаня 41 фынь'
+```
 
-numberToWordsRu.convert(4881.73, {
-  decimalWords: true,
+```js
+const converted = numberToWordsRu.convert('9516351', {
+  showNumberParts: {
+    fractional: false,
+  },
+  showCurrency : {
+    integer: false,
+  },
 });
-// Четыре тысячи восемьсот восемьдесят один рубль семьдесят три копейки
+// converted === 'Девять миллионов пятьсот шестнадцать тысяч триста пятьдесят один'
+```
+
+```js
+const converted = numberToWordsRu.convert('452/971', {
+  convertNumbertToWords : {
+    fractional: true,
+  },
+  showCurrency: {
+    fractional: false,
+  },
+});
+// converted === 'Четыреста пятьдесят две девятьсот семьдесят первых'
+```
+
+```js
+const converted = numberToWordsRu.convert('235.00000706', {
+  currency: 'number',
+  convertNumbertToWords : {
+    fractional: true,
+  },
+});
+// converted === 'Двести тридцать пять целых семьсот шесть стомиллионных'
 ```
 
 # License

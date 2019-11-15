@@ -1,21 +1,23 @@
 {
   "name": "number-to-words-ru",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Convert a number into words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
   "author": "Anton Moskovskiy",
   "main": "dist/bundle.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot --colors --progress",
+    "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production --colors --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "devDependencies": {
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "webpack": "^4.8.2",
-    "webpack-cli": "^2.1.3",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "jest": "^24.8.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.4"
   },
   "keywords": [
