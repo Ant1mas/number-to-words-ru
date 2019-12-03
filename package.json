@@ -1,7 +1,7 @@
 {
   "name": "number-to-words-ru",
-  "version": "2.0.0",
-  "description": "Convert a number into words on russian language.",
+  "version": "2.0.1",
+  "description": "Convert a number to words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
   "author": "Anton Moskovskiy",
@@ -23,9 +23,10 @@
   "keywords": [
     "convert",
     "number",
-    "into",
+    "to",
     "words",
     "russian",
+    "rus",
     "ru"
   ],
   "files": []

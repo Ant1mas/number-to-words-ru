@@ -1,6 +1,9 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7397158/69491493-d4c97d00-0eb7-11ea-8375-7bf54187d0e1.png" alt="Logo" width="150" align="center" />
+</p>
 <h1 align="center">number-to-words-ru</h1>
 <div align="center">
-  Convert a number into words on russian language.
+  Convert a number to words on russian language.
 
   🔢 ➡ 🔡
 </div>
@@ -17,6 +20,10 @@
 122.00572 ➡ Сто двадцать две **целых** пятьсот семьдесят две **стотысячных**
 
 5/123 ➡ Пять сто двадцать третьих
+
+# Demo
+
+[Demo page](https://ant1mas.github.io/number-to-words-ru/)
 
 # Features
 - **Max 306** digits **before point** and **305** digits **after point** can be converted in words (if typed as String).
@@ -80,13 +87,13 @@ numberToWordsRu.convert('-4201512.21', {
 
 **<p id="methods-convert">`convert(number[, options])`</p>**
 
-*Convert number into words.*
+*Convert number to words.*
 
 Return value is *String*.
 
 `number` {String | Number}
 
-*Number to convert into words.*
+*Number to convert to words.*
 
 If typed as *Number* max value is **9'007'199'254'740'991** (limit of Javascript).
 
