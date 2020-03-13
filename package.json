@@ -4,6 +4,7 @@
   "description": "Convert a number to words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
+  "homepage": "https://ant1mas.github.io/number-to-words-ru/",
   "author": "Anton Moskovskiy",
   "main": "dist/bundle.js",
   "scripts": {
@@ -15,7 +16,7 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
