@@ -3,14 +3,14 @@
 </p>
 <h1 align="center">number-to-words-ru</h1>
 <div align="center">
-  Конвертирование числа в слова на русском языке.
+  Convert a number to words on russian language.
 
   🔢 ➡ 🔡
 </div>
 
-[English version of README](https://github.com/Ant1mas/number-to-words-ru/blob/master/README-english.md)
+[Русская версия описания](https://github.com/Ant1mas/number-to-words-ru/blob/master/README.md)
 
-# Что делает этот модуль
+# What does this module do
 1234567.89 ➡ Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 89 копеек
 
 123.45 ➡ Сто двадцать три рубля **сорок пять** копеек
@@ -23,43 +23,43 @@
 
 5/123 ➡ Пять сто двадцать третьих
 
-# Демонстрация работы
+# Demo
 
-[Страница демонстрации работы модуля](https://ant1mas.github.io/number-to-words-ru/)
+[Demo page](https://ant1mas.github.io/number-to-words-ru/)
 
-# Возможности
-- **Максимум 306** цифр **до зяпятой** и **305** цифр **после запятой** в числе могут быть конвертированы в слова (если число указано как строка).
-- Использование **любой своей валюты**.
-- Конвертирование числа в слова без реальной валюты ("целых", "десятых", "стотысячных" и т. д.)
-- Конвертирование **дробных чисел** (знак "/").
-- **Автоматическое округление** до 2-ух знаков после запятой числа с валютой.
-- **Скрытие части числа** до запятой или после запятой.
-- **Скрытие валюты** в целой и/или в дробной части числа.
-- **Отмена конвертирования знака минус** в слово.
+# Features
+- **Max 306** digits **before point** and **305** digits **after point** can be converted in words (if typed as String).
+- Use any **own custom currency**.
+- Convert number in words without real currency ("целых", "десятых", "стотысячных" etc.)
+- Convert **number with slash** in words.
+- **Auto round to 2 digits** after point long number with currency.
+- **Hide part** before point or after point.
+- **Hide currency** in part before point or in part after point.
+- **Do not convert in words** part before point or after point or minus sign.
 
-# Установка
-Установить с помощью npm:
+# Installation
+Install with npm:
 ```bash
 npm install number-to-words-ru
 ```
-Установить с помощью yarn:
+Install with yarn:
 ```bash
 yarn add number-to-words-ru
 ```
 
-# Использование
+# Usage
 ```js
 const numberToWordsRu = require('number-to-words-ru');
-// или
+// or
 import numberToWordsRu from 'number-to-words-ru'; // ES6
 
 
 
-// Использование без опций
+// Use without options
 numberToWordsRu.convert('104');
 // Сто четыре рубля 00 копеек
 
-// или с опциями
+// or with options
 numberToWordsRu.convert('-4201512.21', {
   currency: 'rub',
   convertMinusSignToWord: true,
@@ -81,7 +81,7 @@ numberToWordsRu.convert('-4201512.21', {
 
 # API
 
-## Методы
+## Methods
 
 - [convert(number[, options])](#methods-convert)
 
@@ -89,23 +89,23 @@ numberToWordsRu.convert('-4201512.21', {
 
 **<p id="methods-convert">`convert(number[, options])`</p>**
 
-*Конвертировать число в слова.*
+*Convert number to words.*
 
-Тип возвращаемых данных: *String*.
+Return value is *String*.
 
 `number` {String | Number}
 
-*Число, которое нужно конвертировать.*
+*Number to convert to words.*
 
-Если введенное число типа *Number*, то максимальное значение **9'007'199'254'740'991** (ограничение Javascript).
+If typed as *Number* max value is **9'007'199'254'740'991** (limit of Javascript).
 
-Если введенное число типа *String*, то максимальное значение **10<sup>305</sup>** (306 цифр) до запятой и **10<sup>304</sup>** (305 цифр) после запятой.
+If typed as *String* max value is **10<sup>305</sup>** (306 digits) before point and **10<sup>304</sup>** (305 digits) after point.
 
 `options` {Object}
 
-*Опции конвертирования числа.*
+*Convert options.*
 
-Полный объект опций:
+Full options object:
 
 ```js
 {
@@ -126,30 +126,30 @@ numberToWordsRu.convert('-4201512.21', {
 }
 ```
 
-### Объект опций
+### Options object
 
 `currency` {String | Object}
 
-*Валюта числа.*
+*Select currency.*
 
-**По умолчанию**: `'rub'`
+**Default**: `'rub'`
 
-Строковые значения:
+String values:
 
-| Строковое значение  | Описание | Пример |
+| String value  | Description | Example |
 | ------------- | ------------- | ------------- |
-| `'rub'`  | Рубль  | 124 **рубля** 42 **копейки**  |
-| `'usd'`  | Доллар  | 124 **доллара** 42 **цента**  |
-| `'eur'`  | Евро  | 124 **евро** 42 **цента**  |
-| `'number'`  | Число без реальной валюты  | 124 **целых** 42 **сотых**  |
+| `'rub'`  | Russian ruble  | 124 **рубля** 42 **копейки**  |
+| `'usd'`  | Dollar  | 124 **доллара** 42 **цента**  |
+| `'eur'`  | Euro  | 124 **евро** 42 **цента**  |
+| `'number'`  | Number without currency  | 124 **целых** 42 **сотых**  |
 
 
-Пример объекта собственной валюты:
+Own currency **object** example:
 
 ```js
 {
-  currencyNameCases: ['рубль', 'рубля', 'рублей'], // Падежи названия целой части числа
-  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'], // Падежи названия дробной части числа
+  currencyNameCases: ['рубль', 'рубля', 'рублей'], // Integer currency names
+  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'], // Fractional number currency names
   currencyNounGender: {
     integer: 0, // 0 => 'один', 1 => 'одна'
     fractionalPart: 1 // 0 => 'два', 1 => 'две'
@@ -159,51 +159,51 @@ numberToWordsRu.convert('-4201512.21', {
 
 `convertMinusSignToWord` {Boolean}
 
-*Конвертировать знак минус в слово.*
+*Convert minus sign to word.*
 
-**По умолчанию**: `true`
+**Default**: `true`
 
 `showNumberParts` {Object}
 
-*Отображение частей числа.*
+*Show parts of number.*
 
-Объект:
+Object:
 
 ```js
 showNumberParts: {
-  integer: true, // Целая часть числа
-  fractional: true // Дробная часть числа
+  integer: true,
+  fractional: true
 }
 ```
 
 `convertNumbertToWords` {Object}
 
-*Конвертирование частей числа в слова.*
+*Convert to words parts of number.*
 
-Объект:
+Object:
 
 ```js
 convertNumbertToWords: {
-  integer: true, // Целая часть числа
-  fractional: false // Дробная часть числа
+  integer: true,
+  fractional: false
 }
 ```
 
 `showCurrency` {Object}
 
-*Отображение валюты в частях числа.*
+*Show currency in parts of number.*
 
-Объект:
+Object:
 
 ```js
 showCurrency: {
-  integer: true, // Целая часть числа
-  fractional: true // Дробная часть числа
+  integer: true,
+  fractional: true
 }
 ```
 
 
-# Примеры
+# Examples
 
 ```js
 const converted = numberToWordsRu.convert('-905.645', {
@@ -264,6 +264,6 @@ const converted = numberToWordsRu.convert('235.00000706', {
 // converted === 'Двести тридцать пять целых семьсот шесть стомиллионных'
 ```
 
-# Лицензия
+# License
 
 MIT
