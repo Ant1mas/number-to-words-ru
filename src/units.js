@@ -106,7 +106,7 @@ addIntegerNamesForms = () => {
       return unitName + wordEnding;
     });
   });
-}
+};
 
 let integer = [
   ['', '', ''],
@@ -118,7 +118,7 @@ let integer = [
 
 integer = integer.concat(addIntegerNamesForms());
 
-let fractional = [
+const fractional = [
   ['десятая', 'десятых', 'десятых'],
   ['сотая', 'сотых', 'сотых'],
   ['тысячная', 'тысячных', 'тысячных'],
@@ -141,18 +141,18 @@ addFractionalNamesForms = () => {
   });
   fullUnitNames = fullUnitNames.filter(Boolean).concat(unitNames);
   // Скомбинировать данные в массив
-  let resultArr = [];
+  const resultArr = [];
   fullUnitNames.some((unitName) => {
     fractionalWordPrefixes.some((prefix) => {
       resultArr.push(
         fractionalWordEndings.map((ending) => {
           return prefix + unitName + ending;
-        })
+        }),
       );
     });
   });
   return resultArr;
-}
+};
 
 // fractionalFullArray = fractional.concat(addFractionalNamesForms());
 
@@ -177,11 +177,13 @@ getFractionalNameForms = (index) => {
     const classScaleIndex = (index - indexStarts) % 3;
     // Сгенерировать массив
     result = fractionalWordEndings.map((ending) => {
-      return fractionalWordPrefixes[classScaleIndex] + integer[classIndex][0] + ending;
+      return fractionalWordPrefixes[classScaleIndex]
+        + integer[classIndex][0]
+        + ending;
     });
   }
   return result;
-}
+};
 
 const slashNumberFroms = {
   number: [
@@ -234,7 +236,7 @@ const slashNumberFroms = {
   ],
 };
 
-let slashNumberUnitsForms = [
+const slashNumberUnitsForms = [
   ['', ''],
   ['тысячная', 'тысячных'],
   ['миллионная', 'миллионных'],
@@ -260,7 +262,7 @@ getSlashNumberUnitName = (scaleIndex = 2) => {
     });
   }
   return result;
-}
+};
 
 module.exports = {
   integer,

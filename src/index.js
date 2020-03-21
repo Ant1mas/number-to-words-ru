@@ -1,12 +1,14 @@
 const textValues = require('./textValues');
 
-let numberToWordsRu = {};
+const numberToWordsRu = {};
 let dividerSlash = false; // Является ли разделитель числа дробной чертой
 
 getOptions = (options) => {
   // Опции по умолчанию
-  let resultOptions = {
-    currency: 'rub', // Название валюты ('rub', 'usd', 'eur') или 'number' или объект со своей валютой
+  const resultOptions = {
+    /* currency - Название валюты ('rub', 'usd', 'eur')
+    или 'number' или объект со своей валютой */
+    currency: 'rub',
     convertMinusSignToWord: true,
     showNumberParts: {
       integer: true,
@@ -55,7 +57,7 @@ getOptions = (options) => {
   };
   updateOptions(resultOptions, options);
   return resultOptions;
-}
+};
 
 getCurrencyData = (convertOptions) => {
   let currencyData;
@@ -76,7 +78,10 @@ getCurrencyData = (convertOptions) => {
       // Получить данные найденной валюты
       currencyData = textValues.currency[convertOptions.currency];
     } else {
-      throw new Error(`Wrong currency name [${convertOptions.currency}]. Try 'rub', 'usd', 'eur', 'number' or object with your currency.`);
+      throw new Error(
+        'Wrong currency name [' + convertOptions.currency + ']. '
+        + 'Try "rub", "usd", "eur", "number" or object with your currency.',
+      );
     }
   // Если валюта описана как объект
   } else if (typeof convertOptions.currency === 'object') {
@@ -99,7 +104,7 @@ getCurrencyData = (convertOptions) => {
     }
   }
   return currencyData;
-}
+};
 
 processNumber = (number) => {
   // Максимальная длинна целой части числа
@@ -119,7 +124,8 @@ processNumber = (number) => {
   // Удалить все знаки минуса
   clearNumber = clearNumber.match(/[^\-]/g).join('');
   // Определить является ли разделитьель дробной чертой
-  dividerSlash = clearNumber.substr(clearNumber.search(/[\,\.\/]/), 1) === '/' ? true : false;
+  dividerSlash = clearNumber
+    .substr(clearNumber.search(/[\,\.\/]/), 1) === '/' ? true : false;
   // Отметить позицию первого разделителя числа
   clearNumber = clearNumber.replace(/[\,\.\/]/, 'CUTHERE');
   // Удалить все разделители числа
@@ -129,11 +135,18 @@ processNumber = (number) => {
   // Если десятичной части вообще нет, то добавить пустую
   numberArr[2] = numberArr[2] === undefined ? '' : numberArr[2];
   // Убрать лишние нули из целой части
-  numberArr[1] = numberArr[1].replace(/^0+/, "");
+  numberArr[1] = numberArr[1].replace(/^0+/, '');
   // Убрать лишние нули из дробной части
   // Если разделитель не дробная черта
   if (dividerSlash === false) {
-    numberArr[2] = numberArr[2].split("").reverse().join("").replace(/^0+/, "").split("").reverse().join("");
+    numberArr[2] = numberArr[2]
+      .split('')
+      .reverse()
+      .join('')
+      .replace(/^0+/, '')
+      .split('')
+      .reverse()
+      .join('');
   }
   // Заменить пустые значения на ноль
   numberArr[1] = numberArr[1] === '' ? '0' : numberArr[1];
@@ -149,11 +162,14 @@ processNumber = (number) => {
     numberArr[2] = numberArr[2].slice(0, maxIntegerPartLength - 1);
   }
   return numberArr;
-}
+};
 
 replaceAt = (string, index, newSubStr) => {
-  return string.substr(0, index) + newSubStr.toString() + string.substr(index + newSubStr.toString().length);
-}
+  return string.substr(0, index)
+    + newSubStr.toString()
+    + string.substr(index
+    + newSubStr.toString().length);
+};
 
 roundNumber = (numberArr, precision = 2) => {
   // Обрезать дробную часть
@@ -161,7 +177,8 @@ roundNumber = (numberArr, precision = 2) => {
   // Если недостаточно знаков в дробной части
   if (fractionalPart.length < (precision + 1)) {
     // Заполнить пустое место нулями
-    fractionalPart = fractionalPart + '0'.repeat((precision + 1) - fractionalPart.length);
+    fractionalPart = fractionalPart + '0'
+      .repeat((precision + 1) - fractionalPart.length);
   }
   let numberPartToRound = `${numberArr[1]}.${fractionalPart}`;
   let increaseDigit = false;
@@ -182,7 +199,11 @@ roundNumber = (numberArr, precision = 2) => {
           }
         // Если любая другая цифра
         } else {
-          numberPartToRound = replaceAt(numberPartToRound, index, currentDigit + 1);
+          numberPartToRound = replaceAt(
+            numberPartToRound,
+            index,
+            currentDigit + 1,
+          );
           increaseDigit = false;
           break;
         }
@@ -192,17 +213,18 @@ roundNumber = (numberArr, precision = 2) => {
         if (currentDigit <= 4) {
           break;
         } else {
-        // Если текущая цифра >= 5, то увеличить следующую цифру (соседнюю слева)
+        /* Если текущая цифра >= 5,
+        то увеличить следующую цифру (соседнюю слева) */
           increaseDigit = true;
         }
       }
     }
   }
-  let resultNumberArr = numberPartToRound.slice(0, -1).split('.');
+  const resultNumberArr = numberPartToRound.slice(0, -1).split('.');
   resultNumberArr.unshift(numberArr[0]);
   const result = resultNumberArr;
   return result;
-}
+};
 
 numberToScales = (number) => {
   // Сделать количество цифр числа кратным 3
@@ -212,13 +234,15 @@ numberToScales = (number) => {
   const lackOfDigits = numberLengthGoal - numberLength;
   const extendedNumber = '0'.repeat(lackOfDigits) + number;
   // Разделить число на классы по 3 цифры в каждом
-  let cutNumber = [];
+  const cutNumber = [];
   for (i = 0; i < extendedNumber.length; i+=3) {
-    let digits3 = extendedNumber[i] + extendedNumber[i + 1] + extendedNumber[i + 2];
+    const digits3 = extendedNumber[i]
+      + extendedNumber[i + 1]
+      + extendedNumber[i + 2];
     cutNumber.push(digits3);
   }
   return cutNumber;
-}
+};
 
 convertsEachScaleToWords = (numberScaleArr, currencyNounGender = 0) => {
   let convertedResult = '';
@@ -235,7 +259,12 @@ convertsEachScaleToWords = (numberScaleArr, currencyNounGender = 0) => {
     let digit2text = '';
     let digit3text = '';
     // Пропускать пустые классы (000)
-    if (numberScaleArr.length > 1 && digit1 === 0 && digit2 === 0 && digit3 === 0) {
+    if (
+      numberScaleArr.length > 1
+      && digit1 === 0
+      && digit2 === 0
+      && digit3 === 0
+    ) {
       return;
     }
     // Определить сотни
@@ -283,26 +312,36 @@ convertsEachScaleToWords = (numberScaleArr, currencyNounGender = 0) => {
       digit3text = '';
     }
     // Соеденить значения в одну строку
-    const scaleResult = `${digit1text} ${digit2text} ${digit3text} ${unitName}`.replace(/\s+/g,' ').trim();
+    const scaleResult = `${digit1text} ${digit2text} ${digit3text} ${unitName}`
+      .replace(/\s+/g, ' ')
+      .trim();
     // Добавить текущий разобранный класс к общему результату
     convertedResult += ` ${scaleResult}`;
-  })
+  });
   // Вернуть полученный результат и форму падежа для валюты
   return {
     result: convertedResult.trim(),
     unitNameForm: unitNameForm,
-  }
-}
+  };
+};
 
 convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
   unitNameForm = unitNameForm === 0 ? 0 : 1;
   let convertedResult = '';
-  // Определить порядковый номер с конца последнего числа, которое находится до нулей
-  const lastDigitBeforeZerosIndex = numberScaleArr.join('').split('').reverse().join('').search(/[1-9]/) + 1;
-  // Определить в каком классе lastDigitBeforeZerosIndex (какой класс изменяется по падежу)
+  /* Определить порядковый номер с конца последнего числа,
+  которое находится до нулей */
+  const lastDigitBeforeZerosIndex = numberScaleArr
+    .join('')
+    .split('')
+    .reverse()
+    .join('')
+    .search(/[1-9]/) + 1;
+  /* Определить в каком классе
+  lastDigitBeforeZerosIndex (какой класс изменяется по падежу) */
   const scaleChanging = Math.ceil(lastDigitBeforeZerosIndex / 3);
   const scaleChangingIndex = numberScaleArr.length - scaleChanging;
-  // Если есть еще классы над scaleChangingIndex, то добавить их в именительном падеже
+  /* Если есть еще классы над scaleChangingIndex,
+  то добавить их в именительном падеже */
   if (scaleChangingIndex > 0) {
     // Сформировать массив только из этих классов
     const simpleScalesArr = numberScaleArr.map((numberScale, scaleIndex) => {
@@ -320,21 +359,30 @@ convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
   // Обработать класс, который меняется по падежам
   // Если этот класс >= 2 (класс тысяч и выше)
   if (scaleChanging >= 2) {
-    // Переменная для составления длинного числа, например "двухсотдвадцатипятитысячных"
+    /* Переменная для составления длинного числа,
+    например "двухсотдвадцатипятитысячных" */
     let numberLongWord = '';
     // Поделить число текущего класса на цифры
     const currentScaleNumberArr = numberScaleArr[scaleChangingIndex].split('');
     // Составить число
-    numberLongWord += textValues.slashNumberUnits.hundreds[currentScaleNumberArr[0]][2];
+    numberLongWord += textValues
+      .slashNumberUnits
+      .hundreds[currentScaleNumberArr[0]][2];
     // Если в разряде десятков стоит "1"
     if (currentScaleNumberArr[1] === '1') {
-      numberLongWord += textValues.slashNumberUnits.teens[currentScaleNumberArr[2]][2];
+      numberLongWord += textValues
+        .slashNumberUnits
+        .teens[currentScaleNumberArr[2]][2];
     // Если в раздяде десятков стоит не "1"
     } else {
-      numberLongWord += textValues.slashNumberUnits.tens[currentScaleNumberArr[1]][2];
-      numberLongWord += textValues.slashNumberUnits.number[currentScaleNumberArr[2]][2];
+      numberLongWord += textValues
+        .slashNumberUnits
+        .tens[currentScaleNumberArr[1]][2];
+      numberLongWord += textValues
+        .slashNumberUnits
+        .number[currentScaleNumberArr[2]][2];
     }
-    // Получить название класса 
+    // Получить название класса
     const unitName = textValues.slashNumberUnitsNames(scaleChanging);
     // Добавить название класса
     numberLongWord += unitName[unitNameForm];
@@ -348,7 +396,7 @@ convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
     // Индекс цифры, которой надо поменять форму
     const digitIndexChange = 3 - lastDigitBeforeZerosIndex;
     // Получить обычную часть числа
-    let currentScaleNumberNormal = currentScaleNumberArr.slice();
+    const currentScaleNumberNormal = currentScaleNumberArr.slice();
     // Если надо поменять цифру в первом разряде, а она часть 10-19
     if (digitIndexChange === 2 && currentScaleNumberNormal[1] === '1') {
       // Не показывать разряд десяток в именительном падеже
@@ -361,25 +409,34 @@ convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
       // Если есть цифры (!= 000)
       if (currentScaleNumberNormal.join('') !== '000') {
         // Конвертировать обычную часть числа в слова
-        wordsResult += convertsEachScaleToWords([currentScaleNumberNormal]).result;
+        wordsResult += convertsEachScaleToWords([currentScaleNumberNormal])
+          .result;
       }
     }
     // Добавить измененную часть числа
     // Если это разряд сотен
     if (digitIndexChange === 0) {
-      wordsResult += ` ${textValues.slashNumberUnits.hundreds[currentScaleNumberArr[0]][unitNameForm]}`;
+      wordsResult += ' ' + textValues
+        .slashNumberUnits
+        .hundreds[currentScaleNumberArr[0]][unitNameForm];
     } else {
     // Если это разряд десятков или единиц
       // Если в разраде десятков цифра 1 (числа 10-19)
       if (currentScaleNumberArr[1] === '1') {
-        wordsResult += ` ${textValues.slashNumberUnits.teens[currentScaleNumberArr[2]][unitNameForm]}`;
+        wordsResult += ' ' + textValues
+          .slashNumberUnits
+          .teens[currentScaleNumberArr[2]][unitNameForm];
       } else {
         // Если нужно менять разряд 2 (десятки)
         if (digitIndexChange === 1) {
-          wordsResult += ` ${textValues.slashNumberUnits.tens[currentScaleNumberArr[1]][unitNameForm]}`;
+          wordsResult += ' ' + textValues
+            .slashNumberUnits
+            .tens[currentScaleNumberArr[1]][unitNameForm];
         // Если нужно менять разряд 1 (единицы)
         } else if (digitIndexChange === 2) {
-          wordsResult += ` ${textValues.slashNumberUnits.number[currentScaleNumberArr[2]][unitNameForm]}`;
+          wordsResult += ' ' + textValues
+            .slashNumberUnits
+            .number[currentScaleNumberArr[2]][unitNameForm];
         }
       }
     }
@@ -387,10 +444,12 @@ convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
     convertedResult += ` ${wordsResult}`;
   }
   return convertedResult;
-}
+};
 
 combineResultData = (numberArray, options) => {
-  let convertedNumberArr = ['', '', '', '', '']; // ['минус', 'двадцать два', 'рубля', 'сорок одна', 'копейка']
+  /* Пример convertedNumberArr:
+  ['минус', 'двадцать два', 'рубля', 'сорок одна', 'копейка'] */
+  const convertedNumberArr = ['', '', '', '', ''];
   // Определить опции для функции
   const useOptions = getOptions(options);
   // Определить отображение валюты
@@ -419,18 +478,27 @@ combineResultData = (numberArray, options) => {
     if (useOptions.convertNumbertToWords.integer === true) {
       // Если разделитель не дробная черта
       if (dividerSlash === false) {
-        convertedNumberArr[1] = convertsEachScaleToWords(numberToScales(numberArray[1]), currencyData.currencyNounGender.integer).result;
+        convertedNumberArr[1] = convertsEachScaleToWords(
+          numberToScales(numberArray[1]),
+          currencyData.currencyNounGender.integer,
+        ).result;
       } else {
       // Если раделитель - дробная черта
         // Род числа всегда женский ('одна', 'две')
-        convertedNumberArr[1] = convertsEachScaleToWords(numberToScales(numberArray[1]), 1).result;
+        convertedNumberArr[1] =
+          convertsEachScaleToWords(numberToScales(numberArray[1]), 1).result;
       }
     }
     // Если нужно отображать валюту числа
     if (useOptions.showCurrency.integer === true) {
       // Если разделитель - не дробная черта
       if (dividerSlash === false) {
-        convertedNumberArr[2] = currencyData.currencyNameCases[convertsEachScaleToWords(numberToScales(numberArray[1]), currencyData.currencyNounGender.integer).unitNameForm];
+        convertedNumberArr[2] = currencyData.currencyNameCases[
+          convertsEachScaleToWords(
+            numberToScales(numberArray[1]),
+            currencyData.currencyNounGender.integer,
+          ).unitNameForm
+        ];
       }
     }
   }
@@ -441,22 +509,42 @@ combineResultData = (numberArray, options) => {
     if (useOptions.convertNumbertToWords.fractional === true) {
       // Если разделитель - дробная черта
       if (dividerSlash === true) {
-        convertedNumberArr[3] = convertsEachScaleToWordsSlash(numberToScales(numberArray[2]), convertsEachScaleToWords(numberToScales(numberArray[1]), currencyData.currencyNounGender.integer).unitNameForm);
+        convertedNumberArr[3] = convertsEachScaleToWordsSlash(
+          numberToScales(numberArray[2]),
+          convertsEachScaleToWords(
+            numberToScales(numberArray[1]),
+            currencyData.currencyNounGender.integer,
+          ).unitNameForm,
+        );
       } else {
       // Если разделитель - не дробная черта
-        convertedNumberArr[3] = convertsEachScaleToWords(numberToScales(numberArray[2]), currencyData.currencyNounGender.fractionalPart).result;
+        convertedNumberArr[3] = convertsEachScaleToWords(
+          numberToScales(numberArray[2]),
+          currencyData.currencyNounGender.fractionalPart,
+        ).result;
       }
     }
     // Если нужно отображать валюту числа
     if (useOptions.showCurrency.fractional === true) {
-      convertedNumberArr[4] = currencyData.fractionalPartNameCases[convertsEachScaleToWords(numberToScales(numberArray[2]), currencyData.currencyNounGender.fractionalPart).unitNameForm];
+      convertedNumberArr[4] = currencyData.fractionalPartNameCases[
+        convertsEachScaleToWords(
+          numberToScales(numberArray[2]),
+          currencyData.currencyNounGender.fractionalPart,
+        ).unitNameForm
+      ];
       // Если не указана валюта
       if (useOptions.currency === 'number') {
         // Если разделитель - не дробная черта
         if (dividerSlash === false) {
           // Получить массив названий дробной части
-          const getFractionalPartArr = currencyData.fractionalPartNameCases(numberArray[2].length - 1);
-          convertedNumberArr[4] = getFractionalPartArr[convertsEachScaleToWords(numberToScales(numberArray[2]), currencyData.currencyNounGender.fractionalPart).unitNameForm];
+          const getFractionalPartArr = currencyData
+            .fractionalPartNameCases(numberArray[2].length - 1);
+          convertedNumberArr[4] = getFractionalPartArr[
+            convertsEachScaleToWords(numberToScales(
+              numberArray[2]),
+              currencyData.currencyNounGender.fractionalPart,
+            ).unitNameForm
+          ];
         }
       }
       // Если разделитель - дробная черта
@@ -468,18 +556,25 @@ combineResultData = (numberArray, options) => {
       }
     }
   }
-  let convertedNumberResult = convertedNumberArr.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+  let convertedNumberResult = convertedNumberArr
+      .filter(Boolean)
+      .join(' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   // Сделать первую букву заглавной
-  convertedNumberResult = convertedNumberResult.charAt(0).toUpperCase() + convertedNumberResult.slice(1)
+  convertedNumberResult = convertedNumberResult
+      .charAt(0)
+      .toUpperCase()
+      + convertedNumberResult.slice(1);
   return convertedNumberResult;
-}
+};
 
 numberToWordsRu.convert = function(number, options = {}) {
   // Обработать введенное число
   const numberArray = processNumber(number);
   // Собрать конечный словестный результат
-  let convertedNumberArr = combineResultData(numberArray, options);
+  const convertedNumberArr = combineResultData(numberArray, options);
   return convertedNumberArr;
-}
+};
 
 module.exports = numberToWordsRu;
