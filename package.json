@@ -8,20 +8,22 @@
   "author": "Anton Moskovskiy",
   "main": "dist/bundle.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
-    "build": "webpack --mode production --colors --progress",
+    "dev": "webpack-dev-server --config ./webpack/webpack.dev.js --hot",
+    "build": "webpack --config ./webpack/webpack.prod.js",
     "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.8.0",
+    "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^25.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   },
   "keywords": [
     "convert",
