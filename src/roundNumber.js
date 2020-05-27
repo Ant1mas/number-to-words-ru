@@ -2,14 +2,18 @@ import replaceAt from 'replaceAt';
 
 /**
  * Округлить число в виде массива до заданной точности.
- * @param {*} numberArray - Число в виде массива.
- * @param {*} precision - Точность. Сколько знаков после запятой.
+ * @param {Array} numberArray - Число в виде массива.
+ * @param {number} precision - Точность. Сколько знаков после запятой.
  * @return {Array} Округленное число в виде массива.
  */
 const roundNumber = (numberArray, precision = 2) => {
+  // Если precision отрицательная, то не округлять
+  if (precision < 0) {
+    return numberArray;
+  }
   const integerPart = numberArray[1];
   // Обрезать дробную часть
-  let fractionalPart = numberArray[3].substr(0, precision + 1);
+  let fractionalPart = numberArray[3].substring(0, precision + 1);
   // Если недостаточно знаков в дробной части
   if (fractionalPart.length < (precision + 1)) {
     // Заполнить пустое место нулями
@@ -56,7 +60,7 @@ const roundNumber = (numberArray, precision = 2) => {
       }
     }
   }
-  const resultNumberArray = numberArray;
+  const resultNumberArray = [...numberArray];
   resultNumberArray[1] = numberPartToRound.slice(0, -1).split('.')[0];
   resultNumberArray[3] = numberPartToRound.slice(0, -1).split('.')[1];
   return resultNumberArray;

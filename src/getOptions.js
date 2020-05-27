@@ -10,6 +10,7 @@ const getOptions = (options) => {
     или 'number'
     или объект со своей валютой */
     currency: 'rub',
+    roundNumber: -1,
     convertMinusSignToWord: true,
     showNumberParts: {
       integer: true,

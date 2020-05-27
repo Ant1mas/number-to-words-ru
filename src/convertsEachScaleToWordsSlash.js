@@ -8,6 +8,9 @@ import convertsEachScaleToWords from 'convertsEachScaleToWords';
  * @return {string} Конвертированный результат.
  */
 const convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
+  if (numberScaleArr.length < 1) {
+    return '';
+  }
   unitNameForm = unitNameForm === 0 ? 0 : 1;
   let convertedResult = '';
   /* Определить порядковый номер с конца последнего числа,

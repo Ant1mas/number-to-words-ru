@@ -16,6 +16,7 @@ const combineResultData = (numberArray, options) => {
   /* Пример convertedNumberArr:
   ['минус', 'двадцать два', 'рубля', 'сорок одна', 'копейка'] */
   const convertedNumberArr = ['', '', '', '', ''];
+  let modifiedNumberArray = [...numberArray];
   // Определить опции для функции
   const useOptions = getOptions(options);
   // Определить отображение валюты
@@ -29,39 +30,54 @@ const combineResultData = (numberArray, options) => {
       convertedNumberArr[0] = '-';
     }
   }
+  // Округлить число до заданной точности
+  modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
+  // Если разделитель - дробная черта
+  if (numberArray[2] === '/') {
+    // Если после '/' нет цифр
+    if (modifiedNumberArray[3] === '') {
+      // Поменять разделитель на '.'
+      modifiedNumberArray[2] = '.';
+    }
+  }
   // Если указана валюта
-  if (useOptions.currency !== 'number') {
+  if (
+    typeof useOptions.currency === 'string' &&
+    useOptions.currency !== 'number'
+  ) {
     // Если разделитель - не дробная черта
     if (numberArray[2] !== '/') {
+      // Округлить число до заданной точности
+      modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
       // Округлить число до 2 знаков после запятой
-      numberArray = roundNumber(numberArray, 2);
+      modifiedNumberArray = roundNumber(modifiedNumberArray, 2);
     }
   }
   // Если нужно отображать целую часть числа
   if (useOptions.showNumberParts.integer === true) {
-    convertedNumberArr[1] = numberArray[1];
+    convertedNumberArr[1] = modifiedNumberArray[1];
     // Если нужно конвертировать число в слова
     if (useOptions.convertNumbertToWords.integer === true) {
       // Если разделитель - не дробная черта
-      if (numberArray[2] !== '/') {
+      if (modifiedNumberArray[2] !== '/') {
         convertedNumberArr[1] = convertsEachScaleToWords(
-          numberToScales(numberArray[1]),
+          numberToScales(modifiedNumberArray[1]),
           currencyObject.currencyNounGender.integer,
         ).result;
       } else {
       // Если раделитель - дробная черта
         // Род числа всегда женский ('одна', 'две')
         convertedNumberArr[1] =
-          convertsEachScaleToWords(numberToScales(numberArray[1]), 1).result;
+          convertsEachScaleToWords(numberToScales(modifiedNumberArray[1]), 1).result;
       }
     }
     // Если нужно отображать валюту числа
     if (useOptions.showCurrency.integer === true) {
       // Если разделитель - не дробная черта
-      if (numberArray[2] !== '/') {
+      if (modifiedNumberArray[2] !== '/') {
         convertedNumberArr[2] = currencyObject.currencyNameCases[
           convertsEachScaleToWords(
-            numberToScales(numberArray[1]),
+            numberToScales(modifiedNumberArray[1]),
             currencyObject.currencyNounGender.integer,
           ).unitNameForm
         ];
@@ -70,22 +86,22 @@ const combineResultData = (numberArray, options) => {
   }
   // Если нужно отображать дробную часть числа
   if (useOptions.showNumberParts.fractional === true) {
-    convertedNumberArr[3] = numberArray[3];
+    convertedNumberArr[3] = modifiedNumberArray[3];
     // Если нужно конвертировать число в слова
     if (useOptions.convertNumbertToWords.fractional === true) {
       // Если разделитель - дробная черта
-      if (numberArray[2] === '/') {
+      if (modifiedNumberArray[2] === '/') {
         convertedNumberArr[3] = convertsEachScaleToWordsSlash(
-          numberToScales(numberArray[3]),
+          numberToScales(modifiedNumberArray[3]),
           convertsEachScaleToWords(
-            numberToScales(numberArray[1]),
+            numberToScales(modifiedNumberArray[1]),
             currencyObject.currencyNounGender.integer,
           ).unitNameForm,
         );
       } else {
       // Если разделитель - не дробная черта
         convertedNumberArr[3] = convertsEachScaleToWords(
-          numberToScales(numberArray[3]),
+          numberToScales(modifiedNumberArray[3]),
           currencyObject.currencyNounGender.fractionalPart,
         ).result;
       }
@@ -96,7 +112,7 @@ const combineResultData = (numberArray, options) => {
       if (useOptions.currency !== 'number') {
         convertedNumberArr[4] = currencyObject.fractionalPartNameCases[
           convertsEachScaleToWords(
-            numberToScales(numberArray[3]),
+            numberToScales(modifiedNumberArray[3]),
             currencyObject.currencyNounGender.fractionalPart,
           ).unitNameForm
         ];
@@ -104,20 +120,20 @@ const combineResultData = (numberArray, options) => {
       // Если не указана валюта
       if (useOptions.currency === 'number') {
         // Если разделитель - не дробная черта
-        if (numberArray[2] !== '/') {
+        if (modifiedNumberArray[2] !== '/') {
           // Получить массив названий дробной части
           const getFractionalPartArr = currencyObject
-            .getFractionalPartNameCases(numberArray[3].length - 1);
+            .getFractionalPartNameCases(modifiedNumberArray[3].length - 1);
           convertedNumberArr[4] = getFractionalPartArr[
             convertsEachScaleToWords(numberToScales(
-              numberArray[3]),
+              modifiedNumberArray[3]),
               currencyObject.currencyNounGender.fractionalPart,
             ).unitNameForm
           ];
         }
       }
       // Если разделитель - дробная черта
-      if (numberArray[2] === '/') {
+      if (modifiedNumberArray[2] === '/') {
         // Если указана валюта
         if (useOptions.currency !== 'number') {
           convertedNumberArr[4] = currencyObject.currencyNameCases[1];
