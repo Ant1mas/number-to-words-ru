@@ -384,17 +384,31 @@ describe('Options', () => {
         })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь целых двенадцать тысяч триста сорок пять стотысячных');
       });
     });
-    test('object value', () => {
-      expect(numberToWordsRu.convert('1234567.12345', {
-        currency: {
-          currencyNameCases: ['доллар', 'доллара', 'долларов'],
-          fractionalPartNameCases: ['цент', 'цента', 'центов'],
-          currencyNounGender: {
-            integer: 0,
-            fractionalPart: 1,
+    describe('object values', () => {
+      test('common value', () => {
+        expect(numberToWordsRu.convert('1234567.12345', {
+          currency: {
+            currencyNameCases: ['доллар', 'доллара', 'долларов'],
+            fractionalPartNameCases: ['цент', 'цента', 'центов'],
+            currencyNounGender: {
+              integer: 0, // Мужской род
+              fractionalPart: 1, // Женский род
+            },
           },
-        },
-      })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
+        })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
+      });
+      test('kind of word 2', () => {
+        expect(numberToWordsRu.convert('1231.52', {
+          currency: {
+            currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
+            fractionalPartNameCases: ['яблоко', 'яблока', 'яблок'],
+            currencyNounGender: {
+              integer: 2, // Средний род
+              fractionalPart: 2,
+            },
+          },
+        })).toBe('Одна тысяча двести тридцать одно сообщение 52 яблока');
+      });
     });
   });
   test('convertMinusSignToWord', () => {

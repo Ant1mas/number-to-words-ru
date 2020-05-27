@@ -30,27 +30,32 @@ const convertsEachScaleToWords = (numberScaleArr, currencyNounGender = 0) => {
       return;
     }
     // Определить сотни
-    digit1text = textValues.numberNames[3][digit1];
+    digit1text = textValues.numberNames[4][digit1];
     // Определить десятки и единицы
     // Если в разряде десятков стоит "1"
     if (digit2 === 1) {
       digit2text = textValues.tensNames[digit3];
     // Если в раздяде десятков стоит не "1"
     } else {
-      digit2text = textValues.numberNames[2][digit2];
-      digit3text = textValues.numberNames[1][digit3];
-      // Определить РОД названия единиц (один/одна, два/две)
+      digit2text = textValues.numberNames[3][digit2];
+      digit3text = textValues.numberNames[0][digit3];
+      // Определить РОД названия единиц (один/одна, два/две, одно/два)
       // Если текущий класс - тысячные
       if (currentNumberScale === 2) {
         // Поменять род названия единиц (один -> одна, два -> две)
-        digit3text = textValues.numberNames[0][digit3];
+        digit3text = textValues.numberNames[1][digit3];
       }
       // Если текущий класс - единицы
       if (currentNumberScale === 1) {
         // Если у валюты указан женский род (напр. копейка)
         if (currencyNounGender === 1) {
           // Поменять род названия единиц (один -> одна, два -> две)
-          digit3text = textValues.numberNames[0][digit3];
+          digit3text = textValues.numberNames[1][digit3];
+        }
+        // Если у валюты указан средний род
+        if (currencyNounGender === 2) {
+          // Поменять род названия единиц (один -> одно, два -> два)
+          digit3text = textValues.numberNames[2][digit3];
         }
       }
       // Определить ПАДЕЖ названия единиц измерения (рубль/рубля/рублей)
