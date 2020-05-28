@@ -1,10 +1,15 @@
-const units = require('./units');
+import integerUnits from 'units/integer';
+import slashNumberForms from 'units/slashNumberForms';
+import getFractionalNameForms from 'units/functions/getFractionalNameForms';
+import getSlashNumberUnitName from 'units/functions/getSlashNumberUnitName';
+import stringCurrencies from 'stringCurrencies';
 
 const textValues = {
   minus: 'минус',
   numberNames: [
-    ['ноль', 'одна', 'две', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
     ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
+    ['ноль', 'одна', 'две', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
+    ['ноль', 'одно', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
     ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'],
     ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'],
   ],
@@ -20,36 +25,11 @@ const textValues = {
     'восемнадцать',
     'девятнадцать',
   ],
-  units: units.integer,
-  fractionalUnits: units.getFractionalNameForms,
-  slashNumberUnits: units.slashNumberFroms,
-  slashNumberUnitsNames: units.getSlashNumberUnitName,
-  currency: {
-    rub: {
-      currencyNameCases: ['рубль', 'рубля', 'рублей'],
-      fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
-      currencyNounGender: {
-        integer: 0, // Мужской род
-        fractionalPart: 1, // Женский род
-      },
-    },
-    usd: {
-      currencyNameCases: ['доллар', 'доллара', 'долларов'],
-      fractionalPartNameCases: ['цент', 'цента', 'центов'],
-      currencyNounGender: {
-        integer: 0,
-        fractionalPart: 0,
-      },
-    },
-    eur: {
-      currencyNameCases: ['евро', 'евро', 'евро'],
-      fractionalPartNameCases: ['цент', 'цента', 'центов'],
-      currencyNounGender: {
-        integer: 0,
-        fractionalPart: 0,
-      },
-    },
-  },
+  integerUnits: integerUnits,
+  slashNumberUnits: slashNumberForms,
+  currency: stringCurrencies,
+  getFractionalUnits: getFractionalNameForms,
+  getSlashNumberUnitsNames: getSlashNumberUnitName,
 };
 
-module.exports = textValues;
+export default textValues;
