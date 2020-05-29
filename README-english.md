@@ -33,9 +33,10 @@
 
 # Features
 - **Max 306** digits **before point** and **305** digits **after point** can be converted in words (if typed as String).
-- Use any **own custom currency** (not only currency).
+- Use any **own custom currency**.
+- Use with any object (for example "сообщение", "комментарий", работа"...).
 - Convert number in words without real currency ("целых", "десятых", "стотысячных" etc.)
-- Convert **number with slash** in words.
+- Convert **number with slash** in words (delimiter "/").
 - **Round number** to specified precision.
 - **Auto round to 2 digits** after point long number with common currency.
 - **Hide part** before point or after point.
@@ -190,7 +191,7 @@ Own currency **object** example:
 
 `-1` - Disable rounding.
 
-If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits.
+If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits. Also in this case the result always will have 2 digits in fractional part (for example "00", "05").
 
 Example:
 
@@ -213,6 +214,8 @@ numberToWordsRu.convert('129.6789', {
 });
 // Сто тридцать рублей 00 копеек
 ```
+
+If delimiter is slash ("`/`") then number will NOT be rounded in any case.
 
 <br/>
 
@@ -421,6 +424,17 @@ const converted = numberToWordsRu.convert('235.00000706', {
   },
 });
 // converted === 'Двести тридцать пять целых семьсот шесть стомиллионных'
+```
+
+```js
+let converted = numberToWordsRu.convert('0.5', {
+  currency: 'number',
+  convertNumbertToWords : {
+    fractional: true,
+  },
+});
+converted = converted + ' литра воды';
+// converted === 'Ноль целых пять десятых литра воды'
 ```
 
 # License
