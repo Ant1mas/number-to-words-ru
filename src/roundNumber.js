@@ -11,15 +11,13 @@ const roundNumber = (numberArray, precision = 2) => {
   if (precision < 0) {
     return numberArray;
   }
+  // Если количество знаков после запятой <= precision, то не округлять
+  if (numberArray[3].length <= precision) {
+    return numberArray;
+  }
   const integerPart = numberArray[1];
   // Обрезать дробную часть
-  let fractionalPart = numberArray[3].substring(0, precision + 1);
-  // Если недостаточно знаков в дробной части
-  if (fractionalPart.length < (precision + 1)) {
-    // Заполнить пустое место нулями
-    fractionalPart = fractionalPart + '0'
-      .repeat((precision + 1) - fractionalPart.length);
-  }
+  const fractionalPart = numberArray[3].substring(0, precision + 1);
   let numberPartToRound = `${integerPart}.${fractionalPart}`;
   let increaseDigit = false;
   // Цикл от последней цифры к первой (справа налево)

@@ -30,15 +30,10 @@ const combineResultData = (numberArray, options) => {
       convertedNumberArr[0] = '-';
     }
   }
-  // Округлить число до заданной точности
-  modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
-  // Если разделитель - дробная черта
-  if (numberArray[2] === '/') {
-    // Если после '/' нет цифр
-    if (modifiedNumberArray[3] === '') {
-      // Поменять разделитель на '.'
-      modifiedNumberArray[2] = '.';
-    }
+  // Если разделитель - не дробная черта
+  if (numberArray[2] !== '/') {
+    // Округлить число до заданной точности
+    modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
   }
   // Если указана валюта
   if (
@@ -47,10 +42,14 @@ const combineResultData = (numberArray, options) => {
   ) {
     // Если разделитель - не дробная черта
     if (numberArray[2] !== '/') {
-      // Округлить число до заданной точности
-      modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
       // Округлить число до 2 знаков после запятой
       modifiedNumberArray = roundNumber(modifiedNumberArray, 2);
+      // Если в дробной части < 2 цифр
+      if (modifiedNumberArray[3].length < 2) {
+        // Заполнить нулями
+        modifiedNumberArray[3] = modifiedNumberArray[3] + '0'
+          .repeat(2 - modifiedNumberArray[3].length);
+      }
     }
   }
   // Если нужно отображать целую часть числа

@@ -423,11 +423,80 @@ describe('Options', () => {
     });
   });
   describe('roundNumber', () => {
-    describe('string currency', () => {
-      test('normal delimiter', () => {
+    describe('slash delimiter', () => {
+      test('common currency', () => {
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'rub',
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'rub',
+          roundNumber: 2,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'rub',
+          roundNumber: -1,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+      });
+      test('currency "number"', () => {
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'number',
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре 6789');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'number',
+          roundNumber: 2,
+        })).toBe('Одна тысяча двести тридцать четыре 6789');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: 'number',
+          roundNumber: -1,
+        })).toBe('Одна тысяча двести тридцать четыре 6789');
+      });
+      test('custom currency', () => {
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
+          },
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
+          },
+          roundNumber: 2,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+        expect(numberToWordsRu.convert('1234/6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
+          },
+          roundNumber: -1,
+        })).toBe('Одна тысяча двести тридцать четыре 6789 рубля');
+      });
+    });
+    describe('normal delimiter', () => {
+      test('common currency', () => {
         expect(numberToWordsRu.convert('1234.6789', {
           currency: 'rub',
-          roundNumber: 20,
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре рубля 68 копеек');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: 'rub',
+          roundNumber: 2,
         })).toBe('Одна тысяча двести тридцать четыре рубля 68 копеек');
         expect(numberToWordsRu.convert('1234.6789', {
           currency: 'rub',
@@ -442,203 +511,69 @@ describe('Options', () => {
           roundNumber: -1,
         })).toBe('Одна тысяча двести тридцать четыре рубля 68 копеек');
       });
-      test('slash delimiter', () => {
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'rub',
-          roundNumber: 6,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шестьсот семьдесят восемь тысяч девятисотых рубля');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'rub',
-          roundNumber: 1,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре седьмых рубля');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'rub',
+      test('currency "number"', () => {
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: 'number',
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре целых 6789 десятитысячных');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: 'number',
+          roundNumber: 2,
+        })).toBe('Одна тысяча двести тридцать четыре целых 68 сотых');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: 'number',
           roundNumber: 0,
-          convertNumbertToWords: {
-            fractional: true,
+        })).toBe('Одна тысяча двести тридцать пять целых');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: 'number',
+          roundNumber: -1,
+        })).toBe('Одна тысяча двести тридцать четыре целых 6789 десятитысячных');
+      });
+      test('custom currency', () => {
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
           },
+          roundNumber: 8,
+        })).toBe('Одна тысяча двести тридцать четыре рубля 6789 копеек');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
+          },
+          roundNumber: 2,
+        })).toBe('Одна тысяча двести тридцать четыре рубля 68 копеек');
+        expect(numberToWordsRu.convert('1234.6789', {
+          currency: {
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+            currencyNounGender: {
+              integer: 0,
+              fractionalPart: 1,
+            },
+          },
+          roundNumber: 0,
         })).toBe('Одна тысяча двести тридцать пять рублей');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'rub',
-          roundNumber: -1,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шесть тысяч семьсот восемьдесят девятых рубля');
-      });
-    });
-    describe('currency "number"', () => {
-      test('normal delimiter', () => {
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: 'number',
-          roundNumber: 8,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре целых шестьдесят семь миллионов восемьсот девяносто тысяч стомиллионных');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: 'number',
-          roundNumber: 2,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре целых шестьдесят восемь сотых');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: 'number',
-          roundNumber: 0,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать пять целых');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: 'number',
-          roundNumber: -1,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре целых шесть тысяч семьсот восемьдесят девять десятитысячных');
-      });
-      test('slash delimiter', () => {
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'number',
-          roundNumber: 8,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шестьдесят семь миллионов восьмисотдевяностотысячных');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'number',
-          roundNumber: 2,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шестьдесят восьмых');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'number',
-          roundNumber: 0,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать пять целых');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: 'number',
-          roundNumber: -1,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шесть тысяч семьсот восемьдесят девятых');
-      });
-    });
-    describe('custom currency', () => {
-      test('normal delimiter', () => {
         expect(numberToWordsRu.convert('1234.6789', {
           currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
+            currencyNameCases: ['рубль', 'рубля', 'рублей'],
+            fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
             currencyNounGender: {
               integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 8,
-        })).toBe('Одна тысяча двести тридцать четыре листка 67890000 камней');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 2,
-        })).toBe('Одна тысяча двести тридцать четыре листка 68 камней');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 0,
-        })).toBe('Одна тысяча двести тридцать пять листков');
-        expect(numberToWordsRu.convert('1234.6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
+              fractionalPart: 1,
             },
           },
           roundNumber: -1,
-        })).toBe('Одна тысяча двести тридцать четыре листка 6789 камней');
-      });
-      test('slash delimiter', () => {
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 8,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шестьдесят семь миллионов восьмисотдевяностотысячных листка');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 2,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шестьдесят восьмых листка');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: 0,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать пять листков');
-        expect(numberToWordsRu.convert('1234/6789', {
-          currency: {
-            currencyNameCases: ['листок', 'листка', 'листков'],
-            fractionalPartNameCases: ['камень', 'камня', 'камней'],
-            currencyNounGender: {
-              integer: 0,
-              fractionalPart: 0,
-            },
-          },
-          roundNumber: -1,
-          convertNumbertToWords: {
-            fractional: true,
-          },
-        })).toBe('Одна тысяча двести тридцать четыре шесть тысяч семьсот восемьдесят девятых листка');
+        })).toBe('Одна тысяча двести тридцать четыре рубля 6789 копеек');
       });
     });
   });
