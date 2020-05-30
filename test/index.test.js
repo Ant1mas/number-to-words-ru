@@ -528,6 +528,14 @@ describe('Options', () => {
           currency: 'number',
           roundNumber: -1,
         })).toBe('Одна тысяча двести тридцать четыре целых 6789 десятитысячных');
+        expect(numberToWordsRu.convert('1.9999', {
+          currency: 'number',
+          roundNumber: 3,
+        })).toBe('Две целых 0 десятых');
+        expect(numberToWordsRu.convert('1.9999', {
+          currency: 'number',
+          roundNumber: 0,
+        })).toBe('Две целых');
       });
       test('custom currency', () => {
         expect(numberToWordsRu.convert('1234.6789', {
