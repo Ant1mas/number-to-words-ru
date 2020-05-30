@@ -20,6 +20,7 @@
     "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
+    "lodash": "^4.17.15",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",

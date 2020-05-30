@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import defaultOptions from 'defaultOptions';
+
 /**
  * Получить опции конверирования.
  * @param {Object} options - Опции, выбранные пользователем.
@@ -5,26 +8,7 @@
  */
 const getOptions = (options) => {
   // Опции по умолчанию
-  const resultOptions = {
-    /* currency - Название валюты ('rub', 'usd', 'eur')
-    или 'number'
-    или объект со своей валютой */
-    currency: 'rub',
-    roundNumber: -1,
-    convertMinusSignToWord: true,
-    showNumberParts: {
-      integer: true,
-      fractional: true,
-    },
-    convertNumbertToWords: {
-      integer: true,
-      fractional: false,
-    },
-    showCurrency: {
-      integer: true,
-      fractional: true,
-    },
-  };
+  const resultOptions = _.cloneDeep(defaultOptions);
   // Заменить опции по умолчанию выбранными опциями, если они правильно указаны
   const updateOptions = (currentOptions, newOptions) => {
     Object.keys(currentOptions).forEach((key) => {

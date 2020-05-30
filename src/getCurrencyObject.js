@@ -1,4 +1,7 @@
 import textValues from 'textValues';
+import defaultOptions from 'defaultOptions';
+import stringCurrencies from 'stringCurrencies';
+import updateObjectDeep from 'updateObjectDeep';
 
 /**
  * Получить объект с данными валюты.
@@ -31,19 +34,23 @@ const getCurrencyObject = (convertOptions) => {
     }
   // Если валюта описана объектом
   } else if (typeof convertOptions.currency === 'object') {
+    // Объект валюты по умолчанию
+    const defaultCurrencyObject = stringCurrencies[defaultOptions['currency']];
+    // Обновить объект валюты новым объектом валюты
+    const updatedCurrencyObject = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
     // Если объект оформлен правильно
     if (
-      typeof convertOptions.currency === 'object' &&
-      Object.keys(convertOptions.currency).length === 3 &&
-      convertOptions.currency.currencyNameCases.length === 3 &&
-      convertOptions.currency.fractionalPartNameCases.length === 3 &&
-      typeof convertOptions.currency.currencyNounGender === 'object' &&
-      Object.keys(convertOptions.currency.currencyNounGender).length === 2 &&
-      typeof convertOptions.currency.currencyNounGender.integer === 'number' &&
-      typeof convertOptions.currency.currencyNounGender.fractionalPart === 'number'
+      typeof updatedCurrencyObject === 'object' &&
+      Object.keys(updatedCurrencyObject).length === 3 &&
+      updatedCurrencyObject.currencyNameCases.length === 3 &&
+      updatedCurrencyObject.fractionalPartNameCases.length === 3 &&
+      typeof updatedCurrencyObject.currencyNounGender === 'object' &&
+      Object.keys(updatedCurrencyObject.currencyNounGender).length === 2 &&
+      typeof updatedCurrencyObject.currencyNounGender.integer === 'number' &&
+      typeof updatedCurrencyObject.currencyNounGender.fractionalPart === 'number'
     ) {
       // Принять валюту
-      currencyObject = convertOptions.currency;
+      currencyObject = updatedCurrencyObject;
     } else {
     // Если объект оформлен неправильно
       throw new Error(`Wrong currency object.`);
