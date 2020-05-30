@@ -104,6 +104,20 @@ const combineResultData = (numberArray, options) => {
           currencyObject.currencyNounGender.fractionalPart,
         ).result;
       }
+    } else {
+    // Если не нужно конвертировать в слова
+      // Если валюта "number"
+      if (useOptions.currency === 'number') {
+        // Если в дробной части есть цифры
+        if (convertedNumberArr[3].length > 0) {
+          // Удалить лишние нули перед числом
+          convertedNumberArr[3] = convertedNumberArr[3].replace(/^0+/, '');
+          // Если после удаления лишних нулей не осталось цифр, то добавить один "0"
+          if (convertedNumberArr[3] === '') {
+            convertedNumberArr[3] = '0';
+          }
+        }
+      }
     }
     // Если нужно отображать валюту числа
     if (useOptions.showCurrency.fractional === true) {

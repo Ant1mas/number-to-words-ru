@@ -536,6 +536,10 @@ describe('Options', () => {
           currency: 'number',
           roundNumber: 0,
         })).toBe('Две целых');
+        expect(numberToWordsRu.convert('1.00089', {
+          currency: 'number',
+          roundNumber: 5,
+        })).toBe('Одна целая 89 стотысячных');
       });
       test('custom currency', () => {
         expect(numberToWordsRu.convert('1234.6789', {
