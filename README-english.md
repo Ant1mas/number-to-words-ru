@@ -159,22 +159,23 @@ Currency of number.
 | `'eur'`  | Euro  | 124 **евро** 42 **цента**  |
 | `'number'`  | Number without currency  | 124 **целых** 42 **сотых**  |
 
-<br/>
+**Note**: For all common currencies except `number` set `fractionalPartMinLength: 2`. Also these currencies will be rounded to `2`.
 
 - Own currency:
 
 ```js
 {
-  currencyNameCases: ['рубль', 'рубля', 'рублей'], // Integer currency names
-  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'], // Fractional number currency names
+  currencyNameCases: ['рубль', 'рубля', 'рублей'], // [1 рубль, 2-4 рубля, 5-9 рублей]
+  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'], 
   currencyNounGender: {
     integer: 0, // 0 => ('один', 'два'...)
     fractionalPart: 1 // 1 => ('одна', 'две'...)
   }
+  fractionalPartMinLength: 2
 }
 // or
 {
-  currencyNameCases: ['сообщение', 'сообщения', 'сообщений'], // [1 сообщение, 2-4 сообщения, 5-9 сообщений]
+  currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
   fractionalPartNameCases: ['', '', ''],
   currencyNounGender: {
     integer: 2, // 2 => ('одно', 'два'...)
@@ -184,6 +185,22 @@ Currency of number.
 ```
 
 **Note**: If currency object will not be filled completely then missing data will be taken from default currency (`'rub'`).
+
+#### Parameters of object `currency`
+
+`currencyNameCases: (Array)`: Currency form name of integer part. 3 elements in array.
+
+`fractionalPartNameCases: (Array)`: Currency form name of fractional part. 3 elements in array.
+
+`currencyNounGender: (Object)`: Form of number: 0 - ("один"), 1 - ("одна"), 2 - ("одно").
+
+- `integer` - For integer part.
+
+- `fractionalPart` - For fractional part.
+
+`fractionalPartMinLength: (number)`: Minimal length of fractional part. For example if set `3` then in fractional part mey be number `002`.
+
+**Note**: In arrays `currencyNameCases` and `fractionalPartNameCases`: first element for digit 1 (1 `рубль`), second elemet for digits 2-4 (2 `рубля`), third element for digits 5-9 and 0 (5 `рублей`).
 
 <br/>
 
@@ -203,25 +220,25 @@ Round number to specified precision.
 
 - `-1` - Disable rounding.
 
-**Note**: If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits. Also in this case the result always will have 2 digits in fractional part (for example "00", "05").
+**Note**: If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits.
 
 #### Example
 
 ```js
 numberToWordsRu.convert('129.6789', {
-  currency: 'eur',
+  currency: 'rub',
   roundNumber: 5,
 });
 // Сто двадцать девять рублей 68 копеек
 
 numberToWordsRu.convert('129.6789', {
-  currency: 'eur',
+  currency: 'rub',
   roundNumber: 1,
 });
 // Сто двадцать девять рублей 70 копеек
 
 numberToWordsRu.convert('129.6789', {
-  currency: 'eur',
+  currency: 'rub',
   roundNumber: 0,
 });
 // Сто тридцать рублей 00 копеек
