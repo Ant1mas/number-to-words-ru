@@ -1,9 +1,10 @@
 /**
  * Разделить число на части.
  * @param {(number|string)} number - Число, которое нужно обработать.
+ * @param {Object} options - Параметры конвертирования.
  * @return {Array} Обработанное число в виде ['-', '150', '/', '25'].
  */
-const splitNumberToArray = (number) => {
+const splitNumberToArray = (number, options) => {
   // Максимальная длинна целой части числа
   const maxIntegerPartLength = 306;
   // Конвертировать в String
@@ -33,8 +34,11 @@ const splitNumberToArray = (number) => {
   numberArray[3] = numberArray[3] === undefined ? '' : numberArray[3];
   // Убрать лишние нули из целой части
   numberArray[1] = numberArray[1].replace(/^0+/, '');
-  // Если разделитель не дробная черта
-  if (numberArray[2] !== '/') {
+  // Если разделитель не дробная черта и валюта не 'number'
+  if (
+    numberArray[2] !== '/'
+    && options.currency !== 'number'
+  ) {
     // Убрать лишние нули из дробной части
     numberArray[3] = numberArray[3]
       .split('')

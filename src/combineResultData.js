@@ -1,6 +1,7 @@
 import textValues from 'textValues';
 import getOptions from 'getOptions';
 import roundNumber from 'roundNumber';
+import fractionalPartToMinLength from 'fractionalPartToMinLength';
 import getCurrencyObject from 'getCurrencyObject';
 import numberToScales from 'numberToScales';
 import convertsEachScaleToWords from 'convertsEachScaleToWords';
@@ -30,28 +31,18 @@ const combineResultData = (numberArray, options) => {
       convertedNumberArr[0] = '-';
     }
   }
-  // Если разделитель - не дробная черта
-  if (numberArray[2] !== '/') {
-    // Округлить число до заданной точности
-    modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
-  }
+  // Округлить число до заданной точности
+  modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
   // Если указана валюта
   if (
     typeof useOptions.currency === 'string' &&
     useOptions.currency !== 'number'
   ) {
-    // Если разделитель - не дробная черта
-    if (numberArray[2] !== '/') {
-      // Округлить число до 2 знаков после запятой
-      modifiedNumberArray = roundNumber(modifiedNumberArray, 2);
-      // Если в дробной части < 2 цифр
-      if (modifiedNumberArray[3].length < 2) {
-        // Заполнить нулями
-        modifiedNumberArray[3] = modifiedNumberArray[3] + '0'
-          .repeat(2 - modifiedNumberArray[3].length);
-      }
-    }
+    // Округлить число до 2 знаков после запятой
+    modifiedNumberArray = roundNumber(modifiedNumberArray, 2);
   }
+  // Обеспечить минимальную длину дробной части числа
+  modifiedNumberArray = fractionalPartToMinLength(modifiedNumberArray, currencyObject);
   // Если нужно отображать целую часть числа
   if (useOptions.showNumberParts.integer === true) {
     convertedNumberArr[1] = modifiedNumberArray[1];
@@ -105,7 +96,7 @@ const combineResultData = (numberArray, options) => {
         ).result;
       }
     } else {
-    // Если не нужно конвертировать в слова
+    // Если не нужно конвертировать число в слова
       // Если валюта "number"
       if (useOptions.currency === 'number') {
         // Если в дробной части есть цифры

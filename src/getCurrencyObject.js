@@ -1,6 +1,5 @@
 import textValues from 'textValues';
 import defaultOptions from 'defaultOptions';
-import stringCurrencies from 'stringCurrencies';
 import updateObjectDeep from 'updateObjectDeep';
 
 /**
@@ -10,22 +9,17 @@ import updateObjectDeep from 'updateObjectDeep';
  */
 const getCurrencyObject = (convertOptions) => {
   let currencyObject;
-  // Если отображение без валюты
-  if (convertOptions.currency === 'number') {
-    currencyObject = {
-      currencyNameCases: ['целая', 'целых', 'целых'],
-      getFractionalPartNameCases: textValues.getFractionalUnits,
-      currencyNounGender: {
-        integer: 1,
-        fractionalPart: 1,
-      },
-    };
   // Если валюта указана словами
-  } else if (typeof convertOptions.currency === 'string') {
+  if (typeof convertOptions.currency === 'string') {
     // Если такая валюта есть в списке
     if (textValues.currency[convertOptions.currency] !== undefined) {
       // Получить данные найденной валюты
       currencyObject = textValues.currency[convertOptions.currency];
+      // Если валюта указана как "number"
+      if (convertOptions.currency === 'number') {
+        // Добавить функцию для заполнения fractionalPartNameCases
+        currencyObject.getFractionalPartNameCases = textValues.getFractionalUnits;
+      }
     } else {
       throw new Error(
         'Wrong currency name [' + convertOptions.currency + ']. '
@@ -35,13 +29,13 @@ const getCurrencyObject = (convertOptions) => {
   // Если валюта описана объектом
   } else if (typeof convertOptions.currency === 'object') {
     // Объект валюты по умолчанию
-    const defaultCurrencyObject = stringCurrencies[defaultOptions['currency']];
+    const defaultCurrencyObject = textValues.currency[defaultOptions['currency']];
     // Обновить объект валюты новым объектом валюты
     const updatedCurrencyObject = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
     // Если объект оформлен правильно
     if (
       typeof updatedCurrencyObject === 'object' &&
-      Object.keys(updatedCurrencyObject).length === 3 &&
+      Object.keys(updatedCurrencyObject).length === 4 &&
       updatedCurrencyObject.currencyNameCases.length === 3 &&
       updatedCurrencyObject.fractionalPartNameCases.length === 3 &&
       typeof updatedCurrencyObject.currencyNounGender === 'object' &&

@@ -11,6 +11,10 @@ const roundNumber = (numberArray, precision = 2) => {
   if (precision < 0) {
     return numberArray;
   }
+  // Если разделитель - дробная черта то не округлять
+  if (numberArray[2] === '/') {
+    return numberArray;
+  }
   // Если количество знаков после запятой <= precision, то не округлять
   if (numberArray[3].length <= precision) {
     return numberArray;
