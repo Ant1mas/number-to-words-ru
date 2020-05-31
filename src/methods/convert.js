@@ -9,7 +9,7 @@ import combineResultData from 'combineResultData';
  */
 const convert = (number, options = {}) => {
   // Обработать введенное число
-  const numberArray = splitNumberToArray(number);
+  const numberArray = splitNumberToArray(number, options);
   // Собрать конечный словестный результат
   const convertedNumberString = combineResultData(numberArray, options);
   return convertedNumberString;

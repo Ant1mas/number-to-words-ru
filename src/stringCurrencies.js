@@ -1,5 +1,17 @@
+const defaultParams = {
+  fractionalPartMinLength: 2,
+};
+
 const stringCurrencies = {
+  number: {
+    currencyNameCases: ['целая', 'целых', 'целых'],
+    currencyNounGender: {
+      integer: 1,
+      fractionalPart: 1,
+    },
+  },
   rub: {
+    ...defaultParams,
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
     currencyNounGender: {
@@ -8,6 +20,7 @@ const stringCurrencies = {
     },
   },
   usd: {
+    ...defaultParams,
     currencyNameCases: ['доллар', 'доллара', 'долларов'],
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     currencyNounGender: {
@@ -16,6 +29,7 @@ const stringCurrencies = {
     },
   },
   eur: {
+    ...defaultParams,
     currencyNameCases: ['евро', 'евро', 'евро'],
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     currencyNounGender: {
