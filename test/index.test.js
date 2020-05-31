@@ -385,28 +385,43 @@ describe('Options', () => {
       });
     });
     describe('object values', () => {
-      test('common value', () => {
-        expect(numberToWordsRu.convert('1234567.12345', {
-          currency: {
-            currencyNameCases: ['доллар', 'доллара', 'долларов'],
-            fractionalPartNameCases: ['цент', 'цента', 'центов'],
-            currencyNounGender: {
-              integer: 0, // Мужской род
-              fractionalPart: 1, // Женский род
+      describe('common values', () => {
+        test('full objects', () => {
+          expect(numberToWordsRu.convert('1234567.12345', {
+            currency: {
+              currencyNameCases: ['доллар', 'доллара', 'долларов'],
+              fractionalPartNameCases: ['цент', 'цента', 'центов'],
+              currencyNounGender: {
+                integer: 0, // Мужской род
+                fractionalPart: 1, // Женский род
+              },
             },
-          },
-        })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12345 центов');
-        expect(numberToWordsRu.convert('1234567.12345', {
-          currency: {
-            currencyNameCases: ['доллар', 'доллара', 'долларов'],
-            fractionalPartNameCases: ['цент', 'цента', 'центов'],
-            currencyNounGender: {
-              integer: 0, // Мужской род
-              fractionalPart: 1, // Женский род
+          })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12345 центов');
+          expect(numberToWordsRu.convert('1234567.12345', {
+            currency: {
+              currencyNameCases: ['доллар', 'доллара', 'долларов'],
+              fractionalPartNameCases: ['цент', 'цента', 'центов'],
+              currencyNounGender: {
+                integer: 0, // Мужской род
+                fractionalPart: 1, // Женский род
+              },
             },
-          },
-          roundNumber: 2,
-        })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
+            roundNumber: 2,
+          })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
+        });
+        test('not full objects', () => {
+          expect(numberToWordsRu.convert('1234561.12345', {
+            currency: {
+              currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
+              currencyNounGender: {
+                integer: 2, // Средний род
+              },
+            },
+          })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят одно сообщение 12345 копеек');
+          expect(numberToWordsRu.convert('1234567.12345', {
+            currency: {},
+          })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12345 копеек');
+        });
       });
       test('currencyNounGender == 2', () => {
         expect(numberToWordsRu.convert('1231.52', {
@@ -528,6 +543,18 @@ describe('Options', () => {
           currency: 'number',
           roundNumber: -1,
         })).toBe('Одна тысяча двести тридцать четыре целых 6789 десятитысячных');
+        expect(numberToWordsRu.convert('1.9999', {
+          currency: 'number',
+          roundNumber: 3,
+        })).toBe('Две целых 0 десятых');
+        expect(numberToWordsRu.convert('1.9999', {
+          currency: 'number',
+          roundNumber: 0,
+        })).toBe('Две целых');
+        expect(numberToWordsRu.convert('1.00089', {
+          currency: 'number',
+          roundNumber: 5,
+        })).toBe('Одна целая 89 стотысячных');
       });
       test('custom currency', () => {
         expect(numberToWordsRu.convert('1234.6789', {

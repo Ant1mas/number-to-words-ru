@@ -61,6 +61,22 @@ const roundNumber = (numberArray, precision = 2) => {
   const resultNumberArray = [...numberArray];
   resultNumberArray[1] = numberPartToRound.slice(0, -1).split('.')[0];
   resultNumberArray[3] = numberPartToRound.slice(0, -1).split('.')[1];
+  // Убрать лишние нули из дробной части справа
+  resultNumberArray[3] = resultNumberArray[3]
+    .split('')
+    .reverse()
+    .join('')
+    .replace(/^0+/, '')
+    .split('')
+    .reverse()
+    .join('');
+  // Если дробная часть пустая, то сделать равной 0
+  if (
+    resultNumberArray[3] === '' &&
+    precision > 0
+  ) {
+    resultNumberArray[3] = '0';
+  }
   return resultNumberArray;
 };
 

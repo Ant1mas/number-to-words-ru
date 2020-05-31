@@ -1,6 +1,6 @@
 {
   "name": "number-to-words-ru",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Convert a number to words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
@@ -20,6 +20,7 @@
     "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
+    "lodash": "^4.17.15",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",

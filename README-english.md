@@ -89,33 +89,31 @@ numberToWordsRu.convert('-4201512.21', {
 
 ## Methods
 
-- [convert(number[, options])](#methods-convert)
+- convert(number, [options])
 
 ------------------------
 
-**<p id="methods-convert">`convert(number[, options])`</p>**
+```
+convert(number, [options])
+```
 
-*Convert number to words.*
+Convert number to words.
 
-Return value is *String*.
+#### **Arguments**
 
-<br/>
+`number (string|number)`: Number to convert to words.
 
-`number` {String | Number}
+>If typed as *number* max value is **9'007'199'254'740'991** (limit of Javascript).
 
-*Number to convert to words.*
+>If typed as *string* max value is 10<sup>305</sup> (**306 digits**) before point and 10<sup>304</sup> (**305 digits**) after point.
 
-If typed as *Number* max value is **9'007'199'254'740'991** (limit of Javascript).
+`[options] (Object)`: Convert options.
 
-If typed as *String* max value is **10<sup>305</sup>** (306 digits) before point and **10<sup>304</sup>** (305 digits) after point.
+#### **Returns**
 
-<br/>
+`(string)`: Returns converted to text number.
 
-`options` {Object}
-
-*Convert options.*
-
-**Default options**:
+**Default *options* object**:
 
 ```js
 {
@@ -138,15 +136,21 @@ If typed as *String* max value is **10<sup>305</sup>** (306 digits) before point
 ```
 ------------------------
 
-### **Options object**
+### **Argument `options`**
 
-`currency`: {String | Object}
+```
+currency: (string|Object)
+```
 
-*Select currency.*
+Currency of number.
 
-**Default**: `'rub'`
+#### **Default value**
 
-String values:
+'rub'
+
+#### **Possible values**
+
+- String values:
 
 | String value  | Description | Example |
 | ------------- | ------------- | ------------- |
@@ -157,7 +161,7 @@ String values:
 
 <br/>
 
-Own currency **object** example:
+- Own currency:
 
 ```js
 {
@@ -179,21 +183,29 @@ Own currency **object** example:
 }
 ```
 
+**Note**: If currency object will not be filled completely then missing data will be taken from default currency (`'rub'`).
+
 <br/>
 
-`roundNumber`: {Number}
+```
+roundNumber: (number)
+```
 
-*Round number to specified precision.*
+Round number to specified precision.
 
-**Default**: `-1`
+#### **Default value**
 
-`{Number}` - Precision.
+-1
 
-`-1` - Disable rounding.
+#### **Possible values**
 
-If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits. Also in this case the result always will have 2 digits in fractional part (for example "00", "05").
+- `(number)` - Precision. Integer.
 
-Example:
+- `-1` - Disable rounding.
+
+**Note**: If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits. Also in this case the result always will have 2 digits in fractional part (for example "00", "05").
+
+#### Example
 
 ```js
 numberToWordsRu.convert('129.6789', {
@@ -215,32 +227,38 @@ numberToWordsRu.convert('129.6789', {
 // Сто тридцать рублей 00 копеек
 ```
 
-If delimiter is slash ("`/`") then number will NOT be rounded in any case.
+**Note**: If delimiter is slash ("`/`") then number will NOT be rounded in any case.
 
 <br/>
 
-`convertMinusSignToWord`: {Boolean}
+```
+convertMinusSignToWord: (Boolean)
+```
 
-*Convert minus sign to word ('-' => 'минус').*
+Convert minus sign to word ( '-' --> 'минус' ).
 
-**Default**: `true`
+#### **Default value**
+
+true
 
 <br/>
 
-`showNumberParts`: {Object}
+```
+showNumberParts: (Object)
+```
 
-*Show parts of number.*
+Show parts of number.
 
-**Default object**:
+#### **Default value**
 
 ```js
-showNumberParts: {
+{
   integer: true,
   fractional: true
 }
 ```
 
-Example:
+#### Example
 
 ```js
 numberToWordsRu.convert('123.45', {
@@ -262,20 +280,22 @@ numberToWordsRu.convert('123.45', {
 
 <br/>
 
-`convertNumbertToWords`: {Object}
+```
+convertNumbertToWords: (Object)
+```
 
-*Convert to words parts of number.*
+Convert to words parts of number.
 
-**Default object**:
+#### **Default value**
 
 ```js
-convertNumbertToWords: {
+{
   integer: true,
   fractional: false
 }
 ```
 
-Example:
+#### Example
 
 ```js
 numberToWordsRu.convert('123.45', {
@@ -297,20 +317,22 @@ numberToWordsRu.convert('123.45', {
 
 <br/>
 
-`showCurrency`: {Object}
+```
+showCurrency: (Object)
+```
 
-*Show currency in parts of number.*
+Show currency in parts of number.
 
-**Default object**:
+#### **Default value**
 
 ```js
-showCurrency: {
+{
   integer: true,
   fractional: true
 }
 ```
 
-Example:
+#### Example
 
 ```js
 numberToWordsRu.convert('123.45', {
