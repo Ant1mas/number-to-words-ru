@@ -1,6 +1,6 @@
 import textValues from 'textValues';
 import defaultOptions from 'defaultOptions';
-import updateObjectDeep from 'updateObjectDeep';
+import updateObjectDeep from 'functions/updateObjectDeep';
 import {
   ConvertOptions,
   CurrencySettings,

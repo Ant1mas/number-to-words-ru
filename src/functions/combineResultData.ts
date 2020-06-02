@@ -1,10 +1,10 @@
 import textValues from 'textValues';
-import roundNumber from 'roundNumber';
-import fractionalPartToMinLength from 'fractionalPartToMinLength';
-import getCurrencyObject from 'getCurrencyObject';
-import numberToScales from 'numberToScales';
-import convertsEachScaleToWords from 'convertsEachScaleToWords';
-import convertsEachScaleToWordsSlash from 'convertsEachScaleToWordsSlash';
+import roundNumber from 'functions/roundNumber';
+import fractionalPartToMinLength from 'functions/fractionalPartToMinLength';
+import getCurrencyObject from 'functions/getCurrencyObject';
+import numberToScales from 'functions/numberToScales';
+import convertsEachScaleToWords from 'functions/convertsEachScaleToWords';
+import convertsEachScaleToWordsSlash from 'functions/convertsEachScaleToWordsSlash';
 import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**

@@ -1,6 +1,6 @@
-import splitNumberToArray from 'splitNumberToArray';
-import combineResultData from 'combineResultData';
-import getOptions from 'getOptions';
+import splitNumberToArray from 'functions/splitNumberToArray';
+import combineResultData from 'functions/combineResultData';
+import getOptions from 'functions/getOptions';
 import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**

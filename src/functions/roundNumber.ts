@@ -1,4 +1,4 @@
-import replaceAt from 'replaceAt';
+import replaceAt from 'functions/replaceAt';
 
 /**
  * Округлить число в виде массива до заданной точности.
