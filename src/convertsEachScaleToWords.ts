@@ -1,4 +1,5 @@
 import textValues from 'textValues';
+import {ConvertedScalesToWords} from 'typeScript/interfaces/ConvertedScalesToWords';
 
 /**
  * Конвертировать массив числа в текст.
@@ -6,7 +7,7 @@ import textValues from 'textValues';
  * @param {number} currencyNounGender - Род валюты.
  * @return {Object} Конвертированный результат и падеж для валюты.
  */
-const convertsEachScaleToWords = (numberScaleArr, currencyNounGender = 0) => {
+const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender = 0): ConvertedScalesToWords => {
   let convertedResult = '';
   let unitNameForm; // Падеж названия единиц измерения
   // Для каждого класса числа

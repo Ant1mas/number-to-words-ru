@@ -7,7 +7,7 @@ import convertsEachScaleToWords from 'convertsEachScaleToWords';
  * @param {number} unitNameForm - Род для валюты.
  * @return {string} Конвертированный результат.
  */
-const convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
+const convertsEachScaleToWordsSlash = (numberScaleArr: string[], unitNameForm = 1): string => {
   if (numberScaleArr.length < 1) {
     return '';
   }
@@ -48,7 +48,7 @@ const convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
     например "двухсотдвадцатипятитысячных" */
     let numberLongWord = '';
     // Поделить число текущего класса на цифры
-    const currentScaleNumberArr = numberScaleArr[scaleChangingIndex].split('');
+    const currentScaleNumberArr: any[] = numberScaleArr[scaleChangingIndex].split('');
     // Составить число
     numberLongWord += textValues
       .slashNumberUnits
@@ -77,11 +77,11 @@ const convertsEachScaleToWordsSlash = (numberScaleArr, unitNameForm = 1) => {
   } else {
     let wordsResult = '';
     // Поделить число текущего класса на цифры
-    const currentScaleNumberArr = numberScaleArr[scaleChangingIndex].split('');
+    const currentScaleNumberArr: any[] = numberScaleArr[scaleChangingIndex].split('');
     // Индекс цифры, которой надо поменять форму
     const digitIndexChange = 3 - lastDigitBeforeZerosIndex;
     // Получить обычную часть числа
-    const currentScaleNumberNormal = currentScaleNumberArr.slice();
+    const currentScaleNumberNormal: any = currentScaleNumberArr.slice();
     // Если надо поменять цифру в первом разряде, а она часть 10-19
     if (digitIndexChange === 2 && currentScaleNumberNormal[1] === '1') {
       // Не показывать разряд десяток в именительном падеже

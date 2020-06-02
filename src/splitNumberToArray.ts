@@ -1,22 +1,20 @@
+import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
+
 /**
  * Разделить число на части.
  * @param {(number|string)} number - Число, которое нужно обработать.
  * @param {Object} options - Параметры конвертирования.
  * @return {Array} Обработанное число в виде ['-', '150', '/', '25'].
  */
-const splitNumberToArray = (number, options) => {
+const splitNumberToArray = (number: string | number, options?: ConvertOptions): string[] => {
   // Максимальная длинна целой части числа
   const maxIntegerPartLength = 306;
   // Конвертировать в String
   const numberString = number.toString();
   const numberArray = [];
   // Убрать из строки всё лишнее
-  let cleanNumber = numberString.match(/[0-9\,\.\-\/]/g);
-  if (cleanNumber !== null) {
-    cleanNumber = cleanNumber.join('');
-  } else {
-    cleanNumber = '0';
-  }
+  let cleanNumber = numberString.match(/[0-9\,\.\-\/]/g).join('');
+  cleanNumber = cleanNumber.length < 1 ? '0' : cleanNumber;
   // Определить указан ли знак минуса в начале
   numberArray[0] = cleanNumber.search(/\-/) === 0 ? '-' : '+';
   // Удалить все знаки минуса

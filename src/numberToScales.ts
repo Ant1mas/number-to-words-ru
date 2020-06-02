@@ -1,9 +1,9 @@
 /**
  * Разделить число на части по 3 цифры.
- * @param {string} number - Число, которое нужно раздалить.
+ * @param {string} number - Число, которое нужно разделить.
  * @return {Array} Разделенное число, например ['009', '876', '543', ...].
  */
-const numberToScales = (number) => {
+const numberToScales = (number: string): string[] => {
   // Сделать количество цифр числа кратным 3
   const numberLength = number.length;
   const numberScales = Math.ceil(numberLength / 3);

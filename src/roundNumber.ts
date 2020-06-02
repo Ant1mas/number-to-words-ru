@@ -6,7 +6,7 @@ import replaceAt from 'replaceAt';
  * @param {number} precision - Точность. Сколько знаков после запятой.
  * @return {Array} Округленное число в виде массива.
  */
-const roundNumber = (numberArray, precision = 2) => {
+const roundNumber = (numberArray: string[], precision = 2): string[] => {
   // Если precision отрицательная, то не округлять
   if (precision < 0) {
     return numberArray;
@@ -28,7 +28,7 @@ const roundNumber = (numberArray, precision = 2) => {
   for (let index = numberPartToRound.length - 1; index >= 0; index--) {
     // Если текущий символ - это цифра (не знак разделителя)
     if (numberPartToRound[index].search(/[0-9]/) !== -1) {
-      const currentDigit = parseInt(numberPartToRound[index]);
+      const currentDigit: number = parseInt(numberPartToRound[index]);
       // Если нужно было увеличивать цифру
       if (increaseDigit === true) {
         // Если текущая цифра 9, то увеличить следующую

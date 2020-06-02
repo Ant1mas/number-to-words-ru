@@ -1,3 +1,5 @@
+import {CurrencySettings} from 'typeScript/interfaces/ConvertInterfaces';
+
 /**
  * Сделать так, чтобы у дробной части числа
  * минимальная длина соответствовала currencyObject.fractionalPartMinLength
@@ -5,7 +7,7 @@
  * @param {Object} currencyObject - Объект с параметрами валюты.
  * @return {Array} Обновленный массив числа.
  */
-const fractionalPartToMinLength = (numberArray, currencyObject) => {
+const fractionalPartToMinLength = (numberArray: string[], currencyObject: CurrencySettings): string[] => {
   // Если разделитель - дробная черта
   if (numberArray[2] === '/') {
     return numberArray;

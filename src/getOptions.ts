@@ -1,16 +1,17 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
 import defaultOptions from 'defaultOptions';
+import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Получить опции конверирования.
  * @param {Object} options - Опции, выбранные пользователем.
  * @return {Object} Опции конвертирования.
  */
-const getOptions = (options) => {
+const getOptions = (options = {}): ConvertOptions => {
   // Опции по умолчанию
   const resultOptions = _.cloneDeep(defaultOptions);
   // Заменить опции по умолчанию выбранными опциями, если они правильно указаны
-  const updateOptions = (currentOptions, newOptions) => {
+  const updateOptions = (currentOptions: any, newOptions: any) => {
     Object.keys(currentOptions).forEach((key) => {
       // Если нужно изменить эту опцию
       if (newOptions[key] !== undefined) {

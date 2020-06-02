@@ -10,7 +10,7 @@ import {
  * @param {number} index - Индекс цифры к которой нужно получить падежи.
  * @return {Array} Падежи дробной части числа. ['стомиллионная', 'стомиллионных', 'стомиллионных'].
  */
-const getFractionalNameForms = (index) => {
+const getFractionalNameForms = (index: number): string[] => {
   if (index < 0) {
     index = 0;
   }

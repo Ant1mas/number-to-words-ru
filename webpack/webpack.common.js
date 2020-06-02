@@ -5,7 +5,7 @@ const distPath = path.resolve(rootPath, 'dist');
 
 const config = {
   entry: {
-    main: './src/index.js',
+    main: './src/index.ts',
   },
   output: {
     filename: 'bundle.js',
@@ -14,6 +14,7 @@ const config = {
     globalObject: 'this',
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
     modules: [
       path.resolve(rootPath, 'src'),
       path.resolve(rootPath, 'node_modules'),
@@ -22,11 +23,14 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /^node_modules$/,
+      },
+      {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: 'babel-loader',
+        exclude: /^node_modules$/,
       },
     ],
   },

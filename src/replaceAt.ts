@@ -5,7 +5,7 @@
  * @param {string} newSubStr - Строка, которую нажно вставить на место индекса.
  * @return {string} Измененная строка.
  */
-const replaceAt = (string, index, newSubStr) => {
+const replaceAt = (string: string, index: number, newSubStr: string | number): string => {
   return string.substr(0, index)
     + newSubStr.toString()
     + string.substr(index + newSubStr.toString().length);

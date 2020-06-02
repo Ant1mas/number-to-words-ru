@@ -1,4 +1,6 @@
-const defaultOptions = {
+import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
+
+const defaultOptions: ConvertOptions = {
   /* currency - Название валюты ('rub', 'usd', 'eur')
   или 'number'
   или объект со своей валютой */

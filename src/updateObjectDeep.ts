@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import * as _ from 'lodash';
+import _deepMapValues from 'lodashFunctions/deepMapValues';
 
 /**
  * Рекурсивное обновление значений в объекте.
@@ -7,8 +8,8 @@ import _ from 'lodash';
  * @param {Object} newObject - Новый объект.
  * @return {Object} Обновленный объект.
  */
-const updateObjectDeep = (object, newObject) => {
-  return _.deepMapValues(object, (path, key, value) => {
+const updateObjectDeep = (object: object, newObject: object): object => {
+  return _deepMapValues(object, (path: string[], key: string, value: string) => {
     // Если тип данных одинаковый
     if (Object.prototype.toString.call(_.get(newObject, [...path, key])) === Object.prototype.toString.call(value)) {
       // Заменить новым значением
