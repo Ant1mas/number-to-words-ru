@@ -2,9 +2,22 @@ import integerUnits from 'units/integer';
 import slashNumberForms from 'units/slashNumberForms';
 import getFractionalNameForms from 'units/functions/getFractionalNameForms';
 import getSlashNumberUnitName from 'units/functions/getSlashNumberUnitName';
-import stringCurrencies from 'stringCurrencies';
+import {stringCurrencies} from 'units/stringCurrencies';
+import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
+import {SlashNumberForms} from 'typeScript/interfaces/SlashNumberForms';
 
-const textValues = {
+interface TextValues {
+  minus: string,
+  numberNames: string[][],
+  tensNames: string[],
+  integerUnits: string[][],
+  slashNumberUnits: SlashNumberForms,
+  currency: CurrencyStringValues,
+  getFractionalUnits: Function,
+  getSlashNumberUnitsNames: Function,
+}
+
+const textValues: TextValues = {
   minus: 'минус',
   numberNames: [
     ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],

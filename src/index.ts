@@ -1,4 +1,3 @@
-import 'lodashMixins/index';
 import methodConvert from 'methods/convert';
 
 const numberToWordsRu = {

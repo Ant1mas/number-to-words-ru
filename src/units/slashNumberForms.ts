@@ -1,4 +1,6 @@
-const slashNumberForms = {
+import {SlashNumberForms} from 'typeScript/interfaces/SlashNumberForms';
+
+const slashNumberForms: SlashNumberForms = {
   number: [
     ['нулевая', 'нулевых', ''],
     ['первая', 'первых', ''],

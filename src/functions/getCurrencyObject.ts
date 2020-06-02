@@ -1,25 +1,24 @@
 import textValues from 'textValues';
 import defaultOptions from 'defaultOptions';
-import updateObjectDeep from 'updateObjectDeep';
+import updateObjectDeep from 'functions/updateObjectDeep';
+import {
+  ConvertOptions,
+  CurrencySettings,
+} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Получить объект с данными валюты.
  * @param {Object} convertOptions - Параметры конвертирования числа.
  * @return {Object} Данные валюты.
  */
-const getCurrencyObject = (convertOptions) => {
-  let currencyObject;
+const getCurrencyObject = (convertOptions?: ConvertOptions): CurrencySettings => {
+  let currencyObject: CurrencySettings;
   // Если валюта указана словами
   if (typeof convertOptions.currency === 'string') {
     // Если такая валюта есть в списке
     if (textValues.currency[convertOptions.currency] !== undefined) {
       // Получить данные найденной валюты
       currencyObject = textValues.currency[convertOptions.currency];
-      // Если валюта указана как "number"
-      if (convertOptions.currency === 'number') {
-        // Добавить функцию для заполнения fractionalPartNameCases
-        currencyObject.getFractionalPartNameCases = textValues.getFractionalUnits;
-      }
     } else {
       throw new Error(
         'Wrong currency name [' + convertOptions.currency + ']. '
@@ -28,10 +27,12 @@ const getCurrencyObject = (convertOptions) => {
     }
   // Если валюта описана объектом
   } else if (typeof convertOptions.currency === 'object') {
+    // Названеи валюты по умолчанию
+    const defaultCurrencyName: any = defaultOptions['currency'];
     // Объект валюты по умолчанию
-    const defaultCurrencyObject = textValues.currency[defaultOptions['currency']];
+    const defaultCurrencyObject = textValues.currency[defaultCurrencyName];
     // Обновить объект валюты новым объектом валюты
-    const updatedCurrencyObject = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
+    const updatedCurrencyObject: CurrencySettings = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
     // Если объект оформлен правильно
     if (
       typeof updatedCurrencyObject === 'object' &&

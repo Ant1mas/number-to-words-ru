@@ -1,26 +1,31 @@
 {
   "name": "number-to-words-ru",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Convert a number to words on russian language.",
   "license": "MIT",
   "repository": "Ant1mas/number-to-words-ru",
   "homepage": "https://ant1mas.github.io/number-to-words-ru/",
   "author": "Anton Moskovskiy",
   "main": "dist/bundle.js",
+  "types": "index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.js --hot",
     "build": "webpack --config ./webpack/webpack.prod.js",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@types/html-webpack-plugin": "^3.2.3",
+    "@types/lodash": "^4.14.154",
     "babel-loader": "^8.0.6",
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
     "lodash": "^4.17.15",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
@@ -35,5 +40,7 @@
     "rus",
     "ru"
   ],
-  "files": []
+  "files": [
+    "index.d.ts"
+  ]
 }

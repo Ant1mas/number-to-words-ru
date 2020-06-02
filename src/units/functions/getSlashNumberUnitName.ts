@@ -15,11 +15,11 @@ const slashNumberUnitEndings = ['ная', 'ных'];
  * @param {number} scaleIndex - Порядковый номер класса числа (2 - тысячи, 3 - миллионы).
  * @return {Array} Падежи, например ['миллионная', 'миллионных'].
  */
-const getSlashNumberUnitName = (scaleIndex = 2) => {
+const getSlashNumberUnitName = (scaleIndex = 2): string[] => {
   if (scaleIndex < 1) {
     scaleIndex = 1;
   }
-  let result;
+  let result: string[];
   // Если такой разряд есть в списке, то просто взять его как есть
   if (slashNumberUnitsForms.length >= scaleIndex) {
     result = slashNumberUnitsForms[scaleIndex - 1];

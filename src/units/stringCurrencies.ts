@@ -1,10 +1,13 @@
+import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
+
 const defaultParams = {
   fractionalPartMinLength: 2,
 };
 
-const stringCurrencies = {
+export const stringCurrencies: CurrencyStringValues = {
   number: {
     currencyNameCases: ['целая', 'целых', 'целых'],
+    fractionalPartNameCases: ['', '', ''],
     currencyNounGender: {
       integer: 1,
       fractionalPart: 1,

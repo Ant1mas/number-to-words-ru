@@ -1,11 +1,11 @@
 import textValues from 'textValues';
-import getOptions from 'getOptions';
-import roundNumber from 'roundNumber';
-import fractionalPartToMinLength from 'fractionalPartToMinLength';
-import getCurrencyObject from 'getCurrencyObject';
-import numberToScales from 'numberToScales';
-import convertsEachScaleToWords from 'convertsEachScaleToWords';
-import convertsEachScaleToWordsSlash from 'convertsEachScaleToWordsSlash';
+import roundNumber from 'functions/roundNumber';
+import fractionalPartToMinLength from 'functions/fractionalPartToMinLength';
+import getCurrencyObject from 'functions/getCurrencyObject';
+import numberToScales from 'functions/numberToScales';
+import convertsEachScaleToWords from 'functions/convertsEachScaleToWords';
+import convertsEachScaleToWordsSlash from 'functions/convertsEachScaleToWordsSlash';
+import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Собрать число в сроку с применением параметров.
@@ -13,30 +13,28 @@ import convertsEachScaleToWordsSlash from 'convertsEachScaleToWordsSlash';
  * @param {Object} options - Парметры конвертирования.
  * @return {string} Число, конвертированное в текст.
  */
-const combineResultData = (numberArray, options) => {
+const combineResultData = (numberArray: string[], options?: ConvertOptions): string => {
   /* Пример convertedNumberArr:
   ['минус', 'двадцать два', 'рубля', 'сорок одна', 'копейка'] */
   const convertedNumberArr = ['', '', '', '', ''];
   let modifiedNumberArray = [...numberArray];
-  // Определить опции для функции
-  const useOptions = getOptions(options);
   // Определить отображение валюты
-  const currencyObject = getCurrencyObject(useOptions);
+  const currencyObject = getCurrencyObject(options);
   // Если есть знак минус
   if (numberArray[0] === '-') {
     // Если отображать знак минус словом
-    if (useOptions.convertMinusSignToWord === true) {
+    if (options.convertMinusSignToWord === true) {
       convertedNumberArr[0] = textValues.minus;
     } else {
       convertedNumberArr[0] = '-';
     }
   }
   // Округлить число до заданной точности
-  modifiedNumberArray = roundNumber(numberArray, useOptions.roundNumber);
+  modifiedNumberArray = roundNumber(numberArray, options.roundNumber);
   // Если указана валюта
   if (
-    typeof useOptions.currency === 'string' &&
-    useOptions.currency !== 'number'
+    typeof options.currency === 'string' &&
+    options.currency !== 'number'
   ) {
     // Округлить число до 2 знаков после запятой
     modifiedNumberArray = roundNumber(modifiedNumberArray, 2);
@@ -44,10 +42,10 @@ const combineResultData = (numberArray, options) => {
   // Обеспечить минимальную длину дробной части числа
   modifiedNumberArray = fractionalPartToMinLength(modifiedNumberArray, currencyObject);
   // Если нужно отображать целую часть числа
-  if (useOptions.showNumberParts.integer === true) {
+  if (options.showNumberParts.integer === true) {
     convertedNumberArr[1] = modifiedNumberArray[1];
     // Если нужно конвертировать число в слова
-    if (useOptions.convertNumbertToWords.integer === true) {
+    if (options.convertNumbertToWords.integer === true) {
       // Если разделитель - не дробная черта
       if (modifiedNumberArray[2] !== '/') {
         convertedNumberArr[1] = convertsEachScaleToWords(
@@ -62,7 +60,7 @@ const combineResultData = (numberArray, options) => {
       }
     }
     // Если нужно отображать валюту числа
-    if (useOptions.showCurrency.integer === true) {
+    if (options.showCurrency.integer === true) {
       // Если разделитель - не дробная черта
       if (modifiedNumberArray[2] !== '/') {
         convertedNumberArr[2] = currencyObject.currencyNameCases[
@@ -75,10 +73,10 @@ const combineResultData = (numberArray, options) => {
     }
   }
   // Если нужно отображать дробную часть числа
-  if (useOptions.showNumberParts.fractional === true) {
+  if (options.showNumberParts.fractional === true) {
     convertedNumberArr[3] = modifiedNumberArray[3];
     // Если нужно конвертировать число в слова
-    if (useOptions.convertNumbertToWords.fractional === true) {
+    if (options.convertNumbertToWords.fractional === true) {
       // Если разделитель - дробная черта
       if (modifiedNumberArray[2] === '/') {
         convertedNumberArr[3] = convertsEachScaleToWordsSlash(
@@ -98,7 +96,7 @@ const combineResultData = (numberArray, options) => {
     } else {
     // Если не нужно конвертировать число в слова
       // Если валюта "number"
-      if (useOptions.currency === 'number') {
+      if (options.currency === 'number') {
         // Если в дробной части есть цифры
         if (convertedNumberArr[3].length > 0) {
           // Удалить лишние нули перед числом
@@ -111,9 +109,9 @@ const combineResultData = (numberArray, options) => {
       }
     }
     // Если нужно отображать валюту числа
-    if (useOptions.showCurrency.fractional === true) {
+    if (options.showCurrency.fractional === true) {
       // Если валюта - не 'number'
-      if (useOptions.currency !== 'number') {
+      if (options.currency !== 'number') {
         convertedNumberArr[4] = currencyObject.fractionalPartNameCases[
           convertsEachScaleToWords(
             numberToScales(modifiedNumberArray[3]),
@@ -122,12 +120,11 @@ const combineResultData = (numberArray, options) => {
         ];
       }
       // Если не указана валюта
-      if (useOptions.currency === 'number') {
+      if (options.currency === 'number') {
         // Если разделитель - не дробная черта
         if (modifiedNumberArray[2] !== '/') {
           // Получить массив названий дробной части
-          const getFractionalPartArr = currencyObject
-            .getFractionalPartNameCases(modifiedNumberArray[3].length - 1);
+          const getFractionalPartArr = textValues.getFractionalUnits(modifiedNumberArray[3].length - 1);
           convertedNumberArr[4] = getFractionalPartArr[
             convertsEachScaleToWords(numberToScales(
               modifiedNumberArray[3]),
@@ -139,7 +136,7 @@ const combineResultData = (numberArray, options) => {
       // Если разделитель - дробная черта
       if (modifiedNumberArray[2] === '/') {
         // Если указана валюта
-        if (useOptions.currency !== 'number') {
+        if (options.currency !== 'number') {
           convertedNumberArr[4] = currencyObject.currencyNameCases[1];
         }
       }

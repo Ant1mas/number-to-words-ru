@@ -9,7 +9,7 @@ const distPath = path.resolve(rootPath, 'dist');
 const config = merge(common, {
   mode: 'development',
   entry: {
-    main: './src/dev/test.dev.js',
+    main: './src/dev/test.dev.ts',
   },
   devServer: {
     contentBase: distPath,
