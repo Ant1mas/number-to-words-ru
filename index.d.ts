@@ -48,17 +48,16 @@ declare module 'number-to-words-ru' {
      */
     fractionalPartMinLength?: number
   }
-
   /**
    * Convert options
    */
-  export interface ConvertOptions{
+  export interface ConvertOptions {
     /**
      * Select currency\
-     * 'rub'	Russian ruble	124 рубля 42 копейки\
-     * 'usd'	Dollar	124 доллара 42 цента\
-     * 'eur'	Euro	124 евро 42 цента\
-     * 'number'	Number without currency	124 целых 42 сотых\
+     * `'rub'`:	Russian ruble	124 рубля 42 копейки\
+     * `'usd'`:	Dollar	124 доллара 42 цента\
+     * `'eur'`:	Euro	124 евро 42 цента\
+     * `'number'`:	Number without currency	124 целых 42 сотых\
      * Default: `rub`
      */
     currency?: 'rub' | 'usd' | 'eur' | 'number' | CurrencySettings;
@@ -77,6 +76,9 @@ declare module 'number-to-words-ru' {
       fractional?: boolean;
     },
   }
+  export interface numberToWordsRuFunctions {
+    convert: typeof convert,
+  }
   /**
    * Convert number to words\
    * If typed as `number` max value is `9'007'199'254'740'991` (limit of Javascript).\
@@ -86,6 +88,10 @@ declare module 'number-to-words-ru' {
    * @param options The convert options
    */
   export function convert(number: string | number, options?: ConvertOptions): string;
-
+  /**
+   * Object of functions:\
+   * `convert`: Convert number to words.
+   */
+  const numberToWordsRu: numberToWordsRuFunctions;
   export default numberToWordsRu;
 }
