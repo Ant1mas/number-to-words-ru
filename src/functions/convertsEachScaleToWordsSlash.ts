@@ -21,6 +21,11 @@ const convertsEachScaleToWordsSlash = (numberScaleArr: string[], unitNameForm = 
     .reverse()
     .join('')
     .search(/[1-9]/) + 1;
+  // Если нет цифр, кроме нуля
+  if (lastDigitBeforeZerosIndex === 0) {
+    convertedResult = unitNameForm === 0 ? textValues.slashNumberUnits.number[0][0] : textValues.slashNumberUnits.number[0][1];
+    return convertedResult;
+  }
   /* Определить в каком классе
   lastDigitBeforeZerosIndex (какой класс изменяется по падежу) */
   const scaleChanging = Math.ceil(lastDigitBeforeZerosIndex / 3);

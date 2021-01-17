@@ -1,5 +1,60 @@
 const numberToWordsRu = require('../dist/bundle');
 
+describe('Проверка входных данных', () => {
+  test('Пустая строка', () => {
+    expect(numberToWordsRu.convert('')).toBe('Ноль рублей 00 копеек');
+  });
+  test('Пустое значение', () => {
+    expect(numberToWordsRu.convert()).toBe('Ноль рублей 00 копеек');
+  });
+  describe('Допустимые знаки', () => {
+    test('Знак `-`', () => {
+      expect(numberToWordsRu.convert('-')).toBe('Минус ноль рублей 00 копеек');
+    });
+    test('Знак `.`', () => {
+      expect(numberToWordsRu.convert('.')).toBe('Ноль рублей 00 копеек');
+    });
+    test('Знак `,`', () => {
+      expect(numberToWordsRu.convert(',')).toBe('Ноль рублей 00 копеек');
+    });
+    test('Знак `/`', () => {
+      expect(numberToWordsRu.convert('/')).toBe('Ноль 0 рубля');
+    });
+  });
+  describe('Недопустимые знаки', () => {
+    test('Буквы', () => {
+      expect(numberToWordsRu.convert('XZ')).toBe('Ноль рублей 00 копеек');
+    });
+    test('Символы', () => {
+      expect(numberToWordsRu
+        .convert('`~!@"#№$;%^:&?*_+=\'\\()[]{}<>'))
+        .toBe('Ноль рублей 00 копеек');
+    });
+  });
+  describe('Недопустимые типы данных', () => {
+    test('null', () => {
+      expect(numberToWordsRu.convert(null)).toBe('Ноль рублей 00 копеек');
+    });
+    test('undefined', () => {
+      expect(numberToWordsRu.convert(undefined)).toBe('Ноль рублей 00 копеек');
+    });
+    test('boolean', () => {
+      expect(numberToWordsRu.convert(true)).toBe('Ноль рублей 00 копеек');
+    });
+    test('symbol', () => {
+      expect(numberToWordsRu.convert(Symbol())).toBe('Ноль рублей 00 копеек');
+    });
+    test('bigInt', () => {
+      expect(numberToWordsRu.convert(BigInt(1))).toBe('Ноль рублей 00 копеек');
+    });
+    test('object', () => {
+      expect(numberToWordsRu.convert({})).toBe('Ноль рублей 00 копеек');
+    });
+    test('function', () => {
+      expect(numberToWordsRu.convert(function(){})).toBe('Ноль рублей 00 копеек');
+    });
+  });
+});
 describe('Проверка чисел', () => {
   test('Отрицательные', () => {
     expect(numberToWordsRu.convert(-2)).toBe('Минус два рубля 00 копеек');
@@ -111,6 +166,51 @@ describe('Проверка чисел', () => {
     })).toBe('Одна целая триста сорок пять миллионных');
   });
   test('Дробные', () => {
+    expect(numberToWordsRu.convert('1/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Одна нулевая рубля');
+    expect(numberToWordsRu.convert('1/', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Одна нулевая рубля');
+    expect(numberToWordsRu.convert('2/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Две нулевых рубля');
+    expect(numberToWordsRu.convert('5/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Пять нулевых рубля');
+    expect(numberToWordsRu.convert('11/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Одиннадцать нулевых рубля');
+    expect(numberToWordsRu.convert('20/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Двадцать нулевых рубля');
+    expect(numberToWordsRu.convert('21/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Двадцать одна нулевая рубля');
+    expect(numberToWordsRu.convert('100/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Сто нулевых рубля');
+    expect(numberToWordsRu.convert('101/0', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    })).toBe('Сто одна нулевая рубля');
     expect(numberToWordsRu.convert('0/2', {
       convertNumbertToWords: {
         fractional: true,

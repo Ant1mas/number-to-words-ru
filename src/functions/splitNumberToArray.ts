@@ -10,21 +10,21 @@ const splitNumberToArray = (number: string | number, options?: ConvertOptions): 
   // Максимальная длинна целой части числа
   const maxIntegerPartLength = 306;
   // Конвертировать в String
-  const numberString = number.toString();
-  const numberArray = [];
+  const numberString = (typeof number === 'string' || typeof number === 'number') ? number.toString() : '0';
+  let numberArray = [];
   // Убрать из строки всё лишнее
-  let cleanNumber = numberString.match(/[0-9\,\.\-\/]/g).join('');
+  let cleanNumber = numberString.replace(/[^\d\.\,\/\-]/g, '');
   cleanNumber = cleanNumber.length < 1 ? '0' : cleanNumber;
   // Определить указан ли знак минуса в начале
   numberArray[0] = cleanNumber.search(/\-/) === 0 ? '-' : '+';
   // Удалить все знаки минуса
-  cleanNumber = cleanNumber.match(/[^\-]/g).join('');
+  cleanNumber = cleanNumber.replace(/[\-]/g, '');
   // Добавить разделитчель числа в массив
   numberArray[2] = cleanNumber.substr(cleanNumber.search(/[\,\.\/]/), 1);
   // Отметить позицию первого разделителя числа
   cleanNumber = cleanNumber.replace(/[\,\.\/]/, '|CUTHERE|');
   // Удалить все разделители числа
-  cleanNumber = cleanNumber.match(/[^\,\.\/]/g).join('');
+  cleanNumber = cleanNumber.replace(/[\,\.\/]/g, '');
   // Разделить число на целую и десятичную части
   numberArray[1] = cleanNumber.split('|CUTHERE|')[0];
   numberArray[3] = cleanNumber.split('|CUTHERE|')[1];
