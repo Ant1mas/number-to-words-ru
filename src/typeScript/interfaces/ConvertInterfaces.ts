@@ -9,11 +9,29 @@ export interface CurrencySettings {
   currencyNameCases?: [string, string, string],
 
   /**
+   * Integer currency name forms\
+   * for declensions
+   */
+  currencyNameDeclensions?: {
+    [key: string]: [string, string]
+  },
+
+  /**
    * Fractional number currency name forms\
    * for gidits [1, 2-4, 5-9]\
    * e.g. ['копейка', 'копейки', 'копеек']
    */
   fractionalPartNameCases?: [string, string, string],
+
+  /**
+   * Fractional number currency name forms\
+   * for declensions
+   */
+  fractionalPartNameDeclensions?: {
+    [key: string]: [string, string]
+  },
+
+
   currencyNounGender?: {
     /**
      * 0 => 'один', 1 => 'одна', 2 => 'одно'\

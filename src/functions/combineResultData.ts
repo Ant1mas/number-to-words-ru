@@ -64,13 +64,19 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
     if (options.showCurrency.integer === true) {
       // Если разделитель - не дробная черта
       if (modifiedNumberArray[2] !== '/') {
-        convertedNumberArr[2] = currencyObject.currencyNameCases[
-          convertsEachScaleToWords(
-            numberToScales(modifiedNumberArray[1]),
+        const convertResult = convertsEachScaleToWords(
+          numberToScales(modifiedNumberArray[1]),
             currencyObject.currencyNounGender.integer,
             options.declension
-          ).unitNameForm
-        ];
+        );
+
+        if (currencyObject.currencyNameDeclensions) {
+          // Если у валюты определены падежи
+          convertedNumberArr[2] = currencyObject.currencyNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
+        } else {
+          // Если у валюты старая настройка (без падежей)
+          convertedNumberArr[2] = currencyObject.currencyNameCases[convertResult.unitNameForm];
+        }
       }
     }
   }
@@ -116,13 +122,19 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
     if (options.showCurrency.fractional === true) {
       // Если валюта - не 'number'
       if (options.currency !== 'number') {
-        convertedNumberArr[4] = currencyObject.fractionalPartNameCases[
-          convertsEachScaleToWords(
-            numberToScales(modifiedNumberArray[3]),
-            currencyObject.currencyNounGender.fractionalPart,
-            options.declension
-          ).unitNameForm
-        ];
+        const convertResult = convertsEachScaleToWords(
+          numberToScales(modifiedNumberArray[3]),
+          currencyObject.currencyNounGender.fractionalPart,
+          options.declension
+        );
+
+        if (currencyObject.fractionalPartNameDeclensions) {
+          // Если у валюты определены падежи
+          convertedNumberArr[4] = currencyObject.fractionalPartNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
+        } else {
+          // Если у валюты старая настройка (без падежей)
+          convertedNumberArr[4] = currencyObject.fractionalPartNameCases[convertResult.unitNameForm];
+        }
       }
       // Если не указана валюта
       if (options.currency === 'number') {

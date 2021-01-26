@@ -20,6 +20,9 @@ const convertDigitToWord = (digit: number, values: DeclensionNumberNames, declen
 const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender = 0, declension: Declension = declensions.NOMINATIVE): ConvertedScalesToWords => {
   let convertedResult = '';
   let unitNameForm; // Падеж названия единиц измерения
+  let unitDeclension = declension;  // Падеж названия единиц измерения
+  let isPlural = false; // Множественность названия единиц измерения
+
   // Для каждого класса числа
   numberScaleArr.forEach((numberScale, arrIndex) => {
     unitNameForm = 2; // Падеж названия единиц измерения по умолчанию (рублей)
@@ -38,6 +41,10 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
       && digit2 === 0
       && digit3 === 0
     ) {
+      // Не забываем указать падеж и число
+      unitDeclension = declension === declensions.NOMINATIVE ? declensions.GENITIVE : declension;
+      isPlural = true;
+
       return;
     }
     // Определить род числа
@@ -84,10 +91,12 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
         }
       }
     }
+
     // Указать падеж для названия класса единиц
-    let unitDeclension = (((digit3 >= 5 && digit3 <= 9) || digit2 === 1 || digit3 ===0) && declension === declensions.NOMINATIVE) ? declensions.GENITIVE : declension
-    let isPlural = !(digit3 === 1 && digit2 !== 1);
-    let unitName = getUnitName(currentNumberScale - 1, unitDeclension, isPlural);
+    unitDeclension = (((digit3 >= 5 && digit3 <= 9) || digit2 === 1 || digit3 ===0) && declension === declensions.NOMINATIVE) ? declensions.GENITIVE : declension
+    isPlural = !(digit3 === 1 && digit2 !== 1);
+
+    const unitName = getUnitName(currentNumberScale - 1, unitDeclension, isPlural);
     // Убрать ненужный "ноль"
     if (digit3 === 0 && (digit1 > 0 || digit2 > 0)) {
       digit3text = '';
@@ -99,10 +108,13 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
     // Добавить текущий разобранный класс к общему результату
     convertedResult += ` ${scaleResult}`;
   });
+
   // Вернуть полученный результат и форму падежа для валюты
   return {
     result: convertedResult.trim(),
     unitNameForm: unitNameForm,
+    unitDeclension,
+    isPlural
   };
 };
 

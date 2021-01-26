@@ -33,10 +33,14 @@ const getCurrencyObject = (convertOptions?: ConvertOptions): CurrencySettings =>
     const defaultCurrencyObject = textValues.currency[defaultCurrencyName];
     // Обновить объект валюты новым объектом валюты
     const updatedCurrencyObject: CurrencySettings = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
+    // Удалить падежи
+    updatedCurrencyObject.currencyNameDeclensions = null;
+    updatedCurrencyObject.fractionalPartNameDeclensions = null;
+
     // Если объект оформлен правильно
     if (
       typeof updatedCurrencyObject === 'object' &&
-      Object.keys(updatedCurrencyObject).length === 4 &&
+      Object.keys(updatedCurrencyObject).length === 6 &&
       updatedCurrencyObject.currencyNameCases.length === 3 &&
       updatedCurrencyObject.fractionalPartNameCases.length === 3 &&
       typeof updatedCurrencyObject.currencyNounGender === 'object' &&
