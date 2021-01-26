@@ -41,8 +41,8 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
       && digit2 === 0
       && digit3 === 0
     ) {
-      // Не забываем указать падеж и число
-      unitDeclension = declension === declensions.NOMINATIVE ? declensions.GENITIVE : declension;
+      // Для чисел с пустой единичной частою - всегда родительный падеж во множественном числе
+      unitDeclension = declensions.GENITIVE;
       isPlural = true;
 
       return;
