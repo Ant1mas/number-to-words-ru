@@ -1,9 +1,10 @@
-import integer from 'units/integer';
 import {
   fractional,
   fractionalWordEndings,
   fractionalWordPrefixes,
 } from 'units/fractional';
+import getUnitName from "units/functions/getUnitName";
+import declensions from "../declensions";
 
 /**
  * Получить падежи дробной части числа.
@@ -32,7 +33,7 @@ const getFractionalNameForms = (index: number): string[] => {
     // Сгенерировать массив
     result = fractionalWordEndings.map((ending) => {
       return fractionalWordPrefixes[classScaleIndex]
-        + integer[classIndex][0]
+        + getUnitName(classIndex, declensions.NOMINATIVE, false)
         + ending;
     });
   }

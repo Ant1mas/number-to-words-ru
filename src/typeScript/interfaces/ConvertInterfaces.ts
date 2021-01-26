@@ -1,3 +1,5 @@
+import {Declension} from "../../units/declensions";
+
 export interface CurrencySettings {
   /**
    * Integer currency name forms\
@@ -56,4 +58,5 @@ export interface ConvertOptions {
     integer?: boolean;
     fractional?: boolean;
   },
+  declension?: Declension
 }

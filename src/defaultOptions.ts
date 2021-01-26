@@ -1,4 +1,5 @@
 import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
+import declensions from "./units/declensions";
 
 const defaultOptions: ConvertOptions = {
   /* currency - Название валюты ('rub', 'usd', 'eur')
@@ -19,6 +20,7 @@ const defaultOptions: ConvertOptions = {
     integer: true,
     fractional: true,
   },
+  declension: declensions.NOMINATIVE
 };
 
 export default defaultOptions;

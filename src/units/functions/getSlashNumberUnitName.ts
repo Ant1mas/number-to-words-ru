@@ -1,4 +1,5 @@
-import integer from 'units/integer';
+import declensions from "../declensions";
+import getUnitName from "units/functions/getUnitName";
 
 const slashNumberUnitsForms = [
   ['', ''],
@@ -27,7 +28,7 @@ const getSlashNumberUnitName = (scaleIndex = 2): string[] => {
   } else {
     // Добавить окончания
     return slashNumberUnitEndings.map((ending) => {
-      return integer[scaleIndex - 1][0] + ending;
+      return getUnitName(scaleIndex - 1, declensions.NOMINATIVE, false) + ending;
     });
   }
   return result;

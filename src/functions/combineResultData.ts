@@ -51,12 +51,13 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
         convertedNumberArr[1] = convertsEachScaleToWords(
           numberToScales(modifiedNumberArray[1]),
           currencyObject.currencyNounGender.integer,
+          options.declension
         ).result;
       } else {
       // Если раделитель - дробная черта
         // Род числа всегда женский ('одна', 'две')
         convertedNumberArr[1] =
-          convertsEachScaleToWords(numberToScales(modifiedNumberArray[1]), 1).result;
+          convertsEachScaleToWords(numberToScales(modifiedNumberArray[1]), 1, options.declension).result;
       }
     }
     // Если нужно отображать валюту числа
@@ -67,6 +68,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
           convertsEachScaleToWords(
             numberToScales(modifiedNumberArray[1]),
             currencyObject.currencyNounGender.integer,
+            options.declension
           ).unitNameForm
         ];
       }
@@ -84,6 +86,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
           convertsEachScaleToWords(
             numberToScales(modifiedNumberArray[1]),
             currencyObject.currencyNounGender.integer,
+            options.declension
           ).unitNameForm,
         );
       } else {
@@ -91,6 +94,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
         convertedNumberArr[3] = convertsEachScaleToWords(
           numberToScales(modifiedNumberArray[3]),
           currencyObject.currencyNounGender.fractionalPart,
+          options.declension
         ).result;
       }
     } else {
@@ -116,6 +120,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
           convertsEachScaleToWords(
             numberToScales(modifiedNumberArray[3]),
             currencyObject.currencyNounGender.fractionalPart,
+            options.declension
           ).unitNameForm
         ];
       }
@@ -129,6 +134,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
             convertsEachScaleToWords(numberToScales(
               modifiedNumberArray[3]),
               currencyObject.currencyNounGender.fractionalPart,
+              options.declension
             ).unitNameForm
           ];
         }
