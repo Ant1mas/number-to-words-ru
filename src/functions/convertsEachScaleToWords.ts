@@ -44,7 +44,6 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
       // Для чисел с пустой единичной частою - всегда родительный падеж во множественном числе
       unitDeclension = declensions.GENITIVE;
       isPlural = true;
-
       return;
     }
     // Определить род числа
@@ -93,8 +92,18 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
     }
 
     // Указать падеж для названия класса единиц
-    unitDeclension = (((digit3 >= 5 && digit3 <= 9) || digit2 === 1 || digit3 ===0) && declension === declensions.NOMINATIVE) ? declensions.GENITIVE : declension
+    unitDeclension = declension;
     isPlural = !(digit3 === 1 && digit2 !== 1);
+
+    if (declension === declensions.NOMINATIVE || declension === declensions.ACCUSATIVE) {
+      if (digit1 === 0 && digit2 === 0 && digit3 === 0) {
+        // Для чисел с пустой единичной частою - всегда родительный падеж во множественном числе
+        unitDeclension = declensions.GENITIVE;
+        isPlural = true;
+      } else if ((digit3 >= 5 && digit3 <= 9) || digit2 === 1 || digit3 === 0) {
+        unitDeclension = declensions.GENITIVE;
+      }
+    }
 
     const unitName = getUnitName(currentNumberScale - 1, unitDeclension, isPlural);
     // Убрать ненужный "ноль"
