@@ -74,7 +74,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
           // Если у валюты определены падежи
           convertedNumberArr[2] = currencyObject.currencyNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
         } else {
-          // Если у валюты старая настройка (без падежей)
+          // Если у валюты не определены падежи
           convertedNumberArr[2] = currencyObject.currencyNameCases[convertResult.unitNameForm];
         }
       }
@@ -132,7 +132,7 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
           // Если у валюты определены падежи
           convertedNumberArr[4] = currencyObject.fractionalPartNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
         } else {
-          // Если у валюты старая настройка (без падежей)
+          /// Если у валюты не определены падежи
           convertedNumberArr[4] = currencyObject.fractionalPartNameCases[convertResult.unitNameForm];
         }
       }

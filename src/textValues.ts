@@ -1,15 +1,15 @@
 import genders from 'units/genders';
+import {declensions} from "units/declensions";
 import slashNumberForms from 'units/slashNumberForms';
+import {stringCurrencies} from 'units/stringCurrencies';
 import getFractionalNameForms from 'units/functions/getFractionalNameForms';
 import getSlashNumberUnitName from 'units/functions/getSlashNumberUnitName';
-import {stringCurrencies} from 'units/stringCurrencies';
 import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
 import {SlashNumberForms} from 'typeScript/interfaces/SlashNumberForms';
-import {declensions} from "./units/declensions";
 
 type DeclensionNumberName = string | {
-  [key: string]: string
-}
+  [key: string]: string,
+};
 
 export interface DeclensionNumberNames {
   [key: string]: [
@@ -22,15 +22,16 @@ export interface DeclensionNumberNames {
     DeclensionNumberName,
     DeclensionNumberName,
     DeclensionNumberName,
-    DeclensionNumberName];
-}
+    DeclensionNumberName,
+  ];
+};
 
 interface NumberNames {
   numbers: DeclensionNumberNames,
   tenToNineteen: DeclensionNumberNames,
   tens: DeclensionNumberNames,
-  hundreds: DeclensionNumberNames
-}
+  hundreds: DeclensionNumberNames,
+};
 
 interface TextValues {
   minus: string,
@@ -39,12 +40,13 @@ interface TextValues {
   currency: CurrencyStringValues,
   getFractionalUnits: Function,
   getSlashNumberUnitsNames: Function,
-}
+};
 
 // Правила взяты отсюда http://www.fio.ru/pravila/grammatika/sklonenie-imen-chislitelnykh/
 export const numberNames: NumberNames = {
   numbers: {
-    [declensions.NOMINATIVE]: ['ноль',
+    [declensions.NOMINATIVE]: [
+      'ноль',
       {
         [genders.MALE]: 'один',
         [genders.NEUTER]: 'одно',
@@ -54,42 +56,59 @@ export const numberNames: NumberNames = {
         [genders.MALE]:'два',
         [genders.NEUTER]:'два',
         [genders.FEMALE]:'две',
-      }, 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
-    [declensions.GENITIVE]: ['ноль',
+      }, 
+      'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять',
+    ],
+    [declensions.GENITIVE]: [
+      'ноля',
       {
         [genders.MALE]: 'одного',
         [genders.NEUTER]: 'одного',
         [genders.FEMALE]: 'одной',
-      }, 'двух', 'трех', 'четырех', 'пяти', 'шести', 'семи', 'восьми', 'девяти'],
-    [declensions.DATIVE]: ['нолю',
+      },
+      'двух', 'трёх', 'четырёх', 'пяти', 'шести', 'семи', 'восьми', 'девяти',
+    ],
+    [declensions.DATIVE]: [
+      'нолю',
       {
         [genders.MALE]: 'одному',
         [genders.NEUTER]: 'одному',
         [genders.FEMALE]: 'одной',
-      }, 'двум', 'трем', 'четырем', 'пяти', 'шести', 'семи', 'восьми', 'девяти'],
-    [declensions.ACCUSATIVE]: ['ноль',
+      },
+      'двум', 'трём', 'четырём', 'пяти', 'шести', 'семи', 'восьми', 'девяти',
+    ],
+    [declensions.ACCUSATIVE]: [
+      'ноль',
       {
         [genders.MALE]: 'один',
-        [genders.NEUTER]: 'одного',
+        [genders.NEUTER]: 'одно',
         [genders.FEMALE]: 'одну',
       },
       {
         [genders.MALE]:'два',
         [genders.NEUTER]:'два',
         [genders.FEMALE]:'две',
-      }, 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
-    [declensions.INSTRUMENTAL]: ['нолем',
+      },
+      'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять',
+    ],
+    [declensions.INSTRUMENTAL]: [
+      'нолём',
       {
         [genders.MALE]: 'одним',
         [genders.NEUTER]: 'одним',
         [genders.FEMALE]: 'одной',
-      }, 'двумя', 'тремя', 'четырьмя', 'пятью', 'шестью', 'семью', 'восемью', 'девятью'],
-    [declensions.PREPOSITIONAL]: ['ноле',
+      },
+      'двумя', 'тремя', 'четырьмя', 'пятью', 'шестью', 'семью', 'восемью', 'девятью',
+    ],
+    [declensions.PREPOSITIONAL]: [
+      'ноле',
       {
         [genders.MALE]: 'одном',
         [genders.NEUTER]: 'одном',
         [genders.FEMALE]: 'одной',
-      }, 'двух', 'трех', 'четырех', 'пяти', 'шести', 'семи', 'восьми', 'девяти'],
+      },
+      'двух', 'трёх', 'четырёх', 'пяти', 'шести', 'семи', 'восьми', 'девяти',
+    ],
   },
   tenToNineteen: {
     [declensions.NOMINATIVE]: ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'],
@@ -104,17 +123,17 @@ export const numberNames: NumberNames = {
     [declensions.GENITIVE]: ['', '', 'двадцати', 'тридцати', 'сорока', 'пятидесяти', 'шестидесяти', 'семидесяти', 'восьмидесяти', 'девяноста'],
     [declensions.DATIVE]: ['', '', 'двадцати', 'тридцати', 'сорока', 'пятидесяти', 'шестидесяти', 'семидесяти', 'восьмидесяти', 'девяноста'],
     [declensions.ACCUSATIVE]: ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'],
-    [declensions.INSTRUMENTAL]: ['', '', 'двадцатью', 'тридцатью', 'сорока', 'пятьюдесятью', 'шестьюдесятью', 'семьюдесятью', 'восьмьюдесятью', 'девяноста'],
+    [declensions.INSTRUMENTAL]: ['', '', 'двадцатью', 'тридцатью', 'сорока', 'пятьюдесятью', 'шестьюдесятью', 'семьюдесятью', 'восемьюдесятью', 'девяноста'],
     [declensions.PREPOSITIONAL]: ['', '', 'двадцати', 'тридцати', 'сорока', 'пятидесяти', 'шестидесяти', 'семидесяти', 'восьмидесяти', 'девяноста'],
   },
   hundreds: {
     [declensions.NOMINATIVE]: ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'],
-    [declensions.GENITIVE]: ['', 'ста', 'двухсот', 'трехсот', 'четырехсот', 'пятисот', 'шестисот', 'семисот', 'восемисот', 'девятисот'],
-    [declensions.DATIVE]: ['', 'ста', 'двумстам', 'тремстам', 'четыремстам', 'пятистам', 'шестистам', 'семистам', 'восемистам', 'девятистам'],
+    [declensions.GENITIVE]: ['', 'ста', 'двухсот', 'трёхсот', 'четырёхсот', 'пятисот', 'шестисот', 'семисот', 'восьмисот', 'девятисот'],
+    [declensions.DATIVE]: ['', 'ста', 'двумстам', 'трёмстам', 'четырёмстам', 'пятистам', 'шестистам', 'семистам', 'восьмистам', 'девятистам'],
     [declensions.ACCUSATIVE]: ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'],
     [declensions.INSTRUMENTAL]: ['', 'ста', 'двумястами', 'тремястами', 'четырьмястами', 'пятьюстами', 'шестьюстами', 'семьюстами', 'восемьюстами', 'девятьюстами'],
-    [declensions.PREPOSITIONAL]: ['', 'ста', 'двухстах', 'трехстах', 'четырехстах', 'пятистах', 'шестистах', 'семистах', 'восемистах', 'девятистах']
-  }
+    [declensions.PREPOSITIONAL]: ['', 'ста', 'двухстах', 'трёхстах', 'четырёхстах', 'пятистах', 'шестистах', 'семистах', 'восьмистах', 'девятистах']
+  },
 };
 
 const textValues: TextValues = {

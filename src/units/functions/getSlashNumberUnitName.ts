@@ -1,4 +1,4 @@
-import declensions from "../declensions";
+import declensions from "units/declensions";
 import getUnitName from "units/functions/getUnitName";
 
 const slashNumberUnitsForms = [

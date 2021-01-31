@@ -1,4 +1,4 @@
-import {Declension} from "../../units/declensions";
+import {Declension} from "units/declensions";
 
 export interface CurrencySettings {
   /**
@@ -13,7 +13,7 @@ export interface CurrencySettings {
    * for declensions
    */
   currencyNameDeclensions?: {
-    [key: string]: [string, string]
+    [key in Declension]?: [string, string];
   },
 
   /**
@@ -28,7 +28,7 @@ export interface CurrencySettings {
    * for declensions
    */
   fractionalPartNameDeclensions?: {
-    [key: string]: [string, string]
+    [key in Declension]?: [string, string];
   },
 
 
@@ -62,6 +62,7 @@ export interface ConvertOptions {
    * Default: `rub`
    */
   currency?: 'rub' | 'usd' | 'eur' | 'number' | CurrencySettings,
+  declension?: Declension,
   roundNumber?: number,
   convertMinusSignToWord?: boolean;
   showNumberParts?: {
@@ -76,5 +77,4 @@ export interface ConvertOptions {
     integer?: boolean;
     fractional?: boolean;
   },
-  declension?: Declension
 }

@@ -4,7 +4,7 @@ import {
   fractionalWordPrefixes,
 } from 'units/fractional';
 import getUnitName from "units/functions/getUnitName";
-import declensions from "../declensions";
+import declensions from "units/declensions";
 
 /**
  * Получить падежи дробной части числа.

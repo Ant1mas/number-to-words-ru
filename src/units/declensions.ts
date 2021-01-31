@@ -4,11 +4,11 @@ export type Declension =
   | 'dative'
   | 'accusative'
   | 'instrumental'
-  | 'prepositional'
+  | 'prepositional';
 
 export interface Declensions {
   [key: string]: Declension,
-}
+};
 
 export const declensions: Declensions = {
   NOMINATIVE: 'nominative',       // именительный

@@ -1,27 +1,35 @@
-import textValues, {DeclensionNumberNames, numberNames} from 'textValues';
+import {DeclensionNumberNames, numberNames} from 'textValues';
+import genders, {Gender} from "units/genders";
+import {Declension, declensions} from "units/declensions";
+import getUnitName from "units/functions/getUnitName";
 import {ConvertedScalesToWords} from 'typeScript/interfaces/ConvertedScalesToWords';
-import genders, {Gender} from "../units/genders";
-import {Declension, declensions} from "../units/declensions";
-import getUnitName from "../units/functions/getUnitName";
 
+/**
+ * Конвертировать одну цифру в слово.
+ * @param {number} digit - Цифра для конвертирования.
+ * @param {DeclensionNumberNames} values - Подходящий объект с падежами для конвертирования цифры.
+ * @param {Declension} declension - Выбранный падеж.
+ * @param {Gender} gender - Род для цирфы.
+ * @return {string} Цирфа (в видео слова) в правильном падеже (напр. "сто", "двадцать", "две" и др.)
+ */
 const convertDigitToWord = (digit: number, values: DeclensionNumberNames, declension: Declension, gender: Gender) => {
   const declensionValues = values[declension];
   const word = declensionValues[digit];
-  return "object" === typeof word ? word[gender] : word;
+  return (typeof word === "object") ? word[gender] : word;
 };
 
 /**
  * Конвертировать массив числа в текст.
- * @param {Array} numberScaleArr - Массив числа.
- * @param {number} currencyNounGender - Род валюты.
+ * @param {Array} numberScaleArr - Массив числа ['009', '876', '543', ...].
+ * @param {number} currencyNounGender - Род валюты (мужской/средний/женский).
  * @param {Declension} declension - Падеж.
- * @return {Object} Конвертированный результат и падеж для валюты.
+ * @return {Object} Конвертированный результат (текст) и параметры падежа для валюты.
  */
 const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender = 0, declension: Declension = declensions.NOMINATIVE): ConvertedScalesToWords => {
   let convertedResult = '';
-  let unitNameForm; // Падеж названия единиц измерения
-  let unitDeclension = declension;  // Падеж названия единиц измерения
-  let isPlural = false; // Множественность названия единиц измерения
+  let unitNameForm; // Падеж названия единиц измерения (валюты, др. объекты)
+  let unitDeclension = declension;  // Падеж названия единиц измерения (валюты, др. объекты)
+  let isPlural = false; // Множественность названия единиц измерения (валюты, др. объекты)
 
   // Для каждого класса числа
   numberScaleArr.forEach((numberScale, arrIndex) => {
@@ -41,18 +49,18 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
       && digit2 === 0
       && digit3 === 0
     ) {
-      // Для чисел с пустой единичной частою - всегда родительный падеж во множественном числе
+      // Для чисел с пустой единичной частью - всегда родительный падеж во множественном числе
       unitDeclension = declensions.GENITIVE;
       isPlural = true;
       return;
     }
-    // Определить род числа
-    //  если тысячный разряд - то женский
-    //  если единичный разряд - берем из валюты
-    //  иначе - мужской
+    /* Определить род числа
+    если класс тысяч - то женский
+    если класс единиц - берем из валюты
+    иначе - мужской */
     let gender: Gender = genders.MALE;
     if (currentNumberScale === 2) {
-      // Если текущий класс - тысячные
+      // Если текущий класс - тысячи
       gender = genders.FEMALE;
     } else if (currentNumberScale === 1) {
       // Если текущий класс - единицы
@@ -121,7 +129,7 @@ const convertsEachScaleToWords = (numberScaleArr: string[], currencyNounGender =
   // Вернуть полученный результат и форму падежа для валюты
   return {
     result: convertedResult.trim(),
-    unitNameForm: unitNameForm,
+    unitNameForm,
     unitDeclension,
     isPlural
   };

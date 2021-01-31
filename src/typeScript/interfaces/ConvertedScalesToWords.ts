@@ -1,4 +1,4 @@
-import {Declension} from "../../units/declensions";
+import {Declension} from "units/declensions";
 
 export interface ConvertedScalesToWords {
   result: string,

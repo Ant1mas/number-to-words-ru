@@ -869,10 +869,11 @@ test('Проверка округления числа', () => {
 
 describe('Проверка падежей', () => {
   test('Родительный', () => {
+    expect(numberToWordsRu.convert('0', {declension: 'genitive'})).toBe('Ноля рублей 00 копеек');
     expect(numberToWordsRu.convert('1', {declension: 'genitive'})).toBe('Одного рубля 00 копеек');
     expect(numberToWordsRu.convert('2', {declension: 'genitive'})).toBe('Двух рублей 00 копеек');
-    expect(numberToWordsRu.convert('3', {declension: 'genitive'})).toBe('Трех рублей 00 копеек');
-    expect(numberToWordsRu.convert('4', {declension: 'genitive'})).toBe('Четырех рублей 00 копеек');
+    expect(numberToWordsRu.convert('3', {declension: 'genitive'})).toBe('Трёх рублей 00 копеек');
+    expect(numberToWordsRu.convert('4', {declension: 'genitive'})).toBe('Четырёх рублей 00 копеек');
     expect(numberToWordsRu.convert('5', {declension: 'genitive'})).toBe('Пяти рублей 00 копеек');
     expect(numberToWordsRu.convert('10', {declension: 'genitive'})).toBe('Десяти рублей 00 копеек');
     expect(numberToWordsRu.convert('11', {declension: 'genitive'})).toBe('Одиннадцати рублей 00 копеек');
@@ -889,9 +890,9 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('30', {declension: 'genitive'})).toBe('Тридцати рублей 00 копеек');
     expect(numberToWordsRu.convert('32', {declension: 'genitive'})).toBe('Тридцати двух рублей 00 копеек');
     expect(numberToWordsRu.convert('40', {declension: 'genitive'})).toBe('Сорока рублей 00 копеек');
-    expect(numberToWordsRu.convert('43', {declension: 'genitive'})).toBe('Сорока трех рублей 00 копеек');
+    expect(numberToWordsRu.convert('43', {declension: 'genitive'})).toBe('Сорока трёх рублей 00 копеек');
     expect(numberToWordsRu.convert('50', {declension: 'genitive'})).toBe('Пятидесяти рублей 00 копеек');
-    expect(numberToWordsRu.convert('54', {declension: 'genitive'})).toBe('Пятидесяти четырех рублей 00 копеек');
+    expect(numberToWordsRu.convert('54', {declension: 'genitive'})).toBe('Пятидесяти четырёх рублей 00 копеек');
     expect(numberToWordsRu.convert('60', {declension: 'genitive'})).toBe('Шестидесяти рублей 00 копеек');
     expect(numberToWordsRu.convert('70', {declension: 'genitive'})).toBe('Семидесяти рублей 00 копеек');
     expect(numberToWordsRu.convert('80', {declension: 'genitive'})).toBe('Восьмидесяти рублей 00 копеек');
@@ -912,13 +913,14 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('1005', {declension: 'genitive'})).toBe('Одной тысячи пяти рублей 00 копеек');
     expect(numberToWordsRu.convert('1100', {declension: 'genitive'})).toBe('Одной тысячи ста рублей 00 копеек');
     expect(numberToWordsRu.convert('1000000', {declension: 'genitive'})).toBe('Одного миллиона рублей 00 копеек');
-    expect(numberToWordsRu.convert('987654321', {declension: 'genitive'})).toBe('Девятисот восьмидесяти семи миллионов шестисот пятидесяти четырех тысяч трехсот двадцати одного рубля 00 копеек');
+    expect(numberToWordsRu.convert('987654321', {declension: 'genitive'})).toBe('Девятисот восьмидесяти семи миллионов шестисот пятидесяти четырёх тысяч трёхсот двадцати одного рубля 00 копеек');
   });
   test('Дательный', () => {
+    expect(numberToWordsRu.convert('0', {declension: 'dative'})).toBe('Нолю рублям 00 копейкам');
     expect(numberToWordsRu.convert('1', {declension: 'dative'})).toBe('Одному рублю 00 копейкам');
     expect(numberToWordsRu.convert('2', {declension: 'dative'})).toBe('Двум рублям 00 копейкам');
-    expect(numberToWordsRu.convert('3', {declension: 'dative'})).toBe('Трем рублям 00 копейкам');
-    expect(numberToWordsRu.convert('4', {declension: 'dative'})).toBe('Четырем рублям 00 копейкам');
+    expect(numberToWordsRu.convert('3', {declension: 'dative'})).toBe('Трём рублям 00 копейкам');
+    expect(numberToWordsRu.convert('4', {declension: 'dative'})).toBe('Четырём рублям 00 копейкам');
     expect(numberToWordsRu.convert('5', {declension: 'dative'})).toBe('Пяти рублям 00 копейкам');
     expect(numberToWordsRu.convert('10', {declension: 'dative'})).toBe('Десяти рублям 00 копейкам');
     expect(numberToWordsRu.convert('11', {declension: 'dative'})).toBe('Одиннадцати рублям 00 копейкам');
@@ -935,9 +937,9 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('30', {declension: 'dative'})).toBe('Тридцати рублям 00 копейкам');
     expect(numberToWordsRu.convert('32', {declension: 'dative'})).toBe('Тридцати двум рублям 00 копейкам');
     expect(numberToWordsRu.convert('40', {declension: 'dative'})).toBe('Сорока рублям 00 копейкам');
-    expect(numberToWordsRu.convert('43', {declension: 'dative'})).toBe('Сорока трем рублям 00 копейкам');
+    expect(numberToWordsRu.convert('43', {declension: 'dative'})).toBe('Сорока трём рублям 00 копейкам');
     expect(numberToWordsRu.convert('50', {declension: 'dative'})).toBe('Пятидесяти рублям 00 копейкам');
-    expect(numberToWordsRu.convert('54', {declension: 'dative'})).toBe('Пятидесяти четырем рублям 00 копейкам');
+    expect(numberToWordsRu.convert('54', {declension: 'dative'})).toBe('Пятидесяти четырём рублям 00 копейкам');
     expect(numberToWordsRu.convert('60', {declension: 'dative'})).toBe('Шестидесяти рублям 00 копейкам');
     expect(numberToWordsRu.convert('70', {declension: 'dative'})).toBe('Семидесяти рублям 00 копейкам');
     expect(numberToWordsRu.convert('80', {declension: 'dative'})).toBe('Восьмидесяти рублям 00 копейкам');
@@ -958,10 +960,10 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('1005', {declension: 'dative'})).toBe('Одной тысяче пяти рублям 00 копейкам');
     expect(numberToWordsRu.convert('1100', {declension: 'dative'})).toBe('Одной тысяче ста рублям 00 копейкам');
     expect(numberToWordsRu.convert('1000000', {declension: 'dative'})).toBe('Одному миллиону рублей 00 копейкам');
-    expect(numberToWordsRu.convert('987654321', {declension: 'dative'})).toBe('Девятистам восьмидесяти семи миллионам шестистам пятидесяти четырем тысячам тремстам двадцати одному рублю 00 копейкам');
+    expect(numberToWordsRu.convert('987654321', {declension: 'dative'})).toBe('Девятистам восьмидесяти семи миллионам шестистам пятидесяти четырём тысячам трёмстам двадцати одному рублю 00 копейкам');
   });
-
   test('Винительный', () => {
+    expect(numberToWordsRu.convert('0', {declension: 'accusative'})).toBe('Ноль рублей 00 копеек');
     expect(numberToWordsRu.convert('1', {declension: 'accusative'})).toBe('Один рубль 00 копеек');
     expect(numberToWordsRu.convert('2', {declension: 'accusative'})).toBe('Два рубля 00 копеек');
     expect(numberToWordsRu.convert('3', {declension: 'accusative'})).toBe('Три рубля 00 копеек');
@@ -1007,9 +1009,9 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('1000000', {declension: 'accusative'})).toBe('Один миллион рублей 00 копеек');
     expect(numberToWordsRu.convert('987654321', {declension: 'accusative'})).toBe('Девятьсот восемьдесят семь миллионов шестьсот пятьдесят четыре тысячи триста двадцать один рубль 00 копеек');
   });
-
   test('Творительный', () => {
-    expect(numberToWordsRu.convert('1', {declension: 'instrumental'})).toBe('Одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('0', {declension: 'instrumental'})).toBe('Нолём рублями 00 копейками');
+    expect(numberToWordsRu.convert('1', {declension: 'instrumental'})).toBe('Одним рублём 00 копейками');
     expect(numberToWordsRu.convert('2', {declension: 'instrumental'})).toBe('Двумя рублями 00 копейками');
     expect(numberToWordsRu.convert('3', {declension: 'instrumental'})).toBe('Тремя рублями 00 копейками');
     expect(numberToWordsRu.convert('4', {declension: 'instrumental'})).toBe('Четырьмя рублями 00 копейками');
@@ -1025,7 +1027,7 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('18', {declension: 'instrumental'})).toBe('Восемнадцатью рублями 00 копейками');
     expect(numberToWordsRu.convert('19', {declension: 'instrumental'})).toBe('Девятнадцатью рублями 00 копейками');
     expect(numberToWordsRu.convert('20', {declension: 'instrumental'})).toBe('Двадцатью рублями 00 копейками');
-    expect(numberToWordsRu.convert('21', {declension: 'instrumental'})).toBe('Двадцатью одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('21', {declension: 'instrumental'})).toBe('Двадцатью одним рублём 00 копейками');
     expect(numberToWordsRu.convert('30', {declension: 'instrumental'})).toBe('Тридцатью рублями 00 копейками');
     expect(numberToWordsRu.convert('32', {declension: 'instrumental'})).toBe('Тридцатью двумя рублями 00 копейками');
     expect(numberToWordsRu.convert('40', {declension: 'instrumental'})).toBe('Сорока рублями 00 копейками');
@@ -1034,32 +1036,32 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('54', {declension: 'instrumental'})).toBe('Пятьюдесятью четырьмя рублями 00 копейками');
     expect(numberToWordsRu.convert('60', {declension: 'instrumental'})).toBe('Шестьюдесятью рублями 00 копейками');
     expect(numberToWordsRu.convert('70', {declension: 'instrumental'})).toBe('Семьюдесятью рублями 00 копейками');
-    expect(numberToWordsRu.convert('80', {declension: 'instrumental'})).toBe('Восьмьюдесятью рублями 00 копейками');
+    expect(numberToWordsRu.convert('80', {declension: 'instrumental'})).toBe('Восемьюдесятью рублями 00 копейками');
     expect(numberToWordsRu.convert('90', {declension: 'instrumental'})).toBe('Девяноста рублями 00 копейками');
     expect(numberToWordsRu.convert('99', {declension: 'instrumental'})).toBe('Девяноста девятью рублями 00 копейками');
     expect(numberToWordsRu.convert('100', {declension: 'instrumental'})).toBe('Ста рублями 00 копейками');
-    expect(numberToWordsRu.convert('101', {declension: 'instrumental'})).toBe('Ста одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('101', {declension: 'instrumental'})).toBe('Ста одним рублём 00 копейками');
     expect(numberToWordsRu.convert('110', {declension: 'instrumental'})).toBe('Ста десятью рублями 00 копейками');
     expect(numberToWordsRu.convert('200', {declension: 'instrumental'})).toBe('Двумястами рублями 00 копейками');
-    expect(numberToWordsRu.convert('201', {declension: 'instrumental'})).toBe('Двумястами одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('201', {declension: 'instrumental'})).toBe('Двумястами одним рублём 00 копейками');
     expect(numberToWordsRu.convert('210', {declension: 'instrumental'})).toBe('Двумястами десятью рублями 00 копейками');
     expect(numberToWordsRu.convert('500', {declension: 'instrumental'})).toBe('Пятьюстами рублями 00 копейками');
-    expect(numberToWordsRu.convert('501', {declension: 'instrumental'})).toBe('Пятьюстами одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('501', {declension: 'instrumental'})).toBe('Пятьюстами одним рублём 00 копейками');
     expect(numberToWordsRu.convert('510', {declension: 'instrumental'})).toBe('Пятьюстами десятью рублями 00 копейками');
     expect(numberToWordsRu.convert('1000', {declension: 'instrumental'})).toBe('Одной тысячей рублей 00 копейками');
-    expect(numberToWordsRu.convert('1001', {declension: 'instrumental'})).toBe('Одной тысячей одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('1001', {declension: 'instrumental'})).toBe('Одной тысячей одним рублём 00 копейками');
     expect(numberToWordsRu.convert('1002', {declension: 'instrumental'})).toBe('Одной тысячей двумя рублями 00 копейками');
     expect(numberToWordsRu.convert('1005', {declension: 'instrumental'})).toBe('Одной тысячей пятью рублями 00 копейками');
     expect(numberToWordsRu.convert('1100', {declension: 'instrumental'})).toBe('Одной тысячей ста рублями 00 копейками');
     expect(numberToWordsRu.convert('1000000', {declension: 'instrumental'})).toBe('Одним миллионом рублей 00 копейками');
-    expect(numberToWordsRu.convert('987654321', {declension: 'instrumental'})).toBe('Девятьюстами восьмьюдесятью семью миллионами шестьюстами пятьюдесятью четырьмя тысячами тремястами двадцатью одним рублем 00 копейками');
+    expect(numberToWordsRu.convert('987654321', {declension: 'instrumental'})).toBe('Девятьюстами восемьюдесятью семью миллионами шестьюстами пятьюдесятью четырьмя тысячами тремястами двадцатью одним рублём 00 копейками');
   });
-
   test('Предложный', () => {
+    expect(numberToWordsRu.convert('0', {declension: 'prepositional'})).toBe('Ноле рублях 00 копейках');
     expect(numberToWordsRu.convert('1', {declension: 'prepositional'})).toBe('Одном рубле 00 копейках');
     expect(numberToWordsRu.convert('2', {declension: 'prepositional'})).toBe('Двух рублях 00 копейках');
-    expect(numberToWordsRu.convert('3', {declension: 'prepositional'})).toBe('Трех рублях 00 копейках');
-    expect(numberToWordsRu.convert('4', {declension: 'prepositional'})).toBe('Четырех рублях 00 копейках');
+    expect(numberToWordsRu.convert('3', {declension: 'prepositional'})).toBe('Трёх рублях 00 копейках');
+    expect(numberToWordsRu.convert('4', {declension: 'prepositional'})).toBe('Четырёх рублях 00 копейках');
     expect(numberToWordsRu.convert('5', {declension: 'prepositional'})).toBe('Пяти рублях 00 копейках');
     expect(numberToWordsRu.convert('10', {declension: 'prepositional'})).toBe('Десяти рублях 00 копейках');
     expect(numberToWordsRu.convert('11', {declension: 'prepositional'})).toBe('Одиннадцати рублях 00 копейках');
@@ -1076,9 +1078,9 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('30', {declension: 'prepositional'})).toBe('Тридцати рублях 00 копейках');
     expect(numberToWordsRu.convert('32', {declension: 'prepositional'})).toBe('Тридцати двух рублях 00 копейках');
     expect(numberToWordsRu.convert('40', {declension: 'prepositional'})).toBe('Сорока рублях 00 копейках');
-    expect(numberToWordsRu.convert('43', {declension: 'prepositional'})).toBe('Сорока трех рублях 00 копейках');
+    expect(numberToWordsRu.convert('43', {declension: 'prepositional'})).toBe('Сорока трёх рублях 00 копейках');
     expect(numberToWordsRu.convert('50', {declension: 'prepositional'})).toBe('Пятидесяти рублях 00 копейках');
-    expect(numberToWordsRu.convert('54', {declension: 'prepositional'})).toBe('Пятидесяти четырех рублях 00 копейках');
+    expect(numberToWordsRu.convert('54', {declension: 'prepositional'})).toBe('Пятидесяти четырёх рублях 00 копейках');
     expect(numberToWordsRu.convert('60', {declension: 'prepositional'})).toBe('Шестидесяти рублях 00 копейках');
     expect(numberToWordsRu.convert('70', {declension: 'prepositional'})).toBe('Семидесяти рублях 00 копейках');
     expect(numberToWordsRu.convert('80', {declension: 'prepositional'})).toBe('Восьмидесяти рублях 00 копейках');
@@ -1099,6 +1101,6 @@ describe('Проверка падежей', () => {
     expect(numberToWordsRu.convert('1005', {declension: 'prepositional'})).toBe('Одной тысяче пяти рублях 00 копейках');
     expect(numberToWordsRu.convert('1100', {declension: 'prepositional'})).toBe('Одной тысяче ста рублях 00 копейках');
     expect(numberToWordsRu.convert('1000000', {declension: 'prepositional'})).toBe('Одном миллионе рублей 00 копейках');
-    expect(numberToWordsRu.convert('987654321', {declension: 'prepositional'})).toBe('Девятистах восьмидесяти семи миллионах шестистах пятидесяти четырех тысячах трехстах двадцати одном рубле 00 копейках');
+    expect(numberToWordsRu.convert('987654321', {declension: 'prepositional'})).toBe('Девятистах восьмидесяти семи миллионах шестистах пятидесяти четырёх тысячах трёхстах двадцати одном рубле 00 копейках');
   });
 });
