@@ -4,7 +4,7 @@
 
 /**
  * What does this module do:
- * 
+ *
  * `1234567.89` --> Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 89 копеек\
  * `123.45` --> Сто двадцать три рубля сорок пять копеек\
  * `251` --> Двести пятьдесят одно сообщение\
@@ -75,6 +75,12 @@ declare module 'number-to-words-ru' {
       integer?: boolean;
       fractional?: boolean;
     },
+    declension?: 'nominative'
+      | 'genitive'
+      | 'dative'
+      | 'accusative'
+      | 'instrumental'
+      | 'prepositional'
   }
   export interface numberToWordsRuFunctions {
     convert: typeof convert,
@@ -83,7 +89,7 @@ declare module 'number-to-words-ru' {
    * Convert number to words\
    * If typed as `number` max value is `9'007'199'254'740'991` (limit of Javascript).\
    * If typed as `string` max value is `306 digits` before point and `305 digits` after point.
-   * 
+   *
    * @param number The input number
    * @param options The convert options
    */
