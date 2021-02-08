@@ -6,4 +6,8 @@ console.log('numberToWordsRu :>> ', numberToWordsRu.convert('-2564,6565', {
     integer: true,
     fractional: true,
   },
+  showCurrency: {
+    integer: true,
+    fractional: true
+  }
 }));

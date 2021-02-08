@@ -2,9 +2,9 @@ import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Разделить число на части.
- * @param {(number|string)} number - Число, которое нужно обработать.
- * @param {Object} options - Параметры конвертирования.
- * @return {Array} Обработанное число в виде ['-', '150', '/', '25'].
+ * @param {string | number} number - Число, которое нужно обработать.
+ * @param {ConvertOptions} options - Параметры конвертирования.
+ * @return {string[]} Обработанное число в виде ['-', '150', '/', '25'].
  */
 const splitNumberToArray = (number: string | number, options?: ConvertOptions): string[] => {
   // Максимальная длинна целой части числа

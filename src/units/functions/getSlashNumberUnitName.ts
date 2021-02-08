@@ -1,4 +1,5 @@
-import integer from 'units/integer';
+import declensions from "units/declensions";
+import getNumberScaleName from "units/functions/getNumberScaleName";
 
 const slashNumberUnitsForms = [
   ['', ''],
@@ -13,7 +14,7 @@ const slashNumberUnitEndings = ['ная', 'ных'];
 /**
  * Получить падежи дробной (через "/") части числа.
  * @param {number} scaleIndex - Порядковый номер класса числа (2 - тысячи, 3 - миллионы).
- * @return {Array} Падежи, например ['миллионная', 'миллионных'].
+ * @return {string[]} Падежи, например ['миллионная', 'миллионных'].
  */
 const getSlashNumberUnitName = (scaleIndex = 2): string[] => {
   if (scaleIndex < 1) {
@@ -27,7 +28,7 @@ const getSlashNumberUnitName = (scaleIndex = 2): string[] => {
   } else {
     // Добавить окончания
     return slashNumberUnitEndings.map((ending) => {
-      return integer[scaleIndex - 1][0] + ending;
+      return getNumberScaleName(scaleIndex - 1, 0, declensions.NOMINATIVE) + ending;
     });
   }
   return result;

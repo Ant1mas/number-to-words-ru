@@ -1,6 +1,5 @@
 import textValues from 'textValues';
-import defaultOptions from 'defaultOptions';
-import updateObjectDeep from 'functions/updateObjectDeep';
+import getCustomCurrency from 'functions/getCustomCurrency';
 import {
   ConvertOptions,
   CurrencySettings,
@@ -8,8 +7,8 @@ import {
 
 /**
  * Получить объект с данными валюты.
- * @param {Object} convertOptions - Параметры конвертирования числа.
- * @return {Object} Данные валюты.
+ * @param {ConvertOptions} convertOptions - Параметры конвертирования числа.
+ * @return {CurrencySettings} Данные валюты.
  */
 const getCurrencyObject = (convertOptions?: ConvertOptions): CurrencySettings => {
   let currencyObject: CurrencySettings;
@@ -27,29 +26,7 @@ const getCurrencyObject = (convertOptions?: ConvertOptions): CurrencySettings =>
     }
   // Если валюта описана объектом
   } else if (typeof convertOptions.currency === 'object') {
-    // Названеи валюты по умолчанию
-    const defaultCurrencyName: any = defaultOptions['currency'];
-    // Объект валюты по умолчанию
-    const defaultCurrencyObject = textValues.currency[defaultCurrencyName];
-    // Обновить объект валюты новым объектом валюты
-    const updatedCurrencyObject: CurrencySettings = updateObjectDeep(defaultCurrencyObject, convertOptions.currency);
-    // Если объект оформлен правильно
-    if (
-      typeof updatedCurrencyObject === 'object' &&
-      Object.keys(updatedCurrencyObject).length === 4 &&
-      updatedCurrencyObject.currencyNameCases.length === 3 &&
-      updatedCurrencyObject.fractionalPartNameCases.length === 3 &&
-      typeof updatedCurrencyObject.currencyNounGender === 'object' &&
-      Object.keys(updatedCurrencyObject.currencyNounGender).length === 2 &&
-      typeof updatedCurrencyObject.currencyNounGender.integer === 'number' &&
-      typeof updatedCurrencyObject.currencyNounGender.fractionalPart === 'number'
-    ) {
-      // Принять валюту
-      currencyObject = updatedCurrencyObject;
-    } else {
-    // Если объект оформлен неправильно
-      throw new Error(`Wrong currency object.`);
-    }
+    currencyObject = getCustomCurrency(convertOptions);
   }
   return currencyObject;
 };

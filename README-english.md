@@ -33,10 +33,11 @@
 
 # Features
 - **Max 306** digits **before point** and **305** digits **after point** can be converted in words (if typed as String).
-- Use any **own custom currency**.
-- Use with any object (for example "сообщение", "комментарий", работа"...).
+- Flexible **customization of currency**.
+- Use **with any object** (for example "сообщение", "комментарий", работа"...).
 - Convert number in words without real currency ("целых", "десятых", "стотысячных" etc.)
 - Convert **number with slash** in words (delimiter "/").
+- Convert **in any declension**.
 - **Round number** to specified precision.
 - **Auto round to 2 digits** after point long number with common currency.
 - **Hide part** before point or after point.
@@ -67,6 +68,7 @@ numberToWordsRu.convert('104');
 // or with options
 numberToWordsRu.convert('-4201512.21', {
   currency: 'rub',
+  declension: 'nominative',
   roundNumber: -1,
   convertMinusSignToWord: true,
   showNumberParts: {
@@ -93,6 +95,11 @@ numberToWordsRu.convert('-4201512.21', {
 
 ------------------------
 
+<br/><br/>
+
+
+#### **Метод `convert`**
+
 ```
 convert(number, [options])
 ```
@@ -118,6 +125,7 @@ Convert number to words.
 ```js
 {
   currency: 'rub',
+  declension: 'nominative',
   roundNumber: -1,
   convertMinusSignToWord: true,
   showNumberParts: {
@@ -136,7 +144,11 @@ Convert number to words.
 ```
 ------------------------
 
+<br/><br/>
+
 ### **Argument `options`**
+
+#### **`options.currency`**
 
 ```
 currency: (string|Object)
@@ -161,7 +173,7 @@ Currency of number.
 
 **Note**: For all common currencies except `number` set `fractionalPartMinLength: 2`. Also these currencies will be rounded to `2`.
 
-- Own currency:
+- Customize currency:
 
 ```js
 {
@@ -171,6 +183,30 @@ Currency of number.
     integer: 0, // 0 => ('один', 'два'...)
     fractionalPart: 1 // 1 => ('одна', 'две'...)
   }
+  fractionalPartMinLength: 2
+}
+// or
+{
+  currencyNameDeclensions: {
+    nominative: ['рубль', 'рубли'],
+    genitive: ['рубля', 'рублей'],
+    dative: ['рублю', 'рублям'],
+    accusative: ['рубль', 'рубли'],
+    instrumental: ['рублём', 'рублями'],
+    prepositional: ['рубле', 'рублях'],
+  },
+  fractionalPartNameDeclensions: {
+    nominative: ['копейка', 'копейки'],
+    genitive: ['копейки', 'копеек'],
+    dative: ['копейке', 'копейкам'],
+    accusative: ['копейку', 'копейки'],
+    instrumental: ['копейкой', 'копейками'],
+    prepositional: ['копейке', 'копейках'],
+  },
+  currencyNounGender: {
+    integer: 0,
+    fractionalPart: 1
+  },
   fractionalPartMinLength: 2
 }
 // or
@@ -186,11 +222,45 @@ Currency of number.
 
 **Note**: If currency object will not be filled completely then missing data will be taken from default currency (`'rub'`).
 
-#### Parameters of object `currency`
+- Default currency object (`'rub'`):
+
+```js
+{
+  currencyNameCases: ['рубль', 'рубля', 'рублей'], // [1 рубль, 2-4 рубля, 5-9 рублей]
+  currencyNameDeclensions: {
+    nominative: ['рубль', 'рубли'], // [singular, plural]
+    genitive: ['рубля', 'рублей'],
+    dative: ['рублю', 'рублям'],
+    accusative: ['рубль', 'рубли'],
+    instrumental: ['рублём', 'рублями'],
+    prepositional: ['рубле', 'рублях'],
+  },
+  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+  fractionalPartNameDeclensions: {
+    nominative: ['копейка', 'копейки'],
+    genitive: ['копейки', 'копеек'],
+    dative: ['копейке', 'копейкам'],
+    accusative: ['копейку', 'копейки'],
+    instrumental: ['копейкой', 'копейками'],
+    prepositional: ['копейке', 'копейках'],
+  },
+  currencyNounGender: {
+    integer: 0, // 0 => ('один', 'два'...)
+    fractionalPart: 1 // 1 => ('одна', 'две'...)
+  },
+  fractionalPartMinLength: 2
+}
+```
+
+#### Fields of object `currency`
 
 `currencyNameCases: (Array)`: Currency form name of integer part. 3 elements in array.
 
+`currencyNameDeclensions: (Object)`: Declensions of integer part. In object 6 declensions, inside of each placed array with singular and plural.
+
 `fractionalPartNameCases: (Array)`: Currency form name of fractional part. 3 elements in array.
+
+`fractionalPartNameDeclensions: (Object)`: Declensions of fractional part. In object 6 declensions, inside of each placed array with singular and plural.
 
 `currencyNounGender: (Object)`: Form of number: 0 - ("один"), 1 - ("одна"), 2 - ("одно").
 
@@ -200,9 +270,60 @@ Currency of number.
 
 `fractionalPartMinLength: (number)`: Minimal length of fractional part. For example if set `3` then in fractional part mey be number `002`.
 
-**Note**: In arrays `currencyNameCases` and `fractionalPartNameCases`: first element for digit 1 (1 `рубль`), second elemet for digits 2-4 (2 `рубля`), third element for digits 5-9 and 0 (5 `рублей`).
+**Note**: In arrays `currencyNameCases` and `fractionalPartNameCases`: first element for digit 1 (`1 рубль`), second elemet for digits 2-4 (`2 рубля`), third element for digits 5-9 and 0 (`5 рублей`).
 
-<br/>
+<br/><br/>
+
+#### **`options.declension`**
+
+```
+declension: (string)
+```
+
+Select declension.
+
+#### **Default value**
+
+'nominative'
+
+#### **Possible values**
+
+- `'nominative'` - For example, "Двадцать одна тысяча рублей".
+- `'genitive'` - For example, "Двадцати одной тысячи рублей".
+- `'dative'` - For example, "Двадцати одной тысяче рублей".
+- `'accusative'` - For example, "Двадцать одну тысячу рублей".
+- `'instrumental'` - For example, "Двадцатью одной тысячей рублей".
+- `'prepositional'` - For example, "Двадцати одной тысяче рублей".
+
+#### Example
+
+```js
+numberToWordsRu.convert('41521000', {
+  declension: 'instrumental',
+});
+// Сорока одним миллионом пятьюстами двадцатью одной тысячей рублей 00 копеек
+
+numberToWordsRu.convert('2711.00052', {
+  declension: 'instrumental',
+  currency: 'number',
+  convertNumbertToWords: {
+    fractional: true,
+  },
+});
+// Двумя тысячами семьюстами одиннадцатью целыми пятьюдесятью двумя стотысячными
+
+numberToWordsRu.convert('672/15', {
+  declension: 'instrumental',
+  convertNumbertToWords: {
+    fractional: true,
+  },
+});
+// Шестьюстами семьюдесятью двумя пятнадцатыми рубля
+```
+
+<br/><br/>
+
+#### **`options.roundNumber`**
 
 ```
 roundNumber: (number)
@@ -217,7 +338,6 @@ Round number to specified precision.
 #### **Possible values**
 
 - `(number)` - Precision. Integer.
-
 - `-1` - Disable rounding.
 
 **Note**: If option `currency` is a common currency (`rub` / `usd` / `eur`) then after rounding it will be rounded again to 2 digits.
@@ -246,7 +366,9 @@ numberToWordsRu.convert('129.6789', {
 
 **Note**: If delimiter is slash ("`/`") then number will NOT be rounded in any case.
 
-<br/>
+<br/><br/>
+
+#### **`options.convertMinusSignToWord`**
 
 ```
 convertMinusSignToWord: (Boolean)
@@ -258,7 +380,9 @@ Convert minus sign to word ( '-' --> 'минус' ).
 
 true
 
-<br/>
+<br/><br/>
+
+#### **`options.showNumberParts`**
 
 ```
 showNumberParts: (Object)
@@ -295,7 +419,9 @@ numberToWordsRu.convert('123.45', {
 // 45 копеек
 ```
 
-<br/>
+<br/><br/>
+
+#### **`options.convertNumbertToWords`**
 
 ```
 convertNumbertToWords: (Object)
@@ -332,7 +458,9 @@ numberToWordsRu.convert('123.45', {
 // 123 рубля сорок пять копеек
 ```
 
-<br/>
+<br/><br/>
+
+#### **`options.showCurrency`**
 
 ```
 showCurrency: (Object)

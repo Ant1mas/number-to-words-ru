@@ -2,9 +2,9 @@ import replaceAt from 'functions/replaceAt';
 
 /**
  * Округлить число в виде массива до заданной точности.
- * @param {Array} numberArray - Число в виде массива.
+ * @param {string[]} numberArray - Число в виде массива.
  * @param {number} precision - Точность. Сколько знаков после запятой.
- * @return {Array} Округленное число в виде массива.
+ * @return {string[]} Округленное число в виде массива.
  */
 const roundNumber = (numberArray: string[], precision = 2): string[] => {
   // Если precision отрицательная, то не округлять

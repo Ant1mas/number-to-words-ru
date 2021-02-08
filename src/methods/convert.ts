@@ -5,8 +5,8 @@ import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Конвертировать число в текст
- * @param {(string|number)} number - Число, которе нужно конвертировать.
- * @param {Object} options - Параметры конвертирования.
+ * @param {string | number} number - Число, которе нужно конвертировать.
+ * @param {ConvertOptions} options - Параметры конвертирования.
  * @return {string} Число в виде текста
  */
 const convert = (number: string | number, options?: ConvertOptions): string => {
