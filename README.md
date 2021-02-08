@@ -33,10 +33,11 @@
 
 # Возможности
 - **Максимум 306** цифр **до запятой** и **305** цифр **после запятой** в числе могут быть конвертированы в слова (если число указано как строка).
-- Использование **любой своей валюты**.
-- Использование с любым объектом (напр. "сообщение", "комментарий", "работа"...).
+- Гибкая **настройка валюты**.
+- Использование **с любым объектом** (напр. "сообщение", "комментарий", "работа"...).
 - Конвертирование числа в слова без реальной валюты ("целых", "десятых", "стотысячных" и т. д.)
 - Конвертирование **дробных чисел** (с разделителем "/").
+- Конвертирование **в любом падеже**.
 - **Округление числа** до заданной точности.
 - **Автоматическое округление** до 2-ух знаков после запятой числа со стандартной валютой.
 - **Скрытие части числа** до запятой или после запятой.
@@ -67,6 +68,7 @@ numberToWordsRu.convert('104');
 // или с опциями
 numberToWordsRu.convert('-4201512.21', {
   currency: 'rub',
+  declension: 'nominative',
   roundNumber: -1,
   convertMinusSignToWord: true,
   showNumberParts: {
@@ -93,6 +95,10 @@ numberToWordsRu.convert('-4201512.21', {
 
 ------------------------
 
+<br/><br/>
+
+#### **Метод `convert`**
+
 ```
 convert(number, [options])
 ```
@@ -118,6 +124,7 @@ convert(number, [options])
 ```js
 {
   currency: 'rub',
+  declension: 'nominative',
   roundNumber: -1,
   convertMinusSignToWord: true,
   showNumberParts: {
@@ -136,7 +143,11 @@ convert(number, [options])
 ```
 ------------------------
 
+<br/><br/>
+
 ### **Аргумент `options`**
+
+#### **`options.currency`**
 
 ```
 currency: (string|Object)
@@ -161,7 +172,7 @@ currency: (string|Object)
 
 **Примечание**: Для всех стандартных валют, кроме `number` установлено `fractionalPartMinLength: 2`. Также эти валюты автоматически округляются до `2` знаков после запятой.
 
-- Своя валюта:
+- Настроить валюту:
 
 ```js
 {
@@ -170,6 +181,30 @@ currency: (string|Object)
   currencyNounGender: {
     integer: 0, // 0 => Мужской род ('один', 'два'...)
     fractionalPart: 1 // 1 => Женский род ('одна', 'две'...)
+  },
+  fractionalPartMinLength: 2
+}
+// или
+{
+  currencyNameDeclensions: {
+    nominative: ['рубль', 'рубли'],
+    genitive: ['рубля', 'рублей'],
+    dative: ['рублю', 'рублям'],
+    accusative: ['рубль', 'рубли'],
+    instrumental: ['рублём', 'рублями'],
+    prepositional: ['рубле', 'рублях'],
+  },
+  fractionalPartNameDeclensions: {
+    nominative: ['копейка', 'копейки'],
+    genitive: ['копейки', 'копеек'],
+    dative: ['копейке', 'копейкам'],
+    accusative: ['копейку', 'копейки'],
+    instrumental: ['копейкой', 'копейками'],
+    prepositional: ['копейке', 'копейках'],
+  },
+  currencyNounGender: {
+    integer: 0,
+    fractionalPart: 1
   },
   fractionalPartMinLength: 2
 }
@@ -186,11 +221,45 @@ currency: (string|Object)
 
 **Примечание**: Если объект валюты заполнить не полностью, то недостающие параметры будут взяты из объекта валюты по умолчанию (`'rub'`).
 
-#### Параметры объекта `currency`
+- Обект валюты по умолчанию (`'rub'`):
+
+```js
+{
+  currencyNameCases: ['рубль', 'рубля', 'рублей'], // [1 рубль, 2-4 рубля, 5-9 рублей]
+  currencyNameDeclensions: {
+    nominative: ['рубль', 'рубли'], // [Единственное число, Множественное число]
+    genitive: ['рубля', 'рублей'],
+    dative: ['рублю', 'рублям'],
+    accusative: ['рубль', 'рубли'],
+    instrumental: ['рублём', 'рублями'],
+    prepositional: ['рубле', 'рублях'],
+  },
+  fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
+  fractionalPartNameDeclensions: {
+    nominative: ['копейка', 'копейки'],
+    genitive: ['копейки', 'копеек'],
+    dative: ['копейке', 'копейкам'],
+    accusative: ['копейку', 'копейки'],
+    instrumental: ['копейкой', 'копейками'],
+    prepositional: ['копейке', 'копейках'],
+  },
+  currencyNounGender: {
+    integer: 0, // 0 => Мужской род ('один', 'два'...)
+    fractionalPart: 1 // 1 => Женский род ('одна', 'две'...)
+  },
+  fractionalPartMinLength: 2
+}
+```
+
+#### Поля объекта `currency`:
 
 `currencyNameCases: (Array)`: Формы названия валюты целой части числа. 3 элемента в массиве.
 
+`currencyNameDeclensions: (Object)`: Падежи названия валюты целой части числа. В объекте 6 падежей, внутри каждого в массиве указаны формы единственного и множественного числа.
+
 `fractionalPartNameCases: (Array)`: Формы названия валюты дробной части числа. 3 элемента в массиве.
+
+`fractionalPartNameDeclensions: (Object)`: Падежи названия валюты дробной части числа. В объекте 6 падежей, внутри каждого в массиве указаны формы единственного и множественного числа.
 
 `currencyNounGender: (Object)`: Род числа: 0 - мужской род (один), 1 - женский род (одна), 2 - средний род (одно).
 
@@ -200,9 +269,60 @@ currency: (string|Object)
 
 `fractionalPartMinLength: (number)`: Минимальное количество знаков, котрое может остаться в дробной части. Например, при значении `3` в дробной части возможно число `002`.
 
-**Примечание**: В массивах `currencyNameCases` и `fractionalPartNameCases`: первый элемент для цифры 1 (1 `рубль`), второй элемент для цифр 2-4 (2 `рубля`), третий элемент для цифр 5-9 и 0 (5 `рублей`).
+**Примечание**: В массивах `currencyNameCases` и `fractionalPartNameCases`: первый элемент для цифры 1 (`1 рубль`), второй элемент для цифр 2-4 (`2 рубля`), третий элемент для цифр 5-9 и 0 (`5 рублей`).
 
-<br/>
+<br/><br/>
+
+#### **`options.declension`**
+
+```
+declension: (string)
+```
+
+Выбрать падеж.
+
+#### **Значение по умолчанию**
+
+'nominative'
+
+#### **Возможные значения**
+
+- `'nominative'` - Именительный падеж. Например, "Двадцать одна тысяча рублей".
+- `'genitive'` - Родительный падеж. Например, "Двадцати одной тысячи рублей".
+- `'dative'` - Дательный падеж. Например, "Двадцати одной тысяче рублей".
+- `'accusative'` - Винительный падеж. Например, "Двадцать одну тысячу рублей".
+- `'instrumental'` - Творительный падеж. Например, "Двадцатью одной тысячей рублей".
+- `'prepositional'` - Предложный падеж. Например, "Двадцати одной тысяче рублей".
+
+#### Пример
+
+```js
+numberToWordsRu.convert('41521000', {
+  declension: 'instrumental',
+});
+// Сорока одним миллионом пятьюстами двадцатью одной тысячей рублей 00 копеек
+
+numberToWordsRu.convert('2711.00052', {
+  declension: 'instrumental',
+  currency: 'number',
+  convertNumbertToWords: {
+    fractional: true,
+  },
+});
+// Двумя тысячами семьюстами одиннадцатью целыми пятьюдесятью двумя стотысячными
+
+numberToWordsRu.convert('672/15', {
+  declension: 'instrumental',
+  convertNumbertToWords: {
+    fractional: true,
+  },
+});
+// Шестьюстами семьюдесятью двумя пятнадцатыми рубля
+```
+
+<br/><br/>
+
+#### **`options.roundNumber`**
 
 ```
 roundNumber: (number)
@@ -217,7 +337,6 @@ roundNumber: (number)
 #### **Возможные значения**
 
 - `(number)` - Целое число. Количество знаков после запятой, до которой нужно округлить число.
-
 - `-1` - Отключить округление.
 
 **Примечание**: Если опция `currency` является стандартной валютой (`'rub'` / `'usd'` / `'eur'`), то даже после округления число будет еще раз округлено до 2 знаков после запятой.
@@ -246,7 +365,9 @@ numberToWordsRu.convert('129.6789', {
 
 **Примечание**: Если разделитель числа является дробной чертой ("`/`"), то число НЕ будет округлено в любом случае.
 
-<br/>
+<br/><br/>
+
+#### **`options.convertMinusSignToWord`**
 
 ```
 convertMinusSignToWord: (Boolean)
@@ -258,7 +379,9 @@ convertMinusSignToWord: (Boolean)
 
 true
 
-<br/>
+<br/><br/>
+
+#### **`options.showNumberParts`**
 
 ```
 showNumberParts: (Object)
@@ -295,7 +418,9 @@ numberToWordsRu.convert('123.45', {
 // 45 копеек
 ```
 
-<br/>
+<br/><br/>
+
+#### **`options.convertNumbertToWords`**
 
 ```
 convertNumbertToWords: (Object)
@@ -332,7 +457,9 @@ numberToWordsRu.convert('123.45', {
 // 123 рубля сорок пять копеек
 ```
 
-<br/>
+<br/><br/>
+
+#### **`options.showCurrency`**
 
 ```
 showCurrency: (Object)
@@ -369,7 +496,7 @@ numberToWordsRu.convert('123.45', {
 // Сто двадцать три 45 копеек
 ```
 
-<br/>
+<br/><br/>
 
 # Примеры
 
