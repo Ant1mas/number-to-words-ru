@@ -6,6 +6,10 @@ export type Declension =
   | 'instrumental'
   | 'prepositional';
 
+export type DeclensionsData = {
+  [key in Declension]?: [string, string];
+};
+
 export interface Declensions {
   [key: string]: Declension,
 };

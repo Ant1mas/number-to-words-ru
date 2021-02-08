@@ -3,14 +3,17 @@ import roundNumber from 'functions/roundNumber';
 import fractionalPartToMinLength from 'functions/fractionalPartToMinLength';
 import getCurrencyObject from 'functions/getCurrencyObject';
 import numberToScales from 'functions/numberToScales';
-import convertsEachScaleToWords from 'functions/convertsEachScaleToWords';
-import convertsEachScaleToWordsSlash from 'functions/convertsEachScaleToWordsSlash';
+import convertEachScaleToWords from 'functions/convertEachScaleToWords';
+import convertEachScaleToWordsSlash from 'functions/convertEachScaleToWordsSlash';
+import getCurrencyWord from 'functions/getCurrencyWord';
+import getFractionalUnitCurrencyNumber from 'units/functions/getFractionalUnitCurrencyNumber';
+import {declensions} from "units/declensions";
 import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Собрать число в сроку с применением параметров.
- * @param {Array} numberArray - Число в виде массива ['-', '150', '/', '25'].
- * @param {Object} options - Парметры конвертирования.
+ * @param {array} numberArray - Число в виде массива ['-', '150', '/', '25'].
+ * @param {object} options - Парметры конвертирования.
  * @return {string} Число, конвертированное в текст.
  */
 const combineResultData = (numberArray: string[], options?: ConvertOptions): string => {
@@ -41,67 +44,80 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
   }
   // Обеспечить минимальную длину дробной части числа
   modifiedNumberArray = fractionalPartToMinLength(modifiedNumberArray, currencyObject);
+  const integerScalesArray = modifiedNumberArray[1];
+  const fractionalScalesArray = modifiedNumberArray[3];
+  const delimiter = modifiedNumberArray[2];
   // Если нужно отображать целую часть числа
   if (options.showNumberParts.integer === true) {
-    convertedNumberArr[1] = modifiedNumberArray[1];
+    // По умолчанию число не конвертировано в слова
+    convertedNumberArr[1] = integerScalesArray;
+    // Получить результат конвертирования числа
+    const convertedIntegerObject = convertEachScaleToWords(
+      numberToScales(integerScalesArray),
+      currencyObject.currencyNounGender.integer,
+      options.declension
+    );
     // Если нужно конвертировать число в слова
     if (options.convertNumbertToWords.integer === true) {
       // Если разделитель - не дробная черта
-      if (modifiedNumberArray[2] !== '/') {
-        convertedNumberArr[1] = convertsEachScaleToWords(
-          numberToScales(modifiedNumberArray[1]),
-          currencyObject.currencyNounGender.integer,
-          options.declension
-        ).result;
+      if (delimiter !== '/') {
+        // Применить конвертированное число
+        convertedNumberArr[1] = convertedIntegerObject.result;
       } else {
       // Если раделитель - дробная черта
         // Род числа всегда женский ('одна', 'две')
-        convertedNumberArr[1] =
-          convertsEachScaleToWords(numberToScales(modifiedNumberArray[1]), 1, options.declension).result;
+        // Применить конвертированное число
+        convertedNumberArr[1] = convertEachScaleToWords(
+          numberToScales(integerScalesArray),
+          1,
+          options.declension
+        ).result;
       }
     }
-    // Если нужно отображать валюту числа
+    // Если нужно отображать валюту целой части числа
     if (options.showCurrency.integer === true) {
       // Если разделитель - не дробная черта
-      if (modifiedNumberArray[2] !== '/') {
-        const convertResult = convertsEachScaleToWords(
-          numberToScales(modifiedNumberArray[1]),
-            currencyObject.currencyNounGender.integer,
-            options.declension
+      if (delimiter !== '/') {
+        const currencyWord = getCurrencyWord(
+          currencyObject,
+          'integer',
+          convertedIntegerObject.unitNameForm,
+          convertedIntegerObject.lastScaleIsZero,
+          options.currency,
+          options.declension
         );
-
-        if (currencyObject.currencyNameDeclensions) {
-          // Если у валюты определены падежи
-          convertedNumberArr[2] = currencyObject.currencyNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
-        } else {
-          // Если у валюты не определены падежи
-          convertedNumberArr[2] = currencyObject.currencyNameCases[convertResult.unitNameForm];
-        }
+        convertedNumberArr[2] = currencyWord;
       }
     }
   }
   // Если нужно отображать дробную часть числа
   if (options.showNumberParts.fractional === true) {
-    convertedNumberArr[3] = modifiedNumberArray[3];
+    // По умолчанию число не конвертировано в слова
+    convertedNumberArr[3] = fractionalScalesArray;
+    // Получить результат конвертирования числа
+    const convertedFractionalObject = convertEachScaleToWords(
+      numberToScales(fractionalScalesArray),
+      currencyObject.currencyNounGender.fractionalPart,
+      options.declension
+    );
     // Если нужно конвертировать число в слова
     if (options.convertNumbertToWords.fractional === true) {
       // Если разделитель - дробная черта
-      if (modifiedNumberArray[2] === '/') {
-        convertedNumberArr[3] = convertsEachScaleToWordsSlash(
-          numberToScales(modifiedNumberArray[3]),
-          convertsEachScaleToWords(
-            numberToScales(modifiedNumberArray[1]),
-            currencyObject.currencyNounGender.integer,
-            options.declension
-          ).unitNameForm,
+      if (delimiter === '/') {
+        const convertedIntegerObject = convertEachScaleToWords(
+          numberToScales(integerScalesArray),
+          currencyObject.currencyNounGender.integer,
+          options.declension
+        );
+        convertedNumberArr[3] = convertEachScaleToWordsSlash(
+          numberToScales(fractionalScalesArray),
+          convertedIntegerObject.unitNameForm,
+          options.declension
         );
       } else {
       // Если разделитель - не дробная черта
-        convertedNumberArr[3] = convertsEachScaleToWords(
-          numberToScales(modifiedNumberArray[3]),
-          currencyObject.currencyNounGender.fractionalPart,
-          options.declension
-        ).result;
+        // Применить конвертированное число
+        convertedNumberArr[3] = convertedFractionalObject.result;
       }
     } else {
     // Если не нужно конвертировать число в слова
@@ -118,48 +134,50 @@ const combineResultData = (numberArray: string[], options?: ConvertOptions): str
         }
       }
     }
-    // Если нужно отображать валюту числа
+    // Если нужно отображать валюту дробной части числа
     if (options.showCurrency.fractional === true) {
       // Если валюта - не 'number'
       if (options.currency !== 'number') {
-        const convertResult = convertsEachScaleToWords(
-          numberToScales(modifiedNumberArray[3]),
-          currencyObject.currencyNounGender.fractionalPart,
+        const currencyWord = getCurrencyWord(
+          currencyObject,
+          'fractional',
+          convertedFractionalObject.unitNameForm,
+          convertedFractionalObject.lastScaleIsZero,
+          options.currency,
           options.declension
         );
-
-        if (currencyObject.fractionalPartNameDeclensions) {
-          // Если у валюты определены падежи
-          convertedNumberArr[4] = currencyObject.fractionalPartNameDeclensions[convertResult.unitDeclension][convertResult.isPlural ? 1 : 0];
-        } else {
-          /// Если у валюты не определены падежи
-          convertedNumberArr[4] = currencyObject.fractionalPartNameCases[convertResult.unitNameForm];
+        // Если определено число дробной части 
+        if (convertedNumberArr[3] !== '') {
+          // Добавить валюту к дробной части
+          convertedNumberArr[4] = currencyWord;
         }
       }
-      // Если не указана валюта
+      // Если валюта указана как "number"
       if (options.currency === 'number') {
         // Если разделитель - не дробная черта
-        if (modifiedNumberArray[2] !== '/') {
-          // Получить массив названий дробной части
-          const getFractionalPartArr = textValues.getFractionalUnits(modifiedNumberArray[3].length - 1);
-          convertedNumberArr[4] = getFractionalPartArr[
-            convertsEachScaleToWords(numberToScales(
-              modifiedNumberArray[3]),
-              currencyObject.currencyNounGender.fractionalPart,
-              options.declension
-            ).unitNameForm
-          ];
+        if (delimiter !== '/') {
+          // Если определено число дробной части 
+          if (convertedNumberArr[3] !== '') {
+            const digitToConvert = parseInt(fractionalScalesArray[fractionalScalesArray.length - 1]);
+            convertedNumberArr[4] = getFractionalUnitCurrencyNumber(
+              fractionalScalesArray.length - 1,
+              digitToConvert,
+              options.declension,
+              convertedFractionalObject.unitNameForm
+            );
+          }
         }
       }
       // Если разделитель - дробная черта
-      if (modifiedNumberArray[2] === '/') {
+      if (delimiter === '/') {
         // Если указана валюта
         if (options.currency !== 'number') {
-          convertedNumberArr[4] = currencyObject.currencyNameCases[1];
+          convertedNumberArr[4] = currencyObject.currencyNameDeclensions[declensions.GENITIVE][0];
         }
       }
     }
   }
+  // Объеденить полученный результат
   let convertedNumberResult = convertedNumberArr
       .filter(Boolean)
       .join(' ')

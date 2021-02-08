@@ -298,6 +298,12 @@ describe('Проверка чисел', () => {
       },
     }))
     .toBe('Две двести вторых рубля');
+    expect(numberToWordsRu.convert('1/212', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    }))
+    .toBe('Одна двести двенадцатая рубля');
     expect(numberToWordsRu.convert('1/222', {
       convertNumbertToWords: {
         fractional: true,
@@ -334,6 +340,12 @@ describe('Проверка чисел', () => {
       },
     }))
     .toBe('Две тысячных рубля');
+    expect(numberToWordsRu.convert('2/1010', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    }))
+    .toBe('Две одна тысяча десятых рубля');
     expect(numberToWordsRu.convert('2/2000', {
       convertNumbertToWords: {
         fractional: true,
@@ -346,6 +358,12 @@ describe('Проверка чисел', () => {
       },
     }))
     .toBe('Две две тысячи вторых рубля');
+    expect(numberToWordsRu.convert('2/2012', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    }))
+    .toBe('Две две тысячи двенадцатых рубля');
     expect(numberToWordsRu.convert('2/2020', {
       convertNumbertToWords: {
         fractional: true,
@@ -376,6 +394,12 @@ describe('Проверка чисел', () => {
       },
     }))
     .toBe('Две двадцатитысячных рубля');
+    expect(numberToWordsRu.convert('2/21000', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    }))
+    .toBe('Две двадцатиоднотысячных рубля');
     expect(numberToWordsRu.convert('2/25000', {
       convertNumbertToWords: {
         fractional: true,
@@ -394,6 +418,12 @@ describe('Проверка чисел', () => {
       },
     }))
     .toBe('Две двухмиллионных рубля');
+    expect(numberToWordsRu.convert('2/2001000', {
+      convertNumbertToWords: {
+        fractional: true,
+      },
+    }))
+    .toBe('Две два миллиона однотысячных рубля');
     expect(numberToWordsRu.convert('2/235000', {
       convertNumbertToWords: {
         fractional: true,

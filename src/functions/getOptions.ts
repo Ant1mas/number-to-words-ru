@@ -4,10 +4,10 @@ import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
 
 /**
  * Получить опции конверирования.
- * @param {Object} options - Опции, выбранные пользователем.
- * @return {Object} Опции конвертирования.
+ * @param {object} options - Опции, выбранные пользователем.
+ * @return {ConvertOptions} Опции конвертирования.
  */
-const getOptions = (options = {}): ConvertOptions => {
+const getOptions = (options: object = {}): ConvertOptions => {
   // Опции по умолчанию
   const resultOptions = _.cloneDeep(defaultOptions);
   // Заменить опции по умолчанию выбранными опциями, если они правильно указаны

@@ -1,16 +1,16 @@
 export type Gender =
   | 'MALE'
-  | 'FEMALE'
-  | 'NEUTER';
+  | 'NEUTER'
+  | 'FEMALE';
 
 export interface Genders {
   [key: string]: Gender,
 };
 
-const genders: Genders = {
+export const genders: Genders = {
   MALE: 'MALE',
-  FEMALE: 'FEMALE',
   NEUTER: 'NEUTER',
+  FEMALE: 'FEMALE',
 };
 
 export default genders;

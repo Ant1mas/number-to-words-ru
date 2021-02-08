@@ -1,4 +1,4 @@
-const unitNames = [
+export const unitNames = [
   'миллион',
   'миллиард',
   'триллион',

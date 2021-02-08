@@ -8,7 +8,23 @@ const defaultParams = {
 export const stringCurrencies: CurrencyStringValues = {
   number: {
     currencyNameCases: ['целая', 'целых', 'целых'],
+    currencyNameDeclensions: {
+      [declensions.NOMINATIVE]: ['целая', 'целые'],
+      [declensions.GENITIVE]: ['целой', 'целых'],
+      [declensions.DATIVE]: ['целой', 'целым'],
+      [declensions.ACCUSATIVE]: ['целую', 'целые'],
+      [declensions.INSTRUMENTAL]: ['целой', 'целыми'],
+      [declensions.PREPOSITIONAL]: ['целой', 'целых'],
+    },
     fractionalPartNameCases: ['', '', ''],
+    fractionalPartNameDeclensions: {
+      [declensions.NOMINATIVE]: ['', ''],
+      [declensions.GENITIVE]: ['', ''],
+      [declensions.DATIVE]: ['', ''],
+      [declensions.ACCUSATIVE]: ['', ''],
+      [declensions.INSTRUMENTAL]: ['', ''],
+      [declensions.PREPOSITIONAL]: ['', ''],
+    },
     currencyNounGender: {
       integer: 1,
       fractionalPart: 1,
@@ -18,10 +34,10 @@ export const stringCurrencies: CurrencyStringValues = {
     ...defaultParams,
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['рубль', 'рубля'],
+      [declensions.NOMINATIVE]: ['рубль', 'рубли'],
       [declensions.GENITIVE]: ['рубля', 'рублей'],
       [declensions.DATIVE]: ['рублю', 'рублям'],
-      [declensions.ACCUSATIVE]: ['рубль', 'рубля'],
+      [declensions.ACCUSATIVE]: ['рубль', 'рубли'],
       [declensions.INSTRUMENTAL]: ['рублём', 'рублями'],
       [declensions.PREPOSITIONAL]: ['рубле', 'рублях'],
     },

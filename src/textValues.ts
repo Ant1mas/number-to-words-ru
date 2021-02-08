@@ -1,11 +1,8 @@
 import genders from 'units/genders';
 import {declensions} from "units/declensions";
-import slashNumberForms from 'units/slashNumberForms';
 import {stringCurrencies} from 'units/stringCurrencies';
-import getFractionalNameForms from 'units/functions/getFractionalNameForms';
 import getSlashNumberUnitName from 'units/functions/getSlashNumberUnitName';
 import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
-import {SlashNumberForms} from 'typeScript/interfaces/SlashNumberForms';
 
 type DeclensionNumberName = string | {
   [key: string]: string,
@@ -36,9 +33,7 @@ interface NumberNames {
 interface TextValues {
   minus: string,
   numberNames: NumberNames,
-  slashNumberUnits: SlashNumberForms,
   currency: CurrencyStringValues,
-  getFractionalUnits: Function,
   getSlashNumberUnitsNames: Function,
 };
 
@@ -138,10 +133,8 @@ export const numberNames: NumberNames = {
 
 const textValues: TextValues = {
   minus: 'минус',
-  slashNumberUnits: slashNumberForms,
   numberNames,
   currency: stringCurrencies,
-  getFractionalUnits: getFractionalNameForms,
   getSlashNumberUnitsNames: getSlashNumberUnitName,
 };
 
