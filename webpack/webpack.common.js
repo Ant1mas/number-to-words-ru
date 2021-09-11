@@ -18,7 +18,7 @@ const config = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     modules: [
-      path.resolve(rootPath, 'src'),
+      path.resolve(rootPath, '.'),
       path.resolve(rootPath, 'node_modules'),
     ],
   },

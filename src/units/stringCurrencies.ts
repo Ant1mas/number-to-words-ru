@@ -1,5 +1,5 @@
-import {declensions} from "units/declensions";
-import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
+import {declensions} from 'src/units/declensions';
+import {CurrencyStringValues} from 'src/typeScript/interfaces/CurrencyStringValues';
 
 const defaultParams = {
   fractionalPartMinLength: 2,
@@ -7,6 +7,7 @@ const defaultParams = {
 
 export const stringCurrencies: CurrencyStringValues = {
   number: {
+    fractionalPartMinLength: 0,
     currencyNameCases: ['целая', 'целых', 'целых'],
     currencyNameDeclensions: {
       [declensions.NOMINATIVE]: ['целая', 'целые'],

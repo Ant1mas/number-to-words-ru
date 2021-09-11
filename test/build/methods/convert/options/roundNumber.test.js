@@ -1,4 +1,4 @@
-const root = '../../../../';
+const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
 describe('roundNumber', () => {
@@ -126,6 +126,26 @@ describe('roundNumber', () => {
         roundNumber: 50,
       }))
       .toBe('Одна тысяча двести тридцать четыре целых 6789 десятитысячных');
+      expect(numberToWordsRu.convert('1234.0015', {
+        currency: 'number',
+        roundNumber: 4,
+      }))
+      .toBe('Одна тысяча двести тридцать четыре целых 15 десятитысячных');
+      expect(numberToWordsRu.convert('1234.0015', {
+        currency: 'number',
+        roundNumber: 3,
+      }))
+      .toBe('Одна тысяча двести тридцать четыре целых 2 тысячных');
+      expect(numberToWordsRu.convert('1234.0015', {
+        currency: 'number',
+        roundNumber: 2,
+      }))
+      .toBe('Одна тысяча двести тридцать четыре целых 0 десятых');
+      expect(numberToWordsRu.convert('1234.0015', {
+        currency: 'number',
+        roundNumber: 0,
+      }))
+      .toBe('Одна тысяча двести тридцать четыре целых');
       expect(numberToWordsRu.convert('1234.6789', {
         currency: 'number',
         roundNumber: 2,

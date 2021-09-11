@@ -1,4 +1,4 @@
-const root = '../../../../';
+const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
 test('combined options', () => {

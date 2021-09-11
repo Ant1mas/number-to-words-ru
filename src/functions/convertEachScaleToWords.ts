@@ -1,8 +1,8 @@
-import {numberNames} from 'textValues';
-import genders, {Gender} from "units/genders";
-import {Declension, declensions} from "units/declensions";
-import getNumberScaleName from "units/functions/getNumberScaleName";
-import convertDigitToWord from 'functions/convertDigitToWord';
+import numberNames from 'src/units/numbers';
+import genders, {Gender} from "src/units/genders";
+import {Declension, declensions} from "src/units/declensions";
+import getNumberScaleName from "src/units/functions/getNumberScaleName";
+import convertDigitToWord from 'src/functions/convertDigitToWord';
 
 export interface ConvertedScalesToWords {
   result: string,
@@ -23,9 +23,8 @@ const convertEachScaleToWords = (
   declension: Declension = declensions.NOMINATIVE
 ): ConvertedScalesToWords => {
   let convertedResult = '';
-  let scaleNameForm = 2; // Форма падежа для названия класса единиц или валюты после (0 / 1 / 2).
+  let scaleNameForm = 2; // Форма падежа для названия класса единиц или валюты после (0 | 1 | 2).
   let scaleIsZero = false; // Равняется ли целый класс "000".
-
   // Для каждого класса числа
   numberScalesArr.some((numberScale, arrIndex) => {
     scaleNameForm = 2; // Падеж названия единиц измерения по умолчанию ("рублей")
@@ -79,7 +78,7 @@ const convertEachScaleToWords = (
     // Если в разряде десятков стоит "1"
     if (digit2 === 1) {
       digit2text = convertDigitToWord(digit3, numberNames.tenToNineteen, declension, gender);
-    // Если в раздяде десятков стоит не "1"
+    // Если в разряде десятков стоит не "1"
     } else {
       digit2text = convertDigitToWord(digit2, numberNames.tens, declension, gender);
       digit3text = convertDigitToWord(digit3, numberNames.numbers, declension, gender);
@@ -102,7 +101,7 @@ const convertEachScaleToWords = (
     if (digit3 === 0 && (digit1 > 0 || digit2 > 0)) {
       digit3text = '';
     }
-    // Соеденить значения в одну строку
+    // Соединить значения в одну строку
     const scaleResult = `${digit1text} ${digit2text} ${digit3text} ${scaleName}`
       .replace(/\s+/g, ' ')
       .trim();

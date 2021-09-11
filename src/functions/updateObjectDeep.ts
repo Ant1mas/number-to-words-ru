@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import _deepMapValues from 'lodashFunctions/deepMapValues';
+import _deepMapValues from 'src/lodashFunctions/deepMapValues';
 
 /**
  * Рекурсивное обновление значений в объекте.

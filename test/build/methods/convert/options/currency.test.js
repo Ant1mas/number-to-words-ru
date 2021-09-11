@@ -1,27 +1,27 @@
-const root = '../../../../';
+const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
 describe('currency', () => {
   describe('string values', () => {
-    test("'rub'", () => {
+    test(`'rub'`, () => {
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'rub',
       }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
     });
-    test("'usd'", () => {
+    test(`'usd'`, () => {
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'usd',
       }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
     });
-    test("'eur'", () => {
+    test(`'eur'`, () => {
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'eur',
       }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь евро 12 центов');
     });
-    test("'number'", () => {
+    test(`'number'`, () => {
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'number',
       }))
@@ -29,7 +29,7 @@ describe('currency', () => {
       expect(numberToWordsRu.convert('1.8000', {
         currency: 'number',
       }))
-      .toBe('Одна целая 8000 десятитысячных');
+      .toBe('Одна целая 8 десятых');
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'number',
         convertNumbertToWords: {
@@ -43,7 +43,14 @@ describe('currency', () => {
           fractional: true,
         },
       }))
-      .toBe('Одна целая восемь тысяч десятитысячных');
+      .toBe('Одна целая восемь десятых');
+      expect(numberToWordsRu.convert('1.00000', {
+        currency: 'number',
+        convertNumbertToWords: {
+          fractional: true,
+        },
+      }))
+      .toBe('Одна целая ноль десятых');
     });
   });
   describe('object values', () => {

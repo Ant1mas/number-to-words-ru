@@ -1,5 +1,5 @@
-import {CurrencySettings} from 'typeScript/interfaces/ConvertInterfaces';
+import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency';
 
 export interface CurrencyStringValues {
-  [key: string]: CurrencySettings,
+  [key: string]: CustomCurrency,
 };

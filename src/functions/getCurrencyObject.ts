@@ -1,31 +1,24 @@
-import textValues from 'textValues';
-import getCustomCurrency from 'functions/getCustomCurrency';
-import {
-  ConvertOptions,
-  CurrencySettings,
-} from 'typeScript/interfaces/ConvertInterfaces';
+import stringCurrencies from 'src/units/stringCurrencies';
+import defaultOptions from 'src/defaultOptions';
+import getCustomCurrency from 'src/functions/getCustomCurrency';
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
+import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency';
 
 /**
  * Получить объект с данными валюты.
  * @param {ConvertOptions} convertOptions - Параметры конвертирования числа.
- * @return {CurrencySettings} Данные валюты.
+ * @return {CustomCurrency} Данные валюты.
  */
-const getCurrencyObject = (convertOptions?: ConvertOptions): CurrencySettings => {
-  let currencyObject: CurrencySettings;
+const getCurrencyObject = (convertOptions?: ConvertOptions): CustomCurrency => {
+  let currencyObject: CustomCurrency;
+  const currency = convertOptions?.currency || defaultOptions.currency;
   // Если валюта указана словами
-  if (typeof convertOptions.currency === 'string') {
-    // Если такая валюта есть в списке
-    if (textValues.currency[convertOptions.currency] !== undefined) {
-      // Получить данные найденной валюты
-      currencyObject = textValues.currency[convertOptions.currency];
-    } else {
-      throw new Error(
-        'Wrong currency name [' + convertOptions.currency + ']. '
-        + 'Try "rub", "usd", "eur", "number" or object with your currency.',
-      );
-    }
+  if (typeof currency === 'string') {
+    currencyObject = stringCurrencies[currency];
+  
+  }
   // Если валюта описана объектом
-  } else if (typeof convertOptions.currency === 'object') {
+  if (typeof currency === 'object') {
     currencyObject = getCustomCurrency(convertOptions);
   }
   return currencyObject;

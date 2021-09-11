@@ -1,48 +1,23 @@
 import * as _ from 'lodash';
-import defaultOptions from 'defaultOptions';
-import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
+import _deepMapValues from 'src/lodashFunctions/deepMapValues';
+import defaultOptions from 'src/defaultOptions';
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
 
 /**
- * Получить опции конверирования.
+ * Получить опции конвертирования.
  * @param {object} options - Опции, выбранные пользователем.
  * @return {ConvertOptions} Опции конвертирования.
  */
-const getOptions = (options: object = {}): ConvertOptions => {
-  // Опции по умолчанию
-  const resultOptions = _.cloneDeep(defaultOptions);
-  // Заменить опции по умолчанию выбранными опциями, если они правильно указаны
-  const updateOptions = (currentOptions: any, newOptions: any) => {
-    Object.keys(currentOptions).forEach((key) => {
-      // Если нужно изменить эту опцию
-      if (newOptions[key] !== undefined) {
-        // Если эта опция - объект
-        if (
-          typeof currentOptions[key] === 'object' &&
-          key !== 'currency'
-        ) {
-          // Перейти внутрь этого объекта (рекурсия)
-          updateOptions(currentOptions[key], newOptions[key]);
-        } else {
-        // Если эта опция - не объект
-          // Если тип данных одинаковый или currency[string/object]
-          if (
-            typeof currentOptions[key] === typeof newOptions[key] ||
-            (
-              key === 'currency' &&
-              (
-                typeof newOptions[key] === 'string' ||
-                typeof newOptions[key] === 'object'
-              )
-            )
-          ) {
-            // Заменить новым значением
-            currentOptions[key] = newOptions[key];
-          }
-        }
-      }
-    });
-  };
-  updateOptions(resultOptions, options);
+const getOptions = (options: ConvertOptions = {}): ConvertOptions => {
+  const resultOptions: ConvertOptions = _deepMapValues(defaultOptions, (path: string[], key: string, value: string) => {
+    // Если есть обновления для этой опции
+    if (_.has(options, [...path, key])) {
+      const newValue = _.get(options, [...path, key]);
+      return newValue;
+    } else {
+      return value;
+    }
+  });
   return resultOptions;
 };
 

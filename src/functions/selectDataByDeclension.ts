@@ -1,4 +1,8 @@
-import {declensions, DeclensionsData} from "units/declensions";
+import {
+  declensions,
+  Declension,
+  DeclensionsData,
+} from 'src/units/declensions';
 
 /**
  * Конвертировать в текст массив числа с разделителем "/".

@@ -1,5 +1,5 @@
-import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
-import declensions from "units/declensions";
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
+import declensions from 'src/units/declensions';
 
 const defaultOptions: ConvertOptions = {
   currency: 'rub',

@@ -1,5 +1,5 @@
-import {Declension, declensions} from "units/declensions";
-import unitNames from 'units/unitNames';
+import {Declension, declensions} from "src/units/declensions";
+import unitNames from 'src/units/unitNames';
 
 const integerWordEndings = {
   [declensions.NOMINATIVE]: ['', 'ы'],
@@ -26,7 +26,7 @@ let thousandNames: UnitName = {
 /**
  * Получить название класса числа в правильном падеже.
  * @param {number} scale - Индекс класса числа (0 - единицы, 1 - тысячи и т.д.).
- * @param {number} scaleNameForm - Форма названия класса числа (0 / 1 / 2).
+ * @param {number} scaleNameForm - Форма названия класса числа (0 | 1 | 2).
  * @param {Declension} declension - Падеж для класса числа.
  * @return {string} Название класса числа (напр. "миллиард", "миллиона", "тысячи" и др.).
  */
@@ -54,7 +54,7 @@ const getNumberScaleName = (scale: number, scaleNameForm: number, declension: De
   // Класс миллионов и так далее
   const ending = integerWordEndings[scaleDeclension][scalePlural];
   const base = unitNames[scale - 2];
-  return base ? base + ending : '';
+  return base + ending;
 };
 
 export default getNumberScaleName;

@@ -1,7 +1,7 @@
-import digits from 'units/ordinalNumbers/digits';
-import tenToNineteen from 'units/ordinalNumbers/tenToNineteen';
-import tens from 'units/ordinalNumbers/tens';
-import hundreds from 'units/ordinalNumbers/hundreds';
+import digits from 'src/units/ordinalNumbers/digits';
+import tenToNineteen from 'src/units/ordinalNumbers/tenToNineteen';
+import tens from 'src/units/ordinalNumbers/tens';
+import hundreds from 'src/units/ordinalNumbers/hundreds';
 
 interface OrdinalNumbersDeclensions {
   digits: object[],

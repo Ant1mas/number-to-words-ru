@@ -1,44 +1,36 @@
-import genders from 'units/genders';
-import {declensions} from "units/declensions";
-import {stringCurrencies} from 'units/stringCurrencies';
-import getSlashNumberUnitName from 'units/functions/getSlashNumberUnitName';
-import {CurrencyStringValues} from 'typeScript/interfaces/CurrencyStringValues';
+import genders from 'src/units/genders';
+import {declensions} from 'src/units/declensions';
 
-type DeclensionNumberName = string | {
+type DeclensionNumbers = string | {
   [key: string]: string,
 };
 
-export interface DeclensionNumberNames {
+export interface DeclensionNumbersArray {
   [key: string]: [
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
-    DeclensionNumberName,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
+    DeclensionNumbers,
   ];
 };
 
-interface NumberNames {
-  numbers: DeclensionNumberNames,
-  tenToNineteen: DeclensionNumberNames,
-  tens: DeclensionNumberNames,
-  hundreds: DeclensionNumberNames,
+interface Numbers {
+  numbers: DeclensionNumbersArray,
+  tenToNineteen: DeclensionNumbersArray,
+  tens: DeclensionNumbersArray,
+  hundreds: DeclensionNumbersArray,
 };
 
-interface TextValues {
-  minus: string,
-  numberNames: NumberNames,
-  currency: CurrencyStringValues,
-  getSlashNumberUnitsNames: Function,
-};
+export const minus = 'минус';
 
 // Правила взяты отсюда http://www.fio.ru/pravila/grammatika/sklonenie-imen-chislitelnykh/
-export const numberNames: NumberNames = {
+export const numbers: Numbers = {
   numbers: {
     [declensions.NOMINATIVE]: [
       'ноль',
@@ -131,11 +123,4 @@ export const numberNames: NumberNames = {
   },
 };
 
-const textValues: TextValues = {
-  minus: 'минус',
-  numberNames,
-  currency: stringCurrencies,
-  getSlashNumberUnitsNames: getSlashNumberUnitName,
-};
-
-export default textValues;
+export default numbers;
