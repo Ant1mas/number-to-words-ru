@@ -10,7 +10,11 @@ const config = merge(common, {
     main: './src/dev/test.dev.ts',
   },
   devServer: {
-    contentBase: distPath,
+    static: [
+      {
+        directory: distPath,
+      },
+    ],
     port: 9000,
     compress: true,
   },

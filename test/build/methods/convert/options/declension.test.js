@@ -1,4 +1,4 @@
-const root = '../../../../';
+const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
 describe('Проверка падежей', () => {
@@ -1008,6 +1008,10 @@ describe('Проверка падежей', () => {
       const currency = {
         currencyNameCases: ['доллар', 'доллара', 'долларов'],
         fractionalPartNameCases: ['цент', 'цента', 'центов'],
+        currencyNounGender: {
+          integer: 0,
+          fractionalPart: 0,
+        },
       };
       expect(numberToWordsRu.convert('4011121.01', {
         ...options,
@@ -1040,7 +1044,7 @@ describe('Проверка падежей', () => {
           ...currency,
         },
       }))
-      .toBe('Четырёх миллионов одиннадцати тысяч ста двадцати одного рубля одной копейки');
+      .toBe('Четырёх миллионов одиннадцати тысяч ста двадцати одного доллара одного цента');
       expect(numberToWordsRu.convert('4011122.02', {
         ...options,
         declension: 'genitive',
@@ -1048,7 +1052,7 @@ describe('Проверка падежей', () => {
           ...currency,
         },
       }))
-      .toBe('Четырёх миллионов одиннадцати тысяч ста двадцати двух рублей двух копеек');
+      .toBe('Четырёх миллионов одиннадцати тысяч ста двадцати двух долларов двух центов');
       expect(numberToWordsRu.convert('4011121.01', {
         ...options,
         declension: 'instrumental',
@@ -1056,7 +1060,7 @@ describe('Проверка падежей', () => {
           ...currency,
         },
       }))
-      .toBe('Четырьмя миллионами одиннадцатью тысячами ста двадцатью одним рублём одной копейкой');
+      .toBe('Четырьмя миллионами одиннадцатью тысячами ста двадцатью одним рублём одним копейкой');
       expect(numberToWordsRu.convert('4011122.02', {
         ...options,
         declension: 'instrumental',

@@ -1,5 +1,5 @@
-import {declensions} from "units/declensions";
-import {genders} from "units/genders";
+import {declensions} from 'src/units/declensions';
+import {genders} from 'src/units/genders';
 
 export const tenToNineteen = [
   {

@@ -270,7 +270,7 @@ Currency of number.
 
 `fractionalPartMinLength: (number)`: Minimal length of fractional part. For example if set `3` then in fractional part mey be number `002`.
 
-**Note**: In arrays `currencyNameCases` and `fractionalPartNameCases`: first element for digit 1 (`1 рубль`), second elemet for digits 2-4 (`2 рубля`), third element for digits 5-9 and 0 (`5 рублей`).
+**Note**: In arrays `currencyNameCases` and `fractionalPartNameCases`: first element for digit 1 (`1 рубль`), second element for digits 2-4 (`2 рубля`), third element for digits 5-9 and 0 (`5 рублей`).
 
 <br/><br/>
 

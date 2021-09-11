@@ -10,10 +10,10 @@ type Declension =
   | 'instrumental'
   | 'prepositional';
 
-interface CurrencySettings {
+interface CustomCurrency {
   /**
    * Integer currency name forms\
-   * for gidits [1, 2-4, 5-9]\
+   * for digits [1, 2-4, 5-9]\
    * e.g. ['рубль', 'рубля', 'рублей']
    */
   currencyNameCases?: [string, string, string],
@@ -28,7 +28,7 @@ interface CurrencySettings {
 
   /**
    * Fractional number currency name forms\
-   * for gidits [1, 2-4, 5-9]\
+   * for digits [1, 2-4, 5-9]\
    * e.g. ['копейка', 'копейки', 'копеек']
    */
   fractionalPartNameCases?: [string, string, string],
@@ -62,6 +62,13 @@ interface CurrencySettings {
   fractionalPartMinLength?: number
 }
 
+type OptionCurrency =
+  | 'rub'
+  | 'usd'
+  | 'eur'
+  | 'number'
+  | CustomCurrency;
+
 interface ConvertOptions {
   /**
    * Select currency\
@@ -72,7 +79,7 @@ interface ConvertOptions {
    * `Object` Custom currency. 124 юаня 42 фыня\
    * Default: `'rub'`
    */
-  currency?: 'rub' | 'usd' | 'eur' | 'number' | CurrencySettings,
+  currency?: OptionCurrency,
   /**
    * Select declension\
    * `'nominative'` Одна тысяча два рубля\

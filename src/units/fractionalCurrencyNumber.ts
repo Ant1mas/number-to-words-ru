@@ -1,4 +1,4 @@
-import {declensions} from "units/declensions";
+import {declensions} from 'src/units/declensions';
 
 export const fractionalUnitsDeclensions = [
   {
@@ -19,7 +19,7 @@ export const fractionalUnitsDeclensions = [
   },
 ];
 
-// Массоив корней для составления слова
+// Массив корней для составления слова
 export const fractionalUnitsBases = [
   'тысяч',
   // 'миллион',

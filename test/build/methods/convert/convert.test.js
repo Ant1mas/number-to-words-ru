@@ -1,4 +1,4 @@
-const root = '../../../';
+const root = '../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
 describe('Проверка входных данных', () => {

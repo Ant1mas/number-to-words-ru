@@ -1,33 +1,32 @@
-const root = '../../../../';
+const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
-test('showCurrency', () => {
+test('showNumberParts', () => {
   expect(numberToWordsRu.convert('1234567.12345', {
-    showCurrency: {
+    showNumberParts: {
       integer: true,
       fractional: true,
     },
   }))
   .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
-    showCurrency: {
+    showNumberParts: {
       integer: true,
       fractional: false,
     },
-  }))
-  .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12');
+  })).toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей');
   expect(numberToWordsRu.convert('1234567.12345', {
-    showCurrency: {
+    showNumberParts: {
       integer: false,
       fractional: true,
     },
   }))
-  .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь 12 копеек');
+  .toBe('12 копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
-    showCurrency: {
+    showNumberParts: {
       integer: false,
       fractional: false,
     },
   }))
-  .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь 12');
+  .toBe('');
 });

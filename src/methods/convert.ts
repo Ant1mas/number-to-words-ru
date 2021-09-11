@@ -1,7 +1,7 @@
-import splitNumberToArray from 'functions/splitNumberToArray';
-import combineResultData from 'functions/combineResultData';
-import getOptions from 'functions/getOptions';
-import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
+import splitNumberToArray from 'src/functions/splitNumberToArray';
+import combineResultData from 'src/functions/combineResultData';
+import getOptions from 'src/functions/getOptions';
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
 
 /**
  * Конвертировать число в текст
@@ -11,11 +11,11 @@ import {ConvertOptions} from 'typeScript/interfaces/ConvertInterfaces';
  */
 const convert = (number: string | number, options?: ConvertOptions): string => {
   // Получить объект опций
-  const applyedOptions = getOptions(options);
+  const appliedOptions = getOptions(options);
   // Обработать введенное число
-  const numberArray = splitNumberToArray(number, applyedOptions);
-  // Собрать конечный словестный результат
-  const convertedNumberString = combineResultData(numberArray, applyedOptions);
+  const numberArray = splitNumberToArray(number);
+  // Собрать конечный словесный результат
+  const convertedNumberString = combineResultData(numberArray, appliedOptions);
   return convertedNumberString;
 };
 

@@ -4,24 +4,25 @@ import {
   fractionalUnitsBases,
   fractionalUnitPrefixes,
   fractionalUnitEndings,
-} from 'units/fractionalCurrencyNumber';
-import unitNames from 'units/unitNames';
-import {declensions, Declension} from "units/declensions";
-import selectDataByDeclension from 'functions/selectDataByDeclension';
+} from 'src/units/fractionalCurrencyNumber';
+import unitNames from 'src/units/unitNames';
+import {declensions, Declension} from "src/units/declensions";
+import selectDataByDeclension from 'src/functions/selectDataByDeclension';
 
 /**
  * Получить единицу измерения дробной части в виде слова.
- * @param {number} index - Индекс цифры, у которой нужно получить единицу измерния (отсчет начинается с 0).
+ * Используется у currency: "number".
+ * @param {number} index - Индекс цифры, у которой нужно получить единицу измерения (отсчет начинается с 0).
  * @param {number} digitToConvert - Цифра, которая находится по индексу.
  * @param {Declension} declension - Падеж.
- * @param {number} unitNameForm - Форма валюты (0 / 1 / 2).
- * @return {string} Единица измерения дробной части числа. ('десятая', 'стотысячных', 'десятимилонная' и т.д.).
+ * @param {number} unitNameForm - Форма валюты (0 | 1 | 2).
+ * @return {string} Единица измерения дробной части числа. ('десятая', 'стотысячных', 'десятимиллионная' и т.д.).
  */
 const getFractionalUnitCurrencyNumber = (
   index: number,
   digitToConvert: number,
-  declension: Declension,
-  unitNameForm: number
+  declension: Declension = 'nominative',
+  unitNameForm: number = 0
 ): string => {
   if (index < 0) {
     index = 0;
@@ -29,8 +30,8 @@ const getFractionalUnitCurrencyNumber = (
   let result = '';
   let unitDeclensionsObject:any = {};
   // Если такой разряд есть в массиве, то просто взять его объект падежей как есть
-  if (fractionalUnitsDeclensions.length - 1 >= index) {
-    unitDeclensionsObject = fractionalUnitsDeclensions[index] ?? {};
+  if (index <= fractionalUnitsDeclensions.length - 1) {
+    unitDeclensionsObject = fractionalUnitsDeclensions[index];
   // Если такого разряда нет в массиве, то сгенерировать его объект падежей
   } else {
     // Определить класс числа
