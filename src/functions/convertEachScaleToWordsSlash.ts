@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import isEqual from 'lodash/isEqual';
 import {genders} from "src/units/genders";
 import {Declension, declensions} from 'src/units/declensions';
 import {slashNumberUnitPrefixes} from 'src/units/slashNumberUnitPrefixes';
@@ -75,7 +75,7 @@ const convertEachScaleToWordsSlash = (
     /* Если весь класс равен === 001
     и до него не было значений */
     if (
-      _.isEqual(scaleToConvertArr, [0, 0, 1])
+      isEqual(scaleToConvertArr, [0, 0, 1])
       && updatedNumberScalesArr.length - 1 === lastScaleWihNumber
     ) {
       // Получится "тысячная" вместо "однотысячная".

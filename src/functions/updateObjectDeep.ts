@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import get from 'lodash/get';
 import _deepMapValues from 'src/lodashFunctions/deepMapValues';
 
 /**
@@ -11,9 +11,9 @@ import _deepMapValues from 'src/lodashFunctions/deepMapValues';
 const updateObjectDeep = (object: object, newObject: object): object => {
   return _deepMapValues(object, (path: string[], key: string, value: string) => {
     // Если тип данных одинаковый
-    if (Object.prototype.toString.call(_.get(newObject, [...path, key])) === Object.prototype.toString.call(value)) {
+    if (Object.prototype.toString.call(get(newObject, [...path, key])) === Object.prototype.toString.call(value)) {
       // Заменить новым значением
-      return _.get(newObject, [...path, key]);
+      return get(newObject, [...path, key]);
     } else {
       // Оставить старое значение
       return value;
