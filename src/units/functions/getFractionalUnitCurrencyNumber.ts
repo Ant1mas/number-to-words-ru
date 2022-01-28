@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import set from 'lodash/set';
 import {
   fractionalUnitsDeclensions,
   fractionalUnitsBases,
@@ -48,7 +48,7 @@ const getFractionalUnitCurrencyNumber = (
     Object.keys(fractionalUnitEndings).forEach((key) => {
       const declensionEndings = fractionalUnitEndings[key];
       declensionEndings.forEach((ending, index) => {
-        _.set(unitDeclensionsObject, [key, index], `${unitNamePrefix}${unitNameBase}${ending}`);
+        set(unitDeclensionsObject, [key, index], `${unitNamePrefix}${unitNameBase}${ending}`);
       });
     });
   }

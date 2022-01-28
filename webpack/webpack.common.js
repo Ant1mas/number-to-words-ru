@@ -1,3 +1,4 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 const {
@@ -19,7 +20,7 @@ const config = {
     extensions: ['.tsx', '.ts', '.js'],
     modules: [
       path.resolve(rootPath, '.'),
-      path.resolve(rootPath, 'node_modules'),
+      'node_modules',
     ],
   },
   module: {
@@ -36,6 +37,11 @@ const config = {
       },
     ],
   },
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled'
+    }),
+  ]
 };
 
 module.exports = config;

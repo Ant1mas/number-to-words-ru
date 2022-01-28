@@ -17,6 +17,7 @@ const config = merge(common, {
     ],
     port: 9000,
     compress: true,
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin(),
