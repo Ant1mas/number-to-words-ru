@@ -1,5 +1,5 @@
-import {declensions} from 'src/units/declensions';
-import {genders} from 'src/units/genders';
+import { declensions } from 'src/units/declensions'
+import { genders } from 'src/units/genders'
 
 export const hundreds = [
   {
@@ -248,6 +248,6 @@ export const hundreds = [
       [declensions.PREPOSITIONAL]: ['девятисотой', 'девятисотых'],
     },
   },
-];
+]
 
-export default hundreds;
+export default hundreds

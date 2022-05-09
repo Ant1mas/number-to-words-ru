@@ -1,5 +1,5 @@
-import getOptions from './getOptions';
-import defaultOptions from 'src/defaultOptions';
+import getOptions from './getOptions'
+import defaultOptions from 'src/defaultOptions'
 
 test('test', () => {
   expect(getOptions()).toEqual({
@@ -19,20 +19,20 @@ test('test', () => {
       integer: true,
       fractional: true,
     },
-  });
-  expect(getOptions({
-    currency: 'number',
-    showNumberParts: {
-
-    },
-    convertNumbertToWords: {
-      integer: true,
-      fractional: false,
-    },
-    showCurrency: {
-      fractional: false,
-    },
-  })).toEqual({
+  })
+  expect(
+    getOptions({
+      currency: 'number',
+      showNumberParts: {},
+      convertNumbertToWords: {
+        integer: true,
+        fractional: false,
+      },
+      showCurrency: {
+        fractional: false,
+      },
+    })
+  ).toEqual({
     currency: 'number',
     declension: 'nominative',
     roundNumber: -1,
@@ -49,13 +49,15 @@ test('test', () => {
       integer: true,
       fractional: false,
     },
-  });
-  expect(getOptions({
-    currency: {
-      currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
-      fractionalPartMinLength: 3,
-    }
-  })).toEqual({
+  })
+  expect(
+    getOptions({
+      currency: {
+        currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
+        fractionalPartMinLength: 3,
+      },
+    })
+  ).toEqual({
     currency: {
       currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
       fractionalPartMinLength: 3,
@@ -75,5 +77,5 @@ test('test', () => {
       integer: true,
       fractional: true,
     },
-  });
-});
+  })
+})

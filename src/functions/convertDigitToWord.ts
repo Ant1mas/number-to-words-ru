@@ -1,6 +1,6 @@
-import {Declension} from 'src/units/declensions';
-import {DeclensionNumbersArray} from 'src/units/numbers';
-import {Gender} from "src/units/genders";
+import { Declension } from 'src/units/declensions'
+import { DeclensionNumbersArray } from 'src/units/numbers'
+import { Gender } from 'src/units/genders'
 
 /**
  * Конвертировать одну цифру в слово.
@@ -16,9 +16,9 @@ export const convertDigitToWord = (
   declension: Declension,
   gender: Gender
 ): string => {
-  const declensionValues = declensionNumberNames[declension];
-  const word = declensionValues[digit];
-  return (typeof word === "object") ? word[gender] : word;
-};
+  const declensionValues = declensionNumberNames[declension]
+  const word = declensionValues[digit]
+  return typeof word === 'object' ? word[gender] : word
+}
 
-export default convertDigitToWord;
+export default convertDigitToWord

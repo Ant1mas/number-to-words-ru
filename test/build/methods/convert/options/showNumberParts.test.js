@@ -8,7 +8,7 @@ test('showNumberParts', () => {
       fractional: true,
     },
   }))
-  .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
+    .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
     showNumberParts: {
       integer: true,
@@ -21,12 +21,12 @@ test('showNumberParts', () => {
       fractional: true,
     },
   }))
-  .toBe('12 копеек');
+    .toBe('12 копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
     showNumberParts: {
       integer: false,
       fractional: false,
     },
   }))
-  .toBe('');
+    .toBe('');
 });

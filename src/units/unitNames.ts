@@ -99,6 +99,6 @@ export const unitNames = [
   'октононагинтиллион',
   'новемнонагинтиллион', // 10^300
   'центиллион', // 10^303
-];
+]
 
-export default unitNames;
+export default unitNames

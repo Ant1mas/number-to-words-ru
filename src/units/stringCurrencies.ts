@@ -1,9 +1,9 @@
-import {declensions} from 'src/units/declensions';
-import {CurrencyStringValues} from 'src/typeScript/interfaces/CurrencyStringValues';
+import { declensions } from 'src/units/declensions'
+import { CurrencyStringValues } from 'src/typeScript/interfaces/CurrencyStringValues'
 
 const defaultParams = {
   fractionalPartMinLength: 2,
-};
+}
 
 export const stringCurrencies: CurrencyStringValues = {
   number: {
@@ -106,6 +106,6 @@ export const stringCurrencies: CurrencyStringValues = {
       fractionalPart: 0,
     },
   },
-};
+}
 
-export default stringCurrencies;
+export default stringCurrencies

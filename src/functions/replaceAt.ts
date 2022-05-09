@@ -10,9 +10,11 @@ const replaceAt = (
   index: number,
   newSubStr: string | number
 ): string => {
-  return string.substr(0, index)
-    + newSubStr.toString()
-    + string.substr(index + newSubStr.toString().length);
-};
+  return (
+    string.substring(0, index) +
+    newSubStr.toString() +
+    string.substring(index + newSubStr.toString().length)
+  )
+}
 
-export default replaceAt;
+export default replaceAt

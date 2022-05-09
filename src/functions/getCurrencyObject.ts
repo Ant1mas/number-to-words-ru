@@ -1,8 +1,8 @@
-import stringCurrencies from 'src/units/stringCurrencies';
-import defaultOptions from 'src/defaultOptions';
-import getCustomCurrency from 'src/functions/getCustomCurrency';
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
-import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency';
+import stringCurrencies from 'src/units/stringCurrencies'
+import defaultOptions from 'src/defaultOptions'
+import getCustomCurrency from 'src/functions/getCustomCurrency'
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
+import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
 
 /**
  * Получить объект с данными валюты.
@@ -10,18 +10,17 @@ import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency';
  * @return {CustomCurrency} Данные валюты.
  */
 const getCurrencyObject = (convertOptions?: ConvertOptions): CustomCurrency => {
-  let currencyObject: CustomCurrency;
-  const currency = convertOptions?.currency || defaultOptions.currency;
+  let currencyObject: CustomCurrency
+  const currency = convertOptions?.currency || defaultOptions.currency
   // Если валюта указана словами
   if (typeof currency === 'string') {
-    currencyObject = stringCurrencies[currency];
-  
+    currencyObject = stringCurrencies[currency]
   }
   // Если валюта описана объектом
   if (typeof currency === 'object') {
-    currencyObject = getCustomCurrency(convertOptions);
+    currencyObject = getCustomCurrency(convertOptions)
   }
-  return currencyObject;
-};
+  return currencyObject
+}
 
-export default getCurrencyObject;
+export default getCurrencyObject

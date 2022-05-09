@@ -1,7 +1,7 @@
-import cloneDeep from 'lodash/cloneDeep';
-import forOwn from 'lodash/forOwn';
-import isPlainObject from 'lodash/isPlainObject';
-import set from 'lodash/set';
+import cloneDeep from 'lodash/cloneDeep'
+import forOwn from 'lodash/forOwn'
+import isPlainObject from 'lodash/isPlainObject'
+import set from 'lodash/set'
 
 /**
  * Рекурсивная версия lodash.mapValues() [https://lodash.com/docs/#mapValues].
@@ -11,7 +11,7 @@ import set from 'lodash/set';
  * @return {object} Новый объект.
  */
 const _deepMapValues = (object: object, iteratee: Function): object => {
-  let result = cloneDeep(object);
+  let result = cloneDeep(object)
   /**
    * Пройти по значениям объекта.
    * Если значение не является вложенным объектом, то применить к нему итератор.
@@ -21,21 +21,21 @@ const _deepMapValues = (object: object, iteratee: Function): object => {
    * @return {undefined}
    */
   const iterateObject = (object: object, path: any[] = []) => {
-    forOwn(object, (value: any, key: string)=> {
+    forOwn(object, (value: any, key: string) => {
       // Если текущее значение является объектом.
       if (isPlainObject(value)) {
         // Рекурсивно применить к нему функцию с дополнением пути.
-        value = iterateObject(value, [...path, key]);
+        value = iterateObject(value, [...path, key])
       } else {
         // Применить к значению итератор.
-        set(result, [...path, key], iteratee(path, key, value));
+        set(result, [...path, key], iteratee(path, key, value))
       }
-    });
-  };
+    })
+  }
   // Запустить итератор
-  iterateObject(object);
+  iterateObject(object)
   // Вернуть новый объект с учетом изменений
-  return result;
-};
+  return result
+}
 
-export default _deepMapValues;
+export default _deepMapValues

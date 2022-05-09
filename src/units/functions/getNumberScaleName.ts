@@ -1,5 +1,5 @@
-import {Declension, declensions} from "src/units/declensions";
-import unitNames from 'src/units/unitNames';
+import { Declension, declensions } from 'src/units/declensions'
+import unitNames from 'src/units/unitNames'
 
 const integerWordEndings = {
   [declensions.NOMINATIVE]: ['', 'ы'],
@@ -8,11 +8,11 @@ const integerWordEndings = {
   [declensions.ACCUSATIVE]: ['', 'а'],
   [declensions.INSTRUMENTAL]: ['ом', 'ами'],
   [declensions.PREPOSITIONAL]: ['е', 'ах'],
-};
+}
 
 type UnitName = {
-  [key in Declension]?: [string, string];
-};
+  [key in Declension]?: [string, string]
+}
 
 let thousandNames: UnitName = {
   [declensions.NOMINATIVE]: ['тысяча', 'тысячи'],
@@ -21,7 +21,7 @@ let thousandNames: UnitName = {
   [declensions.ACCUSATIVE]: ['тысячу', 'тысячи'],
   [declensions.INSTRUMENTAL]: ['тысячей', 'тысячами'],
   [declensions.PREPOSITIONAL]: ['тысяче', 'тысячах'],
-};
+}
 
 /**
  * Получить название класса числа в правильном падеже.
@@ -30,18 +30,22 @@ let thousandNames: UnitName = {
  * @param {Declension} declension - Падеж для класса числа.
  * @return {string} Название класса числа (напр. "миллиард", "миллиона", "тысячи" и др.).
  */
-const getNumberScaleName = (scale: number, scaleNameForm: number, declension: Declension): string => {
-  let scaleDeclension = declension;
-  let scalePlural = (scaleNameForm === 0) ? 0 : 1;
+const getNumberScaleName = (
+  scale: number,
+  scaleNameForm: number,
+  declension: Declension
+): string => {
+  let scaleDeclension = declension
+  let scalePlural = scaleNameForm === 0 ? 0 : 1
   // Если падеж "именительный" или "винительный" и множественное число
   if (
-    (declension === declensions.NOMINATIVE
-    || declension === declensions.ACCUSATIVE)
-    && scaleNameForm >= 1
+    (declension === declensions.NOMINATIVE ||
+      declension === declensions.ACCUSATIVE) &&
+    scaleNameForm >= 1
   ) {
     // Для множественного числа именительного падежа используется родительный падеж.
-    scaleDeclension = declensions.GENITIVE;
-    scalePlural = (scaleNameForm === 1) ? 0 : 1;
+    scaleDeclension = declensions.GENITIVE
+    scalePlural = scaleNameForm === 1 ? 0 : 1
   }
   if (scale === 0) {
     // Класс единиц
@@ -49,12 +53,12 @@ const getNumberScaleName = (scale: number, scaleNameForm: number, declension: De
     return ''
   } else if (scale === 1) {
     // Класс тысяч
-    return thousandNames[scaleDeclension][scalePlural];
+    return thousandNames[scaleDeclension][scalePlural]
   }
   // Класс миллионов и так далее
-  const ending = integerWordEndings[scaleDeclension][scalePlural];
-  const base = unitNames[scale - 2];
-  return base + ending;
-};
+  const ending = integerWordEndings[scaleDeclension][scalePlural]
+  const base = unitNames[scale - 2]
+  return base + ending
+}
 
-export default getNumberScaleName;
+export default getNumberScaleName

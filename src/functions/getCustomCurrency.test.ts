@@ -1,23 +1,25 @@
-import getCustomCurrency from './getCustomCurrency';
+import getCustomCurrency from './getCustomCurrency'
 
 test('test', () => {
-  expect(getCustomCurrency({
-    declension: 'nominative',
-    currency: {
-      currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
-      fractionalPartNameCases: ['копейка1', 'копейки1', 'копеек1'],
-      currencyNameDeclensions: {
-        prepositional: ['рубле2', 'рублях2'],
+  expect(
+    getCustomCurrency({
+      declension: 'nominative',
+      currency: {
+        currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
+        fractionalPartNameCases: ['копейка1', 'копейки1', 'копеек1'],
+        currencyNameDeclensions: {
+          prepositional: ['рубле2', 'рублях2'],
+        },
+        fractionalPartNameDeclensions: {
+          prepositional: ['копейке2', 'копейках2'],
+        },
+        currencyNounGender: {
+          integer: 1,
+        },
+        fractionalPartMinLength: 5,
       },
-      fractionalPartNameDeclensions: {
-        prepositional: ['копейке2', 'копейках2'],
-      },
-      currencyNounGender: {
-        integer: 1,
-      },
-      fractionalPartMinLength: 5,
-    },
-  })).toEqual({
+    })
+  ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', 'рубли'],
       genitive: ['рубля1', 'рублей1'],
@@ -39,24 +41,26 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 5,
-  });
-  expect(getCustomCurrency({
-    declension: 'dative',
-    currency: {
-      currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
-      fractionalPartNameCases: ['копейка1', 'копейки1', 'копеек1'],
-      currencyNameDeclensions: {
-        prepositional: ['рубле2', 'рублях2'],
+  })
+  expect(
+    getCustomCurrency({
+      declension: 'dative',
+      currency: {
+        currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
+        fractionalPartNameCases: ['копейка1', 'копейки1', 'копеек1'],
+        currencyNameDeclensions: {
+          prepositional: ['рубле2', 'рублях2'],
+        },
+        fractionalPartNameDeclensions: {
+          prepositional: ['копейке2', 'копейках2'],
+        },
+        currencyNounGender: {
+          integer: 1,
+        },
+        fractionalPartMinLength: 5,
       },
-      fractionalPartNameDeclensions: {
-        prepositional: ['копейке2', 'копейках2'],
-      },
-      currencyNounGender: {
-        integer: 1,
-      },
-      fractionalPartMinLength: 5,
-    },
-  })).toEqual({
+    })
+  ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', 'рубли'],
       genitive: ['рубля1', 'рублей1'],
@@ -78,5 +82,5 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 5,
-  });
-});
+  })
+})

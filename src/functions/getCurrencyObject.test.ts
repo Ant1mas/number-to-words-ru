@@ -1,4 +1,4 @@
-import getCurrencyObject from './getCurrencyObject';
+import getCurrencyObject from './getCurrencyObject'
 
 test('test', () => {
   expect(getCurrencyObject()).toEqual({
@@ -25,11 +25,15 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-  expect(getCurrencyObject({currency: {
-    currencyNameCases: ['рубль1', 'рубля2', 'рублей3'],
-    fractionalPartNameCases: ['копейка1', 'копейки2', 'копеек3'],
-  }})).toEqual({
+  })
+  expect(
+    getCurrencyObject({
+      currency: {
+        currencyNameCases: ['рубль1', 'рубля2', 'рублей3'],
+        fractionalPartNameCases: ['копейка1', 'копейки2', 'копеек3'],
+      },
+    })
+  ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', 'рубли'],
       genitive: ['рубля2', 'рублей3'],
@@ -51,10 +55,8 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-  expect(getCurrencyObject({currency: {
-    
-  }})).toEqual({
+  })
+  expect(getCurrencyObject({ currency: {} })).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль', 'рубли'],
       genitive: ['рубля', 'рублей'],
@@ -76,5 +78,5 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-});
+  })
+})
