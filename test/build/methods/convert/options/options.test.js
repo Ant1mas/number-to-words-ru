@@ -6,7 +6,7 @@ test('combined options', () => {
     showNumberParts: {
       integer: false,
     },
-    convertNumbertToWords: {
+    convertNumberToWords: {
       fractional: true,
     },
     showCurrency: {
@@ -18,7 +18,7 @@ test('combined options', () => {
     showNumberParts: {
       fractional: false,
     },
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
     },
     showCurrency: {

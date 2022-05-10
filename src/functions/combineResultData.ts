@@ -67,7 +67,7 @@ const combineResultData = (
       appliedOptions.declension
     )
     // Если нужно конвертировать число в слова
-    if (appliedOptions.convertNumbertToWords.integer === true) {
+    if (appliedOptions.convertNumberToWords.integer === true) {
       // Если разделитель - не дробная черта
       if (delimiter !== '/') {
         // Применить конвертированное число
@@ -110,7 +110,7 @@ const combineResultData = (
       appliedOptions.declension
     )
     // Если нужно конвертировать число в слова
-    if (appliedOptions.convertNumbertToWords.fractional === true) {
+    if (appliedOptions.convertNumberToWords.fractional === true) {
       // Если разделитель - дробная черта
       if (delimiter === '/') {
         const convertedIntegerObject = convertEachScaleToWords(
@@ -130,7 +130,7 @@ const combineResultData = (
       }
     }
     // Если не нужно конвертировать число в слова
-    if (appliedOptions.convertNumbertToWords.fractional === false) {
+    if (appliedOptions.convertNumberToWords.fractional === false) {
       // Если валюта "number"
       if (appliedOptions.currency === 'number') {
         // Если в дробной части есть цифры

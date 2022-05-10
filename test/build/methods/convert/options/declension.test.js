@@ -83,18 +83,18 @@ describe('Проверка падежей', () => {
         .toBe('Одного миллиона рублей 00 копеек');
       expect(numberToWordsRu.convert('987654321', options))
         .toBe('Девятисот восьмидесяти семи миллионов шестисот пятидесяти четырёх тысяч трёхсот двадцати одного рубля 00 копеек');
-      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Одного миллиона одной тысячи ста двадцати одного рубля одной копейки');
-      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Двух миллионов двух тысяч ста двадцати двух рублей двух копеек');
-      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Пяти миллионов пяти тысяч ста двадцати пяти рублей пяти копеек');
     });
     test('С валютой "number"', () => {
       const options = {
         currency: 'number',
         declension: 'genitive',
-        convertNumbertToWords: { fractional: true },
+        convertNumberToWords: { fractional: true },
       };
       expect(numberToWordsRu.convert('1.0', options))
         .toBe('Одной целой ноля десятых');
@@ -132,7 +132,7 @@ describe('Проверка падежей', () => {
     test('С разделителем "/"', () => {
       const options = {
         declension: 'genitive',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -282,18 +282,18 @@ describe('Проверка падежей', () => {
         .toBe('Одному миллиону рублей 00 копеек');
       expect(numberToWordsRu.convert('987654321', options))
         .toBe('Девятистам восьмидесяти семи миллионам шестистам пятидесяти четырём тысячам трёмстам двадцати одному рублю 00 копеек');
-      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Одному миллиону одной тысяче ста двадцати одному рублю одной копейке');
-      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Двум миллионам двум тысячам ста двадцати двум рублям двум копейкам');
-      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Пяти миллионам пяти тысячам ста двадцати пяти рублям пяти копейкам');
     });
     test('С валютой "number"', () => {
       const options = {
         currency: 'number',
         declension: 'dative',
-        convertNumbertToWords: { fractional: true },
+        convertNumberToWords: { fractional: true },
       };
       expect(numberToWordsRu.convert('1.0', options))
         .toBe('Одной целой нолю десятых');
@@ -331,7 +331,7 @@ describe('Проверка падежей', () => {
     test('С разделителем "/"', () => {
       const options = {
         declension: 'dative',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -481,18 +481,18 @@ describe('Проверка падежей', () => {
         .toBe('Один миллион рублей 00 копеек');
       expect(numberToWordsRu.convert('987654321', options))
         .toBe('Девятьсот восемьдесят семь миллионов шестьсот пятьдесят четыре тысячи триста двадцать один рубль 00 копеек');
-      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Один миллион одну тысячу сто двадцать один рубль одну копейку');
-      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Два миллиона две тысячи сто двадцать два рубля две копейки');
-      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Пять миллионов пять тысяч сто двадцать пять рублей пять копеек');
     });
     test('С валютой "number"', () => {
       const options = {
         currency: 'number',
         declension: 'accusative',
-        convertNumbertToWords: { fractional: true },
+        convertNumberToWords: { fractional: true },
       };
       expect(numberToWordsRu.convert('1.0', options))
         .toBe('Одну целую ноль десятых');
@@ -530,7 +530,7 @@ describe('Проверка падежей', () => {
     test('С разделителем "/"', () => {
       const options = {
         declension: 'accusative',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -680,18 +680,18 @@ describe('Проверка падежей', () => {
         .toBe('Одним миллионом рублей 00 копеек');
       expect(numberToWordsRu.convert('987654321', options))
         .toBe('Девятьюстами восемьюдесятью семью миллионами шестьюстами пятьюдесятью четырьмя тысячами тремястами двадцатью одним рублём 00 копеек');
-      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Одним миллионом одной тысячей ста двадцатью одним рублём одной копейкой');
-      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Двумя миллионами двумя тысячами ста двадцатью двумя рублями двумя копейками');
-      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Пятью миллионами пятью тысячами ста двадцатью пятью рублями пятью копейками');
     });
     test('С валютой "number"', () => {
       const options = {
         currency: 'number',
         declension: 'instrumental',
-        convertNumbertToWords: { fractional: true },
+        convertNumberToWords: { fractional: true },
       };
       expect(numberToWordsRu.convert('1.0', options))
         .toBe('Одной целой нолём десятых');
@@ -729,7 +729,7 @@ describe('Проверка падежей', () => {
     test('С разделителем "/"', () => {
       const options = {
         declension: 'instrumental',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -879,18 +879,18 @@ describe('Проверка падежей', () => {
         .toBe('Одном миллионе рублей 00 копеек');
       expect(numberToWordsRu.convert('987654321', options))
         .toBe('Девятистах восьмидесяти семи миллионах шестистах пятидесяти четырёх тысячах трёхстах двадцати одном рубле 00 копеек');
-      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('1001121.01', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Одном миллионе одной тысяче ста двадцати одном рубле одной копейке');
-      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('2002122.02', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Двух миллионах двух тысячах ста двадцати двух рублях двух копейках');
-      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumbertToWords: { fractional: true } }))
+      expect(numberToWordsRu.convert('5005125.05', { ...options, convertNumberToWords: { fractional: true } }))
         .toBe('Пяти миллионах пяти тысячах ста двадцати пяти рублях пяти копейках');
     });
     test('С валютой "number"', () => {
       const options = {
         currency: 'number',
         declension: 'prepositional',
-        convertNumbertToWords: { fractional: true },
+        convertNumberToWords: { fractional: true },
       };
       expect(numberToWordsRu.convert('1.0', options))
         .toBe('Одной целой ноле десятых');
@@ -928,7 +928,7 @@ describe('Проверка падежей', () => {
     test('С разделителем "/"', () => {
       const options = {
         declension: 'prepositional',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -1000,7 +1000,7 @@ describe('Проверка падежей', () => {
   describe('Падежи с настроенной валютой', () => {
     test('Объект падежей не указан', () => {
       const options = {
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },
@@ -1096,7 +1096,7 @@ describe('Проверка падежей', () => {
             fractionalPart: 0,
           },
         },
-        convertNumbertToWords: {
+        convertNumberToWords: {
           integer: true,
           fractional: true,
         },

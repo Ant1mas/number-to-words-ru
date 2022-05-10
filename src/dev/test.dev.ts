@@ -4,7 +4,7 @@ console.log(
   'numberToWordsRu :>> ',
   numberToWordsRu.convert('-2564.6565', {
     currency: 'number',
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: true,
     },

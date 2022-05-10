@@ -32,21 +32,21 @@ describe('currency', () => {
         .toBe('Одна целая 8 десятых');
       expect(numberToWordsRu.convert('1234567.12345', {
         currency: 'number',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           fractional: true,
         },
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь целых двенадцать тысяч триста сорок пять стотысячных');
       expect(numberToWordsRu.convert('1.8000', {
         currency: 'number',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           fractional: true,
         },
       }))
         .toBe('Одна целая восемь десятых');
       expect(numberToWordsRu.convert('1.00000', {
         currency: 'number',
-        convertNumbertToWords: {
+        convertNumberToWords: {
           fractional: true,
         },
       }))

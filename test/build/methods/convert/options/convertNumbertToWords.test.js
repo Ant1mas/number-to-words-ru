@@ -1,30 +1,30 @@
 const root = '../../../../../';
 const numberToWordsRu = require(`${root}dist/bundle`);
 
-test('convertNumbertToWords', () => {
+test('convertNumberToWords', () => {
   expect(numberToWordsRu.convert('1234567.12345', {
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: true,
     },
   }))
     .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей двенадцать копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: false,
     },
   }))
     .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: false,
       fractional: true,
     },
   }))
     .toBe('1234567 рублей двенадцать копеек');
   expect(numberToWordsRu.convert('1234567.12345', {
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: false,
       fractional: false,
     },

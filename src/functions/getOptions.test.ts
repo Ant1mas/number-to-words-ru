@@ -11,7 +11,7 @@ test('test', () => {
       integer: true,
       fractional: true,
     },
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: false,
     },
@@ -24,7 +24,7 @@ test('test', () => {
     getOptions({
       currency: 'number',
       showNumberParts: {},
-      convertNumbertToWords: {
+      convertNumberToWords: {
         integer: true,
         fractional: false,
       },
@@ -41,7 +41,7 @@ test('test', () => {
       integer: true,
       fractional: true,
     },
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: false,
     },
@@ -69,7 +69,7 @@ test('test', () => {
       integer: true,
       fractional: true,
     },
-    convertNumbertToWords: {
+    convertNumberToWords: {
       integer: true,
       fractional: false,
     },

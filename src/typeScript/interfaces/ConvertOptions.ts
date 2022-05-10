@@ -61,6 +61,27 @@ interface ConvertOptions {
    * Convert number parts to words\
    * `Object`
    */
+  convertNumberToWords?: {
+    /**
+     * Convert integer part to words\
+     * `true` **Два** рубля пять копеек\
+     * `false` **2** рубля пять копеек\
+     * Default: `true`
+     */
+    integer?: boolean
+    /**
+     * Convert fractional part to words\
+     * `true` Два рубля **пять** копеек\
+     * `false` Два рубля **5** копеек\
+     * Default: `false`
+     */
+    fractional?: boolean
+  }
+  /**
+   * Convert number parts to words\
+   * `Object`\
+   * @deprecated Use `convertNumberToWords`
+   */
   convertNumbertToWords?: {
     /**
      * Convert integer part to words\

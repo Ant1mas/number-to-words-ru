@@ -10,7 +10,7 @@ const defaultOptions: ConvertOptions = {
     integer: true,
     fractional: true,
   },
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: true,
     fractional: false,
   },

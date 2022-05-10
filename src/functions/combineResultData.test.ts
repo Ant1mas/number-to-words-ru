@@ -176,10 +176,10 @@ test('Опция showNumberParts', () => {
     })
   ).toBe('')
 })
-test('Опция convertNumbertToWords', () => {
+test('Опция convertNumberToWords', () => {
   expect(
     combineResultData(['+', '1501', '.', '22'], {
-      convertNumbertToWords: {
+      convertNumberToWords: {
         integer: true,
         fractional: true,
       },
@@ -187,7 +187,7 @@ test('Опция convertNumbertToWords', () => {
   ).toBe('Одна тысяча пятьсот один рубль двадцать две копейки')
   expect(
     combineResultData(['+', '1501', '.', '22'], {
-      convertNumbertToWords: {
+      convertNumberToWords: {
         integer: false,
         fractional: true,
       },
@@ -195,7 +195,7 @@ test('Опция convertNumbertToWords', () => {
   ).toBe('1501 рубль двадцать две копейки')
   expect(
     combineResultData(['+', '1501', '.', '22'], {
-      convertNumbertToWords: {
+      convertNumberToWords: {
         integer: true,
         fractional: false,
       },
@@ -203,7 +203,7 @@ test('Опция convertNumbertToWords', () => {
   ).toBe('Одна тысяча пятьсот один рубль 22 копейки')
   expect(
     combineResultData(['+', '1501', '.', '22'], {
-      convertNumbertToWords: {
+      convertNumberToWords: {
         integer: false,
         fractional: false,
       },
@@ -250,7 +250,7 @@ test('Разделитель - дробная черта', () => {
   )
   expect(
     combineResultData(['+', '1501', '/', '122'], {
-      convertNumbertToWords: {
+      convertNumberToWords: {
         fractional: true,
       },
     })

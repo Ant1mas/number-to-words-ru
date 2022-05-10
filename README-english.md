@@ -75,7 +75,7 @@ numberToWordsRu.convert('-4201512.21', {
     integer: true,
     fractional: true,
   },
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: true,
     fractional: false,
   },
@@ -132,7 +132,7 @@ Convert number to words.
     integer: true,
     fractional: true,
   },
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: true,
     fractional: false,
   },
@@ -306,7 +306,7 @@ numberToWordsRu.convert('41521000', {
 numberToWordsRu.convert('2711.00052', {
   declension: 'instrumental',
   currency: 'number',
-  convertNumbertToWords: {
+  convertNumberToWords: {
     fractional: true,
   },
 });
@@ -421,10 +421,10 @@ numberToWordsRu.convert('123.45', {
 
 <br/><br/>
 
-#### **`options.convertNumbertToWords`**
+#### **`options.convertNumberToWords`**
 
 ```
-convertNumbertToWords: (Object)
+convertNumberToWords: (Object)
 ```
 
 Convert to words parts of number.
@@ -442,7 +442,7 @@ Convert to words parts of number.
 
 ```js
 numberToWordsRu.convert('123.45', {
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: true,
     fractional: false
   }
@@ -450,7 +450,7 @@ numberToWordsRu.convert('123.45', {
 // Сто двадцать три рубля 45 копеек
 
 numberToWordsRu.convert('123.45', {
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: false,
     fractional: true
   }
@@ -503,7 +503,7 @@ numberToWordsRu.convert('123.45', {
 ```js
 const converted = numberToWordsRu.convert('-905.645', {
   currency: 'usd',
-  convertNumbertToWords : {
+  convertNumberToWords: {
     integer: true,
     fractional: true,
   },
@@ -573,7 +573,7 @@ const converted = numberToWordsRu.convert('9516351', {
 
 ```js
 const converted = numberToWordsRu.convert('452/971', {
-  convertNumbertToWords : {
+  convertNumberToWords: {
     fractional: true,
   },
   showCurrency: {
@@ -586,7 +586,7 @@ const converted = numberToWordsRu.convert('452/971', {
 ```js
 const converted = numberToWordsRu.convert('235.00000706', {
   currency: 'number',
-  convertNumbertToWords : {
+  convertNumberToWords: {
     fractional: true,
   },
 });
@@ -596,7 +596,7 @@ const converted = numberToWordsRu.convert('235.00000706', {
 ```js
 let converted = numberToWordsRu.convert('0.5', {
   currency: 'number',
-  convertNumbertToWords : {
+  convertNumberToWords: {
     fractional: true,
   },
 });
