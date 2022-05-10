@@ -1,8 +1,8 @@
 const root = '../../../../../';
-const numberToWordsRu = require(`${root}dist/bundle`);
+const convertNumberToWords = require(`${root}dist/bundle`).convert;
 
 test('combined options', () => {
-  expect(numberToWordsRu.convert('1234567.12345', {
+  expect(convertNumberToWords('1234567.12345', {
     showNumberParts: {
       integer: false,
     },
@@ -13,7 +13,7 @@ test('combined options', () => {
       fractional: false,
     },
   })).toBe('Двенадцать');
-  expect(numberToWordsRu.convert('1234567.12345', {
+  expect(convertNumberToWords('1234567.12345', {
     currency: 'number',
     showNumberParts: {
       fractional: false,

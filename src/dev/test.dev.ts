@@ -1,8 +1,8 @@
-import numberToWordsRu from 'src/index'
+import { convert as convertNumberToWords } from 'src/index'
 
 console.log(
   'numberToWordsRu :>> ',
-  numberToWordsRu.convert('-2564.6565', {
+  convertNumberToWords('-2564.6565', {
     currency: 'number',
     convertNumberToWords: {
       integer: true,

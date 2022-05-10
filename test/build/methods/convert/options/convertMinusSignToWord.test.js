@@ -1,11 +1,11 @@
 const root = '../../../../../';
-const numberToWordsRu = require(`${root}dist/bundle`);
+const convertNumberToWords = require(`${root}dist/bundle`).convert;
 
 test('convertMinusSignToWord', () => {
-  expect(numberToWordsRu.convert('-15.45', {
+  expect(convertNumberToWords('-15.45', {
     convertMinusSignToWord: true,
   })).toBe('Минус пятнадцать рублей 45 копеек');
-  expect(numberToWordsRu.convert('-15.45', {
+  expect(convertNumberToWords('-15.45', {
     convertMinusSignToWord: false,
   })).toBe('- пятнадцать рублей 45 копеек');
 });

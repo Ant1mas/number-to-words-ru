@@ -64,16 +64,16 @@ yarn add number-to-words-ru
 # Usage
 
 ```js
-const numberToWordsRu = require('number-to-words-ru')
+const convertNumberToWordsRu = require('number-to-words-ru').convert
 // or
-import numberToWordsRu from 'number-to-words-ru' // ES6
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru' // ES6
 
 // Use without options
-numberToWordsRu.convert('104')
+convertNumberToWordsRu('104')
 // Сто четыре рубля 00 копеек
 
 // or with options
-numberToWordsRu.convert('-4201512.21', {
+convertNumberToWordsRu('-4201512.21', {
   currency: 'rub',
   declension: 'nominative',
   roundNumber: -1,
@@ -305,12 +305,14 @@ Select declension.
 #### Example
 
 ```js
-numberToWordsRu.convert('41521000', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+convertNumberToWordsRu('41521000', {
   declension: 'instrumental',
 })
 // Сорока одним миллионом пятьюстами двадцатью одной тысячей рублей 00 копеек
 
-numberToWordsRu.convert('2711.00052', {
+convertNumberToWordsRu('2711.00052', {
   declension: 'instrumental',
   currency: 'number',
   convertNumberToWords: {
@@ -319,7 +321,7 @@ numberToWordsRu.convert('2711.00052', {
 })
 // Двумя тысячами семьюстами одиннадцатью целыми пятьюдесятью двумя стотысячными
 
-numberToWordsRu.convert('672/15', {
+convertNumberToWordsRu('672/15', {
   declension: 'instrumental',
   convertNumberToWords: {
     fractional: true,
@@ -352,19 +354,21 @@ Round number to specified precision.
 #### Example
 
 ```js
-numberToWordsRu.convert('129.6789', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+convertNumberToWordsRu('129.6789', {
   currency: 'rub',
   roundNumber: 5,
 })
 // Сто двадцать девять рублей 68 копеек
 
-numberToWordsRu.convert('129.6789', {
+convertNumberToWordsRu('129.6789', {
   currency: 'rub',
   roundNumber: 1,
 })
 // Сто двадцать девять рублей 70 копеек
 
-numberToWordsRu.convert('129.6789', {
+convertNumberToWordsRu('129.6789', {
   currency: 'rub',
   roundNumber: 0,
 })
@@ -409,7 +413,9 @@ Show parts of number.
 #### Example
 
 ```js
-numberToWordsRu.convert('123.45', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+convertNumberToWordsRu('123.45', {
   showNumberParts: {
     integer: true,
     fractional: false,
@@ -417,7 +423,7 @@ numberToWordsRu.convert('123.45', {
 })
 // Сто двадцать три рубля
 
-numberToWordsRu.convert('123.45', {
+convertNumberToWordsRu('123.45', {
   showNumberParts: {
     integer: false,
     fractional: true,
@@ -448,7 +454,9 @@ Convert to words parts of number.
 #### Example
 
 ```js
-numberToWordsRu.convert('123.45', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+convertNumberToWordsRu('123.45', {
   convertNumberToWords: {
     integer: true,
     fractional: false,
@@ -456,7 +464,7 @@ numberToWordsRu.convert('123.45', {
 })
 // Сто двадцать три рубля 45 копеек
 
-numberToWordsRu.convert('123.45', {
+convertNumberToWordsRu('123.45', {
   convertNumberToWords: {
     integer: false,
     fractional: true,
@@ -487,7 +495,9 @@ Show currency in parts of number.
 #### Example
 
 ```js
-numberToWordsRu.convert('123.45', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+convertNumberToWordsRu('123.45', {
   showCurrency: {
     integer: true,
     fractional: false,
@@ -495,7 +505,7 @@ numberToWordsRu.convert('123.45', {
 })
 // Сто двадцать три рубля 45
 
-numberToWordsRu.convert('123.45', {
+convertNumberToWordsRu('123.45', {
   showCurrency: {
     integer: false,
     fractional: true,
@@ -507,7 +517,9 @@ numberToWordsRu.convert('123.45', {
 # Examples
 
 ```js
-const converted = numberToWordsRu.convert('-905.645', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('-905.645', {
   currency: 'usd',
   convertNumberToWords: {
     integer: true,
@@ -518,7 +530,9 @@ const converted = numberToWordsRu.convert('-905.645', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('8952.41', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('8952.41', {
   currency: {
     currencyNameCases: ['юань', 'юаня', 'юаней'],
     fractionalPartNameCases: ['фынь', 'фыня', 'фыней'],
@@ -532,7 +546,9 @@ const converted = numberToWordsRu.convert('8952.41', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('6712', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('6712', {
   currency: {
     currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
     fractionalPartNameCases: ['', '', ''],
@@ -549,7 +565,9 @@ const converted = numberToWordsRu.convert('6712', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('6712', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('6712', {
   currency: {
     currencyNameCases: ['комментарий', 'комментария', 'комментариев'],
     fractionalPartNameCases: ['', '', ''],
@@ -566,7 +584,9 @@ const converted = numberToWordsRu.convert('6712', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('9516351', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('9516351', {
   showNumberParts: {
     fractional: false,
   },
@@ -578,7 +598,9 @@ const converted = numberToWordsRu.convert('9516351', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('452/971', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('452/971', {
   convertNumberToWords: {
     fractional: true,
   },
@@ -590,7 +612,9 @@ const converted = numberToWordsRu.convert('452/971', {
 ```
 
 ```js
-const converted = numberToWordsRu.convert('235.00000706', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+const converted = convertNumberToWordsRu('235.00000706', {
   currency: 'number',
   convertNumberToWords: {
     fractional: true,
@@ -600,7 +624,9 @@ const converted = numberToWordsRu.convert('235.00000706', {
 ```
 
 ```js
-let converted = numberToWordsRu.convert('0.5', {
+import { convert as convertNumberToWordsRu } from 'number-to-words-ru'
+
+let converted = convertNumberToWordsRu('0.5', {
   currency: 'number',
   convertNumberToWords: {
     fractional: true,
