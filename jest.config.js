@@ -11,17 +11,17 @@ module.exports = {
   collectCoverage: true,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "babel",
+  coverageProvider: 'babel',
 
   // An array of directory names to be searched recursively up from the requiring module's location
   moduleDirectories: [
-    ".",
-    "node_modules"
+    '.',
+    'node_modules',
   ],
 
   // A preset that is used as a base for Jest's configuration
-  preset: "ts-jest",
+  preset: 'ts-jest',
 };
