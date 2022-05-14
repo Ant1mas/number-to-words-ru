@@ -10,7 +10,7 @@ export const stringCurrencies: CurrencyStringValues = {
     fractionalPartMinLength: 0,
     currencyNameCases: ['целая', 'целых', 'целых'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['целая', 'целые'],
+      [declensions.NOMINATIVE]: ['целая', ''],
       [declensions.GENITIVE]: ['целой', 'целых'],
       [declensions.DATIVE]: ['целой', 'целым'],
       [declensions.ACCUSATIVE]: ['целую', 'целые'],
@@ -35,7 +35,7 @@ export const stringCurrencies: CurrencyStringValues = {
     ...defaultParams,
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['рубль', 'рубли'],
+      [declensions.NOMINATIVE]: ['рубль', ''],
       [declensions.GENITIVE]: ['рубля', 'рублей'],
       [declensions.DATIVE]: ['рублю', 'рублям'],
       [declensions.ACCUSATIVE]: ['рубль', 'рубли'],
@@ -44,7 +44,7 @@ export const stringCurrencies: CurrencyStringValues = {
     },
     fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['копейка', 'копейки'],
+      [declensions.NOMINATIVE]: ['копейка', ''],
       [declensions.GENITIVE]: ['копейки', 'копеек'],
       [declensions.DATIVE]: ['копейке', 'копейкам'],
       [declensions.ACCUSATIVE]: ['копейку', 'копейки'],
@@ -60,7 +60,7 @@ export const stringCurrencies: CurrencyStringValues = {
     ...defaultParams,
     currencyNameCases: ['доллар', 'доллара', 'долларов'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['доллар', 'доллары'],
+      [declensions.NOMINATIVE]: ['доллар', ''],
       [declensions.GENITIVE]: ['доллара', 'долларов'],
       [declensions.DATIVE]: ['доллару', 'долларам'],
       [declensions.ACCUSATIVE]: ['доллар', 'доллары'],
@@ -69,7 +69,7 @@ export const stringCurrencies: CurrencyStringValues = {
     },
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['цент', 'центы'],
+      [declensions.NOMINATIVE]: ['цент', ''],
       [declensions.GENITIVE]: ['цента', 'центов'],
       [declensions.DATIVE]: ['центу', 'центам'],
       [declensions.ACCUSATIVE]: ['цент', 'центы'],
@@ -85,7 +85,7 @@ export const stringCurrencies: CurrencyStringValues = {
     ...defaultParams,
     currencyNameCases: ['евро', 'евро', 'евро'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['евро', 'евро'],
+      [declensions.NOMINATIVE]: ['евро', ''],
       [declensions.GENITIVE]: ['евро', 'евро'],
       [declensions.DATIVE]: ['евро', 'евро'],
       [declensions.ACCUSATIVE]: ['евро', 'евро'],
@@ -94,7 +94,7 @@ export const stringCurrencies: CurrencyStringValues = {
     },
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['цент', 'центы'],
+      [declensions.NOMINATIVE]: ['цент', ''],
       [declensions.GENITIVE]: ['цента', 'центов'],
       [declensions.DATIVE]: ['центу', 'центам'],
       [declensions.ACCUSATIVE]: ['цент', 'центы'],

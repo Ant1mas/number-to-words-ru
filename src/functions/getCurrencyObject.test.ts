@@ -4,7 +4,7 @@ test('test', () => {
   expect(getCurrencyObject()).toEqual({
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     currencyNameDeclensions: {
-      nominative: ['рубль', 'рубли'],
+      nominative: ['рубль', ''],
       genitive: ['рубля', 'рублей'],
       dative: ['рублю', 'рублям'],
       accusative: ['рубль', 'рубли'],
@@ -13,7 +13,7 @@ test('test', () => {
     },
     fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
     fractionalPartNameDeclensions: {
-      nominative: ['копейка', 'копейки'],
+      nominative: ['копейка', ''],
       genitive: ['копейки', 'копеек'],
       dative: ['копейке', 'копейкам'],
       accusative: ['копейку', 'копейки'],
@@ -35,7 +35,7 @@ test('test', () => {
     })
   ).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль1', 'рубли'],
+      nominative: ['рубль1', ''],
       genitive: ['рубля2', 'рублей3'],
       dative: ['рублю', 'рублям'],
       accusative: ['рубль', 'рубли'],
@@ -43,7 +43,7 @@ test('test', () => {
       prepositional: ['рубле', 'рублях'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка1', 'копейки'],
+      nominative: ['копейка1', ''],
       genitive: ['копейки2', 'копеек3'],
       dative: ['копейке', 'копейкам'],
       accusative: ['копейку', 'копейки'],
@@ -58,7 +58,7 @@ test('test', () => {
   })
   expect(getCurrencyObject({ currency: {} })).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль', 'рубли'],
+      nominative: ['рубль', ''],
       genitive: ['рубля', 'рублей'],
       dative: ['рублю', 'рублям'],
       accusative: ['рубль', 'рубли'],
@@ -66,7 +66,7 @@ test('test', () => {
       prepositional: ['рубле', 'рублях'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка', 'копейки'],
+      nominative: ['копейка', ''],
       genitive: ['копейки', 'копеек'],
       dative: ['копейке', 'копейкам'],
       accusative: ['копейку', 'копейки'],

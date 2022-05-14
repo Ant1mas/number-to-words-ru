@@ -195,7 +195,7 @@ currency: (string|Object)
 // или
 {
   currencyNameDeclensions: {
-    nominative: ['рубль', 'рубли'],
+    nominative: ['рубль', ''],
     genitive: ['рубля', 'рублей'],
     dative: ['рублю', 'рублям'],
     accusative: ['рубль', 'рубли'],
@@ -203,7 +203,7 @@ currency: (string|Object)
     prepositional: ['рубле', 'рублях'],
   },
   fractionalPartNameDeclensions: {
-    nominative: ['копейка', 'копейки'],
+    nominative: ['копейка', ''],
     genitive: ['копейки', 'копеек'],
     dative: ['копейке', 'копейкам'],
     accusative: ['копейку', 'копейки'],
@@ -235,7 +235,7 @@ currency: (string|Object)
 {
   currencyNameCases: ['рубль', 'рубля', 'рублей'], // [1 рубль, 2-4 рубля, 5-9 рублей]
   currencyNameDeclensions: {
-    nominative: ['рубль', 'рубли'], // [Единственное число, Множественное число]
+    nominative: ['рубль', ''], // [Единственное число, Множественное число]
     genitive: ['рубля', 'рублей'],
     dative: ['рублю', 'рублям'],
     accusative: ['рубль', 'рубли'],
@@ -244,7 +244,7 @@ currency: (string|Object)
   },
   fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
   fractionalPartNameDeclensions: {
-    nominative: ['копейка', 'копейки'],
+    nominative: ['копейка', ''],
     genitive: ['копейки', 'копеек'],
     dative: ['копейке', 'копейкам'],
     accusative: ['копейку', 'копейки'],

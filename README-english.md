@@ -195,7 +195,7 @@ Currency of number.
 // or
 {
   currencyNameDeclensions: {
-    nominative: ['рубль', 'рубли'],
+    nominative: ['рубль', ''],
     genitive: ['рубля', 'рублей'],
     dative: ['рублю', 'рублям'],
     accusative: ['рубль', 'рубли'],
@@ -203,7 +203,7 @@ Currency of number.
     prepositional: ['рубле', 'рублях'],
   },
   fractionalPartNameDeclensions: {
-    nominative: ['копейка', 'копейки'],
+    nominative: ['копейка', ''],
     genitive: ['копейки', 'копеек'],
     dative: ['копейке', 'копейкам'],
     accusative: ['копейку', 'копейки'],
@@ -235,7 +235,7 @@ Currency of number.
 {
   currencyNameCases: ['рубль', 'рубля', 'рублей'], // [1 рубль, 2-4 рубля, 5-9 рублей]
   currencyNameDeclensions: {
-    nominative: ['рубль', 'рубли'], // [singular, plural]
+    nominative: ['рубль', ''], // [singular, plural]
     genitive: ['рубля', 'рублей'],
     dative: ['рублю', 'рублям'],
     accusative: ['рубль', 'рубли'],
@@ -244,7 +244,7 @@ Currency of number.
   },
   fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
   fractionalPartNameDeclensions: {
-    nominative: ['копейка', 'копейки'],
+    nominative: ['копейка', ''],
     genitive: ['копейки', 'копеек'],
     dative: ['копейке', 'копейкам'],
     accusative: ['копейку', 'копейки'],

@@ -21,7 +21,7 @@ test('test', () => {
     })
   ).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль1', 'рубли'],
+      nominative: ['рубль1', ''],
       genitive: ['рубля1', 'рублей1'],
       dative: ['рублю', 'рублям'],
       accusative: ['рубль', 'рубли'],
@@ -29,7 +29,7 @@ test('test', () => {
       prepositional: ['рубле2', 'рублях2'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка1', 'копейки'],
+      nominative: ['копейка1', ''],
       genitive: ['копейки1', 'копеек1'],
       dative: ['копейке', 'копейкам'],
       accusative: ['копейку', 'копейки'],
@@ -62,7 +62,7 @@ test('test', () => {
     })
   ).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль1', 'рубли'],
+      nominative: ['рубль1', ''],
       genitive: ['рубля1', 'рублей1'],
       dative: ['рублю', 'рублям'],
       accusative: ['рубль', 'рубли'],
@@ -70,7 +70,7 @@ test('test', () => {
       prepositional: ['рубле2', 'рублях2'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка1', 'копейки'],
+      nominative: ['копейка1', ''],
       genitive: ['копейки1', 'копеек1'],
       dative: ['копейке', 'копейкам'],
       accusative: ['копейку', 'копейки'],
