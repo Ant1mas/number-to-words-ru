@@ -4,23 +4,23 @@ export type Declension =
   | 'dative'
   | 'accusative'
   | 'instrumental'
-  | 'prepositional';
+  | 'prepositional'
 
 export type DeclensionsData = {
-  [key in Declension]?: [string, string];
-};
+  [key in Declension]?: [string, string]
+}
 
 export interface Declensions {
-  [key: string]: Declension,
-};
+  [key: string]: Declension
+}
 
 export const declensions: Declensions = {
-  NOMINATIVE: 'nominative',       // именительный
-  GENITIVE: 'genitive',           // родительный
-  DATIVE: 'dative',               // дательный
-  ACCUSATIVE: 'accusative',       // винительный
-  INSTRUMENTAL: 'instrumental',   // творительный
-  PREPOSITIONAL: 'prepositional'  // предложный
-};
+  NOMINATIVE: 'nominative', // именительный
+  GENITIVE: 'genitive', // родительный
+  DATIVE: 'dative', // дательный
+  ACCUSATIVE: 'accusative', // винительный
+  INSTRUMENTAL: 'instrumental', // творительный
+  PREPOSITIONAL: 'prepositional', // предложный
+}
 
-export default declensions;
+export default declensions

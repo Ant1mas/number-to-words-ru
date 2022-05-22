@@ -1,6 +1,6 @@
-import getCurrencyWord from './getCurrencyWord';
+import getCurrencyWord from './getCurrencyWord'
 
-let currencyObject: any;
+let currencyObject: any
 
 beforeAll(() => {
   currencyObject = {
@@ -21,66 +21,31 @@ beforeAll(() => {
       prepositional: ['копейке', 'копейках'],
     },
   }
-});
+})
 
 test('test', () => {
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    0,
-    false,
-    'rub',
-    'nominative'
-  )).toBe('рубль');
-  expect(getCurrencyWord(
-    currencyObject,
-    'fractional',
-    0,
-    false,
-    'rub',
-    'nominative'
-  )).toBe('копейка');
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    1,
-    false,
-    'rub',
-    'prepositional'
-  )).toBe('рублях');
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    1,
-    false,
-    'rub',
-    'nominative'
-  )).toBe('рубля');
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    2,
-    false,
-    'rub',
-    'accusative'
-  )).toBe('рублей');
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    1,
-    false,
-    'number',
-    'nominative'
-  )).toBe('рублей');
-});
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 0, false, 'rub', 'nominative')
+  ).toBe('рубль')
+  expect(
+    getCurrencyWord(currencyObject, 'fractional', 0, false, 'rub', 'nominative')
+  ).toBe('копейка')
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 1, false, 'rub', 'prepositional')
+  ).toBe('рублях')
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 1, false, 'rub', 'nominative')
+  ).toBe('рубля')
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 2, false, 'rub', 'accusative')
+  ).toBe('рублей')
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 1, false, 'number', 'nominative')
+  ).toBe('рублей')
+})
 
 test('lastScaleIsZero === true', () => {
-  expect(getCurrencyWord(
-    currencyObject,
-    'integer',
-    0,
-    true,
-    'rub',
-    'nominative'
-  )).toBe('рублей');
-});
+  expect(
+    getCurrencyWord(currencyObject, 'integer', 0, true, 'rub', 'nominative')
+  ).toBe('рублей')
+})

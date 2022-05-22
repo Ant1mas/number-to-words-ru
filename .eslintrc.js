@@ -21,5 +21,6 @@ module.exports = {
     'no-unused-vars': 'warn',
     'max-len': 'warn',
     'indent': 'off',
+    'object-curly-spacing': 'off',
   },
 };

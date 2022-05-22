@@ -1,8 +1,8 @@
-import methodConvert from 'src/methods/convert';
+import methodConvert from 'src/methods/convert'
 
 const numberToWordsRu = {
   convert: methodConvert,
-};
-export const convert = methodConvert;
+}
+export const convert = methodConvert
 
-export default numberToWordsRu;
+export default numberToWordsRu

@@ -1,4 +1,4 @@
-import {declensions} from 'src/units/declensions';
+import { declensions } from 'src/units/declensions'
 
 export const fractionalUnitsDeclensions = [
   {
@@ -17,7 +17,7 @@ export const fractionalUnitsDeclensions = [
     [declensions.INSTRUMENTAL]: ['сотой', 'сотыми'],
     [declensions.PREPOSITIONAL]: ['сотой', 'сотых'],
   },
-];
+]
 
 // Массив корней для составления слова
 export const fractionalUnitsBases = [
@@ -25,9 +25,9 @@ export const fractionalUnitsBases = [
   // 'миллион',
   // 'миллиард',
   // ...
-];
+]
 
-export const fractionalUnitPrefixes = ['', 'десяти', 'сто'];
+export const fractionalUnitPrefixes = ['', 'десяти', 'сто']
 export const fractionalUnitEndings = {
   [declensions.NOMINATIVE]: ['ная', 'ные'],
   [declensions.GENITIVE]: ['ной', 'ных'],
@@ -35,4 +35,4 @@ export const fractionalUnitEndings = {
   [declensions.ACCUSATIVE]: ['ную', 'ные'],
   [declensions.INSTRUMENTAL]: ['ной', 'ными'],
   [declensions.PREPOSITIONAL]: ['ной', 'ных'],
-};
+}

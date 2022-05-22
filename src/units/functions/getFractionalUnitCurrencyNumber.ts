@@ -1,13 +1,13 @@
-import set from 'lodash/set';
+import set from 'lodash/set'
 import {
   fractionalUnitsDeclensions,
   fractionalUnitsBases,
   fractionalUnitPrefixes,
   fractionalUnitEndings,
-} from 'src/units/fractionalCurrencyNumber';
-import unitNames from 'src/units/unitNames';
-import {declensions, Declension} from "src/units/declensions";
-import selectDataByDeclension from 'src/functions/selectDataByDeclension';
+} from 'src/units/fractionalCurrencyNumber'
+import unitNames from 'src/units/unitNames'
+import { declensions, Declension } from 'src/units/declensions'
+import selectDataByDeclension from 'src/functions/selectDataByDeclension'
 
 /**
  * Получить единицу измерения дробной части в виде слова.
@@ -25,41 +25,52 @@ const getFractionalUnitCurrencyNumber = (
   unitNameForm: number = 0
 ): string => {
   if (index < 0) {
-    index = 0;
+    index = 0
   }
-  let result = '';
-  let unitDeclensionsObject:any = {};
+  let result = ''
+  let unitDeclensionsObject: any = {}
   // Если такой разряд есть в массиве, то просто взять его объект падежей как есть
   if (index <= fractionalUnitsDeclensions.length - 1) {
-    unitDeclensionsObject = fractionalUnitsDeclensions[index];
-  // Если такого разряда нет в массиве, то сгенерировать его объект падежей
+    unitDeclensionsObject = fractionalUnitsDeclensions[index]
+    // Если такого разряда нет в массиве, то сгенерировать его объект падежей
   } else {
     // Определить класс числа
     // (0 - единицы, 1 - тысячи, 2 - миллионы и т.д.).
-    const numberScale = Math.ceil((index + 2) / 3) - 1;
+    const numberScale = Math.ceil((index + 2) / 3) - 1
     // Получить разряд цифры в текущем классе
     // (0 - единицы, 1 - десятки, 2 - сотни).
-    const digitIndexInScale = index - numberScale * 3 + 1;
+    const digitIndexInScale = index - numberScale * 3 + 1
     // Получить корень названия класса числа
-    const unitNameBase = (numberScale <= fractionalUnitsBases.length) ? fractionalUnitsBases[numberScale - 1] : unitNames[numberScale - 2];
+    const unitNameBase =
+      numberScale <= fractionalUnitsBases.length
+        ? fractionalUnitsBases[numberScale - 1]
+        : unitNames[numberScale - 2]
     // Получить приставку к числу
-    const unitNamePrefix = fractionalUnitPrefixes[digitIndexInScale];
+    const unitNamePrefix = fractionalUnitPrefixes[digitIndexInScale]
     // Составить объект с падежами
     Object.keys(fractionalUnitEndings).forEach((key) => {
-      const declensionEndings = fractionalUnitEndings[key];
+      const declensionEndings = fractionalUnitEndings[key]
       declensionEndings.forEach((ending, index) => {
-        set(unitDeclensionsObject, [key, index], `${unitNamePrefix}${unitNameBase}${ending}`);
-      });
-    });
+        set(
+          unitDeclensionsObject,
+          [key, index],
+          `${unitNamePrefix}${unitNameBase}${ending}`
+        )
+      })
+    })
   }
   // Выбрать правильную форму слова
-  result = selectDataByDeclension(unitDeclensionsObject, declension, (unitNameForm === 0) ? false : true);
+  result = selectDataByDeclension(
+    unitDeclensionsObject,
+    declension,
+    unitNameForm === 0 ? false : true
+  )
   // Если цифра для конвертирования === 0
   if (digitToConvert === 0) {
     // Использовать родительный падеж.
-    result = unitDeclensionsObject[declensions.GENITIVE][1];
+    result = unitDeclensionsObject[declensions.GENITIVE][1]
   }
-  return result;
-};
+  return result
+}
 
-export default getFractionalUnitCurrencyNumber;
+export default getFractionalUnitCurrencyNumber

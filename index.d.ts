@@ -8,7 +8,7 @@ type Declension =
   | 'dative'
   | 'accusative'
   | 'instrumental'
-  | 'prepositional';
+  | 'prepositional'
 
 interface CustomCurrency {
   /**
@@ -16,45 +16,44 @@ interface CustomCurrency {
    * for digits [1, 2-4, 5-9]\
    * e.g. ['рубль', 'рубля', 'рублей']
    */
-  currencyNameCases?: [string, string, string],
+  currencyNameCases?: [string, string, string]
 
   /**
    * Integer currency name forms\
    * for declensions
    */
   currencyNameDeclensions?: {
-    [key in Declension]?: [string, string];
-  },
+    [key in Declension]?: [string, string]
+  }
 
   /**
    * Fractional number currency name forms\
    * for digits [1, 2-4, 5-9]\
    * e.g. ['копейка', 'копейки', 'копеек']
    */
-  fractionalPartNameCases?: [string, string, string],
+  fractionalPartNameCases?: [string, string, string]
 
   /**
    * Fractional number currency name forms\
    * for declensions
    */
   fractionalPartNameDeclensions?: {
-    [key in Declension]?: [string, string];
-  },
-
+    [key in Declension]?: [string, string]
+  }
 
   currencyNounGender?: {
     /**
      * 0 => 'один', 1 => 'одна', 2 => 'одно'\
      * Default: `0`
      */
-    integer?: 0 | 1 | 2,
+    integer?: 0 | 1 | 2
 
     /**
      * 0 => 'один', 1 => 'одна', 2 => 'одно'\
      * Default: `1`
      */
-    fractionalPart?: 0 | 1 | 2,
-  },
+    fractionalPart?: 0 | 1 | 2
+  }
   /**
    * Minimal length of fractional part\
    * Default: `2`
@@ -62,12 +61,7 @@ interface CustomCurrency {
   fractionalPartMinLength?: number
 }
 
-type OptionCurrency =
-  | 'rub'
-  | 'usd'
-  | 'eur'
-  | 'number'
-  | CustomCurrency;
+type OptionCurrency = 'rub' | 'usd' | 'eur' | 'number' | CustomCurrency
 
 interface ConvertOptions {
   /**
@@ -79,7 +73,7 @@ interface ConvertOptions {
    * `Object` Custom currency. 124 юаня 42 фыня\
    * Default: `'rub'`
    */
-  currency?: OptionCurrency,
+  currency?: OptionCurrency
   /**
    * Select declension\
    * `'nominative'` Одна тысяча два рубля\
@@ -90,21 +84,21 @@ interface ConvertOptions {
    * `'prepositional'` Одной тысяче двух рублях\
    * Default: `nominative`
    */
-  declension?: Declension,
+  declension?: Declension
   /**
    * Rounding\
    * `-1` Rounding disabled\
    * `0` and more. Precision of rounding\
    * Default: `-1`
    */
-  roundNumber?: number,
+  roundNumber?: number
   /**
    * Convert minus sign to word\
    * `true` Минус\
    * `false` -\
    * Default: `true`
    */
-  convertMinusSignToWord?: boolean;
+  convertMinusSignToWord?: boolean
   /**
    * Show number parts\
    * `Object`
@@ -116,18 +110,39 @@ interface ConvertOptions {
      * `false` Пять копеек\
      * Default: `true`
      */
-    integer?: boolean;
+    integer?: boolean
     /**
      * Show fractional part of number\
      * `true` Два рубля **пять копеек**\
      * `false` Два рубля\
      * Default: `true`
      */
-    fractional?: boolean;
-  },
+    fractional?: boolean
+  }
   /**
    * Convert number parts to words\
    * `Object`
+   */
+  convertNumberToWords?: {
+    /**
+     * Convert integer part to words\
+     * `true` **Два** рубля пять копеек\
+     * `false` **2** рубля пять копеек\
+     * Default: `true`
+     */
+    integer?: boolean
+    /**
+     * Convert fractional part to words\
+     * `true` Два рубля **пять** копеек\
+     * `false` Два рубля **5** копеек\
+     * Default: `false`
+     */
+    fractional?: boolean
+  }
+  /**
+   * Convert number parts to words\
+   * `Object`\
+   * @deprecated Use `convertNumberToWords`
    */
   convertNumbertToWords?: {
     /**
@@ -136,15 +151,15 @@ interface ConvertOptions {
      * `false` **2** рубля пять копеек\
      * Default: `true`
      */
-    integer?: boolean;
+    integer?: boolean
     /**
      * Convert fractional part to words\
      * `true` Два рубля **пять** копеек\
      * `false` Два рубля **5** копеек\
      * Default: `false`
      */
-    fractional?: boolean;
-  },
+    fractional?: boolean
+  }
   /**
    * Show currency of number parts\
    * `Object`
@@ -156,15 +171,15 @@ interface ConvertOptions {
      * `false` Два пять копеек\
      * Default: `true`
      */
-    integer?: boolean;
+    integer?: boolean
     /**
      * Show currency of fractional part\
      * `true` Два рубля пять **копеек**\
      * `false` Два рубля пять\
      * Default: `true`
      */
-    fractional?: boolean;
-  },
+    fractional?: boolean
+  }
 }
 
 /**
@@ -181,7 +196,7 @@ interface ConvertOptions {
  */
 declare module 'number-to-words-ru' {
   export interface numberToWordsRuFunctions {
-    convert: typeof convert,
+    convert: typeof convert
   }
   /**
    * Convert number to words\
@@ -191,11 +206,14 @@ declare module 'number-to-words-ru' {
    * @param number The input number
    * @param options The convert options
    */
-  export function convert(number: string | number, options?: ConvertOptions): string;
+  export function convert(
+    number: string | number,
+    options?: ConvertOptions
+  ): string
   /**
    * Object of functions:\
    * `convert`: Convert number to words.
    */
-  const numberToWordsRu: numberToWordsRuFunctions;
-  export default numberToWordsRu;
+  const numberToWordsRu: numberToWordsRuFunctions
+  export default numberToWordsRu
 }

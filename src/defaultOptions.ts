@@ -1,5 +1,5 @@
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions';
-import declensions from 'src/units/declensions';
+import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
+import declensions from 'src/units/declensions'
 
 const defaultOptions: ConvertOptions = {
   currency: 'rub',
@@ -10,7 +10,7 @@ const defaultOptions: ConvertOptions = {
     integer: true,
     fractional: true,
   },
-  convertNumbertToWords: {
+  convertNumberToWords: {
     integer: true,
     fractional: false,
   },
@@ -18,6 +18,6 @@ const defaultOptions: ConvertOptions = {
     integer: true,
     fractional: true,
   },
-};
+}
 
-export default defaultOptions;
+export default defaultOptions

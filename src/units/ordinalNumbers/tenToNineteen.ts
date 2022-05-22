@@ -1,5 +1,5 @@
-import {declensions} from 'src/units/declensions';
-import {genders} from 'src/units/genders';
+import { declensions } from 'src/units/declensions'
+import { genders } from 'src/units/genders'
 
 export const tenToNineteen = [
   {
@@ -272,6 +272,6 @@ export const tenToNineteen = [
       [declensions.PREPOSITIONAL]: ['девятнадцатой', 'девятнадцатых'],
     },
   },
-];
+]
 
-export default tenToNineteen;
+export default tenToNineteen

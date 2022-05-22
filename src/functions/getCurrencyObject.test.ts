@@ -1,22 +1,22 @@
-import getCurrencyObject from './getCurrencyObject';
+import getCurrencyObject from './getCurrencyObject'
 
 test('test', () => {
   expect(getCurrencyObject()).toEqual({
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     currencyNameDeclensions: {
-      nominative: ['рубль', 'рубли'],
+      nominative: ['рубль', ''],
       genitive: ['рубля', 'рублей'],
       dative: ['рублю', 'рублям'],
-      accusative: ['рубль', 'рубли'],
+      accusative: ['рубль', ''],
       instrumental: ['рублём', 'рублями'],
       prepositional: ['рубле', 'рублях'],
     },
     fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
     fractionalPartNameDeclensions: {
-      nominative: ['копейка', 'копейки'],
+      nominative: ['копейка', ''],
       genitive: ['копейки', 'копеек'],
       dative: ['копейке', 'копейкам'],
-      accusative: ['копейку', 'копейки'],
+      accusative: ['копейку', ''],
       instrumental: ['копейкой', 'копейками'],
       prepositional: ['копейке', 'копейках'],
     },
@@ -25,24 +25,28 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-  expect(getCurrencyObject({currency: {
-    currencyNameCases: ['рубль1', 'рубля2', 'рублей3'],
-    fractionalPartNameCases: ['копейка1', 'копейки2', 'копеек3'],
-  }})).toEqual({
+  })
+  expect(
+    getCurrencyObject({
+      currency: {
+        currencyNameCases: ['рубль1', 'рубля2', 'рублей3'],
+        fractionalPartNameCases: ['копейка1', 'копейки2', 'копеек3'],
+      },
+    })
+  ).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль1', 'рубли'],
+      nominative: ['рубль1', ''],
       genitive: ['рубля2', 'рублей3'],
       dative: ['рублю', 'рублям'],
-      accusative: ['рубль', 'рубли'],
+      accusative: ['рубль', ''],
       instrumental: ['рублём', 'рублями'],
       prepositional: ['рубле', 'рублях'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка1', 'копейки'],
+      nominative: ['копейка1', ''],
       genitive: ['копейки2', 'копеек3'],
       dative: ['копейке', 'копейкам'],
-      accusative: ['копейку', 'копейки'],
+      accusative: ['копейку', ''],
       instrumental: ['копейкой', 'копейками'],
       prepositional: ['копейке', 'копейках'],
     },
@@ -51,23 +55,21 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-  expect(getCurrencyObject({currency: {
-    
-  }})).toEqual({
+  })
+  expect(getCurrencyObject({ currency: {} })).toEqual({
     currencyNameDeclensions: {
-      nominative: ['рубль', 'рубли'],
+      nominative: ['рубль', ''],
       genitive: ['рубля', 'рублей'],
       dative: ['рублю', 'рублям'],
-      accusative: ['рубль', 'рубли'],
+      accusative: ['рубль', ''],
       instrumental: ['рублём', 'рублями'],
       prepositional: ['рубле', 'рублях'],
     },
     fractionalPartNameDeclensions: {
-      nominative: ['копейка', 'копейки'],
+      nominative: ['копейка', ''],
       genitive: ['копейки', 'копеек'],
       dative: ['копейке', 'копейкам'],
-      accusative: ['копейку', 'копейки'],
+      accusative: ['копейку', ''],
       instrumental: ['копейкой', 'копейками'],
       prepositional: ['копейке', 'копейках'],
     },
@@ -76,5 +78,5 @@ test('test', () => {
       fractionalPart: 1,
     },
     fractionalPartMinLength: 2,
-  });
-});
+  })
+})

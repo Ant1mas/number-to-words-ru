@@ -1,9 +1,9 @@
 export interface SlashNumberUnitPrefixes {
-  digit: string[],
-  tenToNineteen: string[],
-  tens: string[],
-  hundreds: string[],
-};
+  digit: string[]
+  tenToNineteen: string[]
+  tens: string[]
+  hundreds: string[]
+}
 
 export const slashNumberUnitPrefixes: SlashNumberUnitPrefixes = {
   digit: [
@@ -19,27 +19,27 @@ export const slashNumberUnitPrefixes: SlashNumberUnitPrefixes = {
     'девяти',
   ],
   tenToNineteen: [
-    'десяти', 
-    'одиннадцати', 
-    'двенадцати',  // "двенадцатитысячная"
-    'тринадцати', 
-    'четырнадцати', 
-    'пятнадцати', 
-    'шестнадцати', 
-    'семидесяти', 
-    'восемнадцати', 
+    'десяти',
+    'одиннадцати',
+    'двенадцати', // "двенадцатитысячная"
+    'тринадцати',
+    'четырнадцати',
+    'пятнадцати',
+    'шестнадцати',
+    'семидесяти',
+    'восемнадцати',
     'девятнадцати',
   ],
   tens: [
-    '', 
-    '', 
-    'двадцати',  // "двадцатитысячная"
-    'тридцати', 
-    'сорока', 
-    'пятидесяти', 
-    'шестидесяти', 
-    'семидесяти', 
-    'восьмидесяти', 
+    '',
+    '',
+    'двадцати', // "двадцатитысячная"
+    'тридцати',
+    'сорока',
+    'пятидесяти',
+    'шестидесяти',
+    'семидесяти',
+    'восьмидесяти',
     'девяносто',
   ],
   hundreds: [
@@ -54,6 +54,6 @@ export const slashNumberUnitPrefixes: SlashNumberUnitPrefixes = {
     'восьмисот',
     'девятисот',
   ],
-};
+}
 
-export default slashNumberUnitPrefixes;
+export default slashNumberUnitPrefixes
