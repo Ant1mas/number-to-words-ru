@@ -9,7 +9,7 @@ import convertEachScaleToWords from 'src/functions/convertEachScaleToWords'
 import convertEachScaleToWordsSlash from 'src/functions/convertEachScaleToWordsSlash'
 import getCurrencyWord from 'src/functions/getCurrencyWord'
 import getFractionalUnitCurrencyNumber from 'src/units/functions/getFractionalUnitCurrencyNumber'
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Собрать число в сроку с применением параметров.

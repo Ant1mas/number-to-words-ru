@@ -1,7 +1,7 @@
 import splitNumberToArray from 'src/functions/splitNumberToArray'
 import combineResultData from 'src/functions/combineResultData'
 import getOptions from 'src/functions/getOptions'
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Конвертировать число в текст

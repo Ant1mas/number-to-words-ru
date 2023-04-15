@@ -1,8 +1,8 @@
 import { STRING_CURRENCIES } from 'src/units/stringCurrencies'
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import getCustomCurrency from 'src/functions/getCustomCurrency'
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
-import type { CustomCurrency } from '@/src/typeScript/types/CustomCurrency'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 /**
  * Получить объект с данными валюты.

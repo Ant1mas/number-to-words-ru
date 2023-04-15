@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Заменить устаревшие переменные на новые.

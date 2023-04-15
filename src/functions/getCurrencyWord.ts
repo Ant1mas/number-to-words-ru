@@ -1,7 +1,7 @@
 import { DECLENSIONS } from 'src/units/declensions'
 import type { Declension } from 'src/units/declensions'
 import type { OptionCurrency } from 'src/typeScript/types/OptionCurrency'
-import type { CustomCurrency } from '@/src/typeScript/types/CustomCurrency'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 type numberParts = 'integer' | 'fractional'
 

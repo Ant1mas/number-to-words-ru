@@ -4,7 +4,7 @@ import has from 'lodash/has'
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import replaceDeprecatedOptions from 'src/functions/replaceDeprecatedOptions'
 import _deepMapValues from 'src/lodashFunctions/deepMapValues'
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Получить опции конвертирования.

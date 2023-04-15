@@ -1,4 +1,4 @@
-import type { CustomCurrency } from '@/src/typeScript/types/CustomCurrency'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 /**
  * Сделать так, чтобы у дробной части числа
