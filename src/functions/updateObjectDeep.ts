@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+
 import _deepMapValues from 'src/lodashFunctions/deepMapValues'
 
 /**
@@ -8,7 +9,10 @@ import _deepMapValues from 'src/lodashFunctions/deepMapValues'
  * @param {object} newObject - Новый объект.
  * @return {object} Обновленный объект.
  */
-const updateObjectDeep = (object: object, newObject: object): object => {
+export default function updateObjectDeep(
+  object: object,
+  newObject: object,
+): object {
   return _deepMapValues(
     object,
     (path: string[], key: string, value: string) => {
@@ -23,8 +27,6 @@ const updateObjectDeep = (object: object, newObject: object): object => {
         // Оставить старое значение
         return value
       }
-    }
+    },
   )
 }
-
-export default updateObjectDeep

@@ -1,6 +1,6 @@
-import { Declension } from 'src/units/declensions'
+import type { Declension } from 'src/units/declensions'
 
-interface CustomCurrency {
+export type CustomCurrency = {
   /**
    * Integer currency name forms\
    * for digits [1, 2-4, 5-9]\
@@ -50,5 +50,3 @@ interface CustomCurrency {
    */
   fractionalPartMinLength?: number
 }
-
-export default CustomCurrency

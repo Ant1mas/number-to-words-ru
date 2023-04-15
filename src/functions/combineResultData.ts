@@ -1,4 +1,5 @@
-import { minus } from 'src/units/numbers'
+import { MINUS } from 'src/units/numbers'
+import { DECLENSIONS } from 'src/units/declensions'
 import roundNumber from 'src/functions/roundNumber'
 import fractionalPartToMinLength from 'src/functions/fractionalPartToMinLength'
 import getOptions from 'src/functions/getOptions'
@@ -8,8 +9,7 @@ import convertEachScaleToWords from 'src/functions/convertEachScaleToWords'
 import convertEachScaleToWordsSlash from 'src/functions/convertEachScaleToWordsSlash'
 import getCurrencyWord from 'src/functions/getCurrencyWord'
 import getFractionalUnitCurrencyNumber from 'src/units/functions/getFractionalUnitCurrencyNumber'
-import { declensions } from 'src/units/declensions'
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
+import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
 
 /**
  * Собрать число в сроку с применением параметров.
@@ -17,10 +17,10 @@ import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
  * @param {object} options - Параметры конвертирования.
  * @return {string} Число, конвертированное в текст.
  */
-const combineResultData = (
+export default function combineResultData(
   numberArray: string[],
-  options?: ConvertOptions
-): string => {
+  options?: ConvertOptions,
+): string {
   /* Пример convertedNumberArr:
   ['минус', 'двадцать два', 'рубля', 'сорок одна', 'копейка'] */
   const convertedNumberArr = ['', '', '', '', '']
@@ -33,7 +33,7 @@ const combineResultData = (
   if (numberArray[0] === '-') {
     // Если отображать знак минус словом
     if (appliedOptions.convertMinusSignToWord === true) {
-      convertedNumberArr[0] = minus
+      convertedNumberArr[0] = MINUS
     } else {
       convertedNumberArr[0] = '-'
     }
@@ -51,23 +51,23 @@ const combineResultData = (
   // Обеспечить минимальную длину дробной части числа
   modifiedNumberArray = fractionalPartToMinLength(
     modifiedNumberArray,
-    currencyObject
+    currencyObject,
   )
   const integerScalesArray = modifiedNumberArray[1]
   const fractionalScalesArray = modifiedNumberArray[3]
   const delimiter = modifiedNumberArray[2]
   // Если нужно отображать целую часть числа
-  if (appliedOptions.showNumberParts.integer === true) {
+  if (appliedOptions.showNumberParts?.integer === true) {
     // По умолчанию число не конвертировано в слова
     convertedNumberArr[1] = integerScalesArray
     // Получить результат конвертирования числа
     const convertedIntegerObject = convertEachScaleToWords(
       numberToScales(integerScalesArray),
-      currencyObject.currencyNounGender.integer,
-      appliedOptions.declension
+      currencyObject.currencyNounGender?.integer,
+      appliedOptions.declension,
     )
     // Если нужно конвертировать число в слова
-    if (appliedOptions.convertNumberToWords.integer === true) {
+    if (appliedOptions.convertNumberToWords?.integer === true) {
       // Если разделитель - не дробная черта
       if (delimiter !== '/') {
         // Применить конвертированное число
@@ -79,12 +79,12 @@ const combineResultData = (
         convertedNumberArr[1] = convertEachScaleToWords(
           numberToScales(integerScalesArray),
           1,
-          appliedOptions.declension
+          appliedOptions.declension,
         ).result
       }
     }
     // Если нужно отображать валюту целой части числа
-    if (appliedOptions.showCurrency.integer === true) {
+    if (appliedOptions.showCurrency?.integer === true) {
       // Если разделитель - не дробная черта
       if (delimiter !== '/') {
         const currencyWord = getCurrencyWord(
@@ -93,35 +93,35 @@ const combineResultData = (
           convertedIntegerObject.unitNameForm,
           convertedIntegerObject.lastScaleIsZero,
           appliedOptions.currency,
-          appliedOptions.declension
+          appliedOptions.declension,
         )
         convertedNumberArr[2] = currencyWord
       }
     }
   }
   // Если нужно отображать дробную часть числа
-  if (appliedOptions.showNumberParts.fractional === true) {
+  if (appliedOptions.showNumberParts?.fractional === true) {
     // По умолчанию число не конвертировано в слова
     convertedNumberArr[3] = fractionalScalesArray
     // Получить результат конвертирования числа
     const convertedFractionalObject = convertEachScaleToWords(
       numberToScales(fractionalScalesArray),
-      currencyObject.currencyNounGender.fractionalPart,
-      appliedOptions.declension
+      currencyObject.currencyNounGender?.fractionalPart,
+      appliedOptions.declension,
     )
     // Если нужно конвертировать число в слова
-    if (appliedOptions.convertNumberToWords.fractional === true) {
+    if (appliedOptions.convertNumberToWords?.fractional === true) {
       // Если разделитель - дробная черта
       if (delimiter === '/') {
         const convertedIntegerObject = convertEachScaleToWords(
           numberToScales(integerScalesArray),
-          currencyObject.currencyNounGender.integer,
-          appliedOptions.declension
+          currencyObject.currencyNounGender?.integer,
+          appliedOptions.declension,
         )
         convertedNumberArr[3] = convertEachScaleToWordsSlash(
           numberToScales(fractionalScalesArray),
           convertedIntegerObject.unitNameForm,
-          appliedOptions.declension
+          appliedOptions.declension,
         )
       } else {
         // Если разделитель - не дробная черта
@@ -130,7 +130,7 @@ const combineResultData = (
       }
     }
     // Если не нужно конвертировать число в слова
-    if (appliedOptions.convertNumberToWords.fractional === false) {
+    if (appliedOptions.convertNumberToWords?.fractional === false) {
       // Если валюта "number"
       if (appliedOptions.currency === 'number') {
         // Если в дробной части есть цифры
@@ -148,7 +148,7 @@ const combineResultData = (
       }
     }
     // Если нужно отображать валюту дробной части числа
-    if (appliedOptions.showCurrency.fractional === true) {
+    if (appliedOptions.showCurrency?.fractional === true) {
       // Если валюта - не 'number'
       if (appliedOptions.currency !== 'number') {
         const currencyWord = getCurrencyWord(
@@ -157,7 +157,7 @@ const combineResultData = (
           convertedFractionalObject.unitNameForm,
           convertedFractionalObject.lastScaleIsZero,
           appliedOptions.currency,
-          appliedOptions.declension
+          appliedOptions.declension,
         )
         // Если определено число дробной части
         if (convertedNumberArr[3] !== '') {
@@ -175,13 +175,13 @@ const combineResultData = (
             (appliedOptions.roundNumber < 0 && fractionalScalesArray.length > 0)
           ) {
             const digitToConvert = parseInt(
-              fractionalScalesArray[fractionalScalesArray.length - 1]
+              fractionalScalesArray[fractionalScalesArray.length - 1],
             )
             convertedNumberArr[4] = getFractionalUnitCurrencyNumber(
               fractionalScalesArray.length - 1,
               digitToConvert,
               appliedOptions.declension,
-              convertedFractionalObject.unitNameForm
+              convertedFractionalObject.unitNameForm,
             )
           }
         }
@@ -191,7 +191,7 @@ const combineResultData = (
         // Если указана валюта
         if (appliedOptions.currency !== 'number') {
           convertedNumberArr[4] =
-            currencyObject.currencyNameDeclensions[declensions.GENITIVE][0]
+            currencyObject.currencyNameDeclensions[DECLENSIONS.GENITIVE][0]
         }
       }
     }
@@ -208,5 +208,3 @@ const combineResultData = (
     convertedNumberResult.slice(1)
   return convertedNumberResult
 }
-
-export default combineResultData

@@ -1,13 +1,14 @@
-import { Declension, declensions } from 'src/units/declensions'
-import unitNames from 'src/units/unitNames'
+import { DECLENSIONS } from 'src/units/declensions'
+import { UNIT_NAMES } from 'src/units/unitNames'
+import type { Declension } from 'src/units/declensions'
 
 const integerWordEndings = {
-  [declensions.NOMINATIVE]: ['', 'ы'],
-  [declensions.GENITIVE]: ['а', 'ов'],
-  [declensions.DATIVE]: ['у', 'ам'],
-  [declensions.ACCUSATIVE]: ['', 'а'],
-  [declensions.INSTRUMENTAL]: ['ом', 'ами'],
-  [declensions.PREPOSITIONAL]: ['е', 'ах'],
+  [DECLENSIONS.NOMINATIVE]: ['', 'ы'],
+  [DECLENSIONS.GENITIVE]: ['а', 'ов'],
+  [DECLENSIONS.DATIVE]: ['у', 'ам'],
+  [DECLENSIONS.ACCUSATIVE]: ['', 'а'],
+  [DECLENSIONS.INSTRUMENTAL]: ['ом', 'ами'],
+  [DECLENSIONS.PREPOSITIONAL]: ['е', 'ах'],
 }
 
 type UnitName = {
@@ -15,12 +16,12 @@ type UnitName = {
 }
 
 let thousandNames: UnitName = {
-  [declensions.NOMINATIVE]: ['тысяча', 'тысячи'],
-  [declensions.GENITIVE]: ['тысячи', 'тысяч'],
-  [declensions.DATIVE]: ['тысяче', 'тысячам'],
-  [declensions.ACCUSATIVE]: ['тысячу', 'тысячи'],
-  [declensions.INSTRUMENTAL]: ['тысячей', 'тысячами'],
-  [declensions.PREPOSITIONAL]: ['тысяче', 'тысячах'],
+  [DECLENSIONS.NOMINATIVE]: ['тысяча', 'тысячи'],
+  [DECLENSIONS.GENITIVE]: ['тысячи', 'тысяч'],
+  [DECLENSIONS.DATIVE]: ['тысяче', 'тысячам'],
+  [DECLENSIONS.ACCUSATIVE]: ['тысячу', 'тысячи'],
+  [DECLENSIONS.INSTRUMENTAL]: ['тысячей', 'тысячами'],
+  [DECLENSIONS.PREPOSITIONAL]: ['тысяче', 'тысячах'],
 }
 
 /**
@@ -30,21 +31,21 @@ let thousandNames: UnitName = {
  * @param {Declension} declension - Падеж для класса числа.
  * @return {string} Название класса числа (напр. "миллиард", "миллиона", "тысячи" и др.).
  */
-const getNumberScaleName = (
+export default function getNumberScaleName(
   scale: number,
   scaleNameForm: number,
-  declension: Declension
-): string => {
+  declension: Declension,
+): string {
   let scaleDeclension = declension
   let scalePlural = scaleNameForm === 0 ? 0 : 1
   // Если падеж "именительный" или "винительный" и множественное число
   if (
-    (declension === declensions.NOMINATIVE ||
-      declension === declensions.ACCUSATIVE) &&
+    (declension === DECLENSIONS.NOMINATIVE ||
+      declension === DECLENSIONS.ACCUSATIVE) &&
     scaleNameForm >= 1
   ) {
     // Для множественного числа именительного падежа используется родительный падеж.
-    scaleDeclension = declensions.GENITIVE
+    scaleDeclension = DECLENSIONS.GENITIVE
     scalePlural = scaleNameForm === 1 ? 0 : 1
   }
   if (scale === 0) {
@@ -57,8 +58,6 @@ const getNumberScaleName = (
   }
   // Класс миллионов и так далее
   const ending = integerWordEndings[scaleDeclension][scalePlural]
-  const base = unitNames[scale - 2]
+  const base = UNIT_NAMES[scale - 2]
   return base + ending
 }
-
-export default getNumberScaleName

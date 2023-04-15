@@ -1,29 +1,29 @@
 import convertDigitToWord from 'src/functions/convertDigitToWord'
-import numberNames from 'src/units/numbers'
+import { NUMBERS } from 'src/units/numbers'
 
 test('test', () => {
   expect(
-    convertDigitToWord(1, numberNames.numbers, 'nominative', 'FEMALE'),
+    convertDigitToWord(1, NUMBERS.numbers, 'nominative', 'FEMALE'),
   ).toEqual('одна')
   expect(
-    convertDigitToWord(1, numberNames.numbers, 'prepositional', 'MALE'),
+    convertDigitToWord(1, NUMBERS.numbers, 'prepositional', 'MALE'),
   ).toEqual('одном')
   expect(
-    convertDigitToWord(2, numberNames.numbers, 'nominative', 'FEMALE'),
+    convertDigitToWord(2, NUMBERS.numbers, 'nominative', 'FEMALE'),
   ).toEqual('две')
   expect(
-    convertDigitToWord(2, numberNames.numbers, 'prepositional', 'MALE'),
+    convertDigitToWord(2, NUMBERS.numbers, 'prepositional', 'MALE'),
   ).toEqual('двух')
   expect(
-    convertDigitToWord(5, numberNames.tenToNineteen, 'nominative', 'MALE'),
+    convertDigitToWord(5, NUMBERS.tenToNineteen, 'nominative', 'MALE'),
   ).toEqual('пятнадцать')
   expect(
-    convertDigitToWord(5, numberNames.tenToNineteen, 'nominative', 'FEMALE'),
+    convertDigitToWord(5, NUMBERS.tenToNineteen, 'nominative', 'FEMALE'),
   ).toEqual('пятнадцать')
-  expect(
-    convertDigitToWord(5, numberNames.hundreds, 'genitive', 'FEMALE'),
-  ).toEqual('пятисот')
-  expect(convertDigitToWord(5, numberNames.tens, 'genitive', 'FEMALE')).toEqual(
+  expect(convertDigitToWord(5, NUMBERS.hundreds, 'genitive', 'FEMALE')).toEqual(
+    'пятисот',
+  )
+  expect(convertDigitToWord(5, NUMBERS.tens, 'genitive', 'FEMALE')).toEqual(
     'пятидесяти',
   )
 })

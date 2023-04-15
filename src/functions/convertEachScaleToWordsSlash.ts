@@ -1,16 +1,18 @@
 import isEqual from 'lodash/isEqual'
-import { genders } from 'src/units/genders'
-import { Declension, declensions } from 'src/units/declensions'
-import { slashNumberUnitPrefixes } from 'src/units/slashNumberUnitPrefixes'
+
+import { GENDERS } from 'src/units/genders'
+import { DECLENSIONS } from 'src/units/declensions'
+import { SLASH_NUMBER_UNIT_PREFIXES } from 'src/units/slashNumberUnitPrefixes'
 import {
-  fractionalUnitsBases,
-  fractionalUnitEndings,
+  FRACTIONAL_UNITS_BASES,
+  FRACTIONAL_UNIT_ENDINGS,
 } from 'src/units/fractionalCurrencyNumber'
-import unitNames from 'src/units/unitNames'
-import ordinalNumbersDeclensions from 'src/units/ordinalNumbers/ordinalNumbers'
+import { UNIT_NAMES } from 'src/units/unitNames'
+import { ORDINAL_NUMBERS_DECLENSIONS } from 'src/units/ordinalNumbers/ordinalNumbers'
 import convertEachScaleToWords from 'src/functions/convertEachScaleToWords'
 import removeEmptyScalesBeforeNumber from 'src/functions/removeEmptyScalesBeforeNumber'
 import selectDataByDeclension from 'src/functions/selectDataByDeclension'
+import type { Declension } from 'src/units/declensions'
 
 /**
  * Конвертировать в текст массив числа с разделителем "/".
@@ -19,11 +21,11 @@ import selectDataByDeclension from 'src/functions/selectDataByDeclension'
  * @param {Declension} declension - Падеж.
  * @return {string} Конвертированный результат (текст).
  */
-const convertEachScaleToWordsSlash = (
+export default function convertEachScaleToWordsSlash(
   numberScalesArr: string[],
   unitNameForm = 1,
-  declension: Declension = 'nominative'
-): string => {
+  declension: Declension = 'nominative',
+): string {
   if (numberScalesArr.length < 1) {
     return ''
   }
@@ -42,11 +44,11 @@ const convertEachScaleToWordsSlash = (
   // Если нет ни одного не пустого класса
   if (lastScaleWihNumber === -1) {
     // Вернуть ноль
-    const zeroValuesObject: any = ordinalNumbersDeclensions.digits[0]
+    const zeroValuesObject: any = ORDINAL_NUMBERS_DECLENSIONS.digits[0]
     const zeroValue = selectDataByDeclension(
-      zeroValuesObject[genders.FEMALE],
+      zeroValuesObject[GENDERS.FEMALE],
       declension,
-      unitNameForm === 0 ? false : true
+      unitNameForm === 0 ? false : true,
     )
     return zeroValue
   }
@@ -57,14 +59,14 @@ const convertEachScaleToWordsSlash = (
     const numberScalesArrForCommonConvert = updatedNumberScalesArr.map(
       (scale, index) => {
         return index === lastScaleWihNumberIndex ? '000' : scale
-      }
+      },
     )
     // Конвертировать классы как обычное число
     convertedResult +=
       convertEachScaleToWords(
         numberScalesArrForCommonConvert,
         1,
-        declensions.NOMINATIVE
+        DECLENSIONS.NOMINATIVE,
       ).result + ' '
   }
   // Если последний класс для конвертирования - тысячи или больше
@@ -77,17 +79,17 @@ const convertEachScaleToWordsSlash = (
       .split('')
       .map((digit) => parseInt(digit))
     // Конвертировать сотни ("четырёхсот")
-    const hundreds = slashNumberUnitPrefixes.hundreds[scaleToConvertArr[0]]
+    const hundreds = SLASH_NUMBER_UNIT_PREFIXES.hundreds[scaleToConvertArr[0]]
     // Конвертировать десятки ("двадцати")
     const tens =
       scaleToConvertArr[1] === 1
-        ? slashNumberUnitPrefixes.tenToNineteen[scaleToConvertArr[2]]
-        : slashNumberUnitPrefixes.tens[scaleToConvertArr[1]]
+        ? SLASH_NUMBER_UNIT_PREFIXES.tenToNineteen[scaleToConvertArr[2]]
+        : SLASH_NUMBER_UNIT_PREFIXES.tens[scaleToConvertArr[1]]
     // Конвертировать единицы ("пяти")
     let digits =
       scaleToConvertArr[1] === 1
         ? ''
-        : slashNumberUnitPrefixes.digit[scaleToConvertArr[2]]
+        : SLASH_NUMBER_UNIT_PREFIXES.digit[scaleToConvertArr[2]]
     /* Если весь класс равен === 001
     и до него не было значений */
     if (
@@ -99,14 +101,14 @@ const convertEachScaleToWordsSlash = (
     }
     // Получить корень названия класса числа ("тысяч")
     const unitNameBase =
-      lastScaleWihNumber <= fractionalUnitsBases.length
-        ? fractionalUnitsBases[lastScaleWihNumber - 1]
-        : unitNames[lastScaleWihNumber - 2]
+      lastScaleWihNumber <= FRACTIONAL_UNITS_BASES.length
+        ? FRACTIONAL_UNITS_BASES[lastScaleWihNumber - 1]
+        : UNIT_NAMES[lastScaleWihNumber - 2]
     // Получить окончание названия класса числа с правильным падежом ("ная", "ной", "ных" и т.д.)
     const unitNameEnding = selectDataByDeclension(
-      fractionalUnitEndings,
+      FRACTIONAL_UNIT_ENDINGS,
       declension,
-      unitNameForm === 0 ? false : true
+      unitNameForm === 0 ? false : true,
     )
     // Добавить текст к общему результату
     convertedResult +=
@@ -150,36 +152,34 @@ const convertEachScaleToWordsSlash = (
         convertEachScaleToWords(
           scaleForCommonConvert,
           1,
-          declensions.NOMINATIVE
+          DECLENSIONS.NOMINATIVE,
         ).result + ' '
     }
     // Цифра для конвертирования
     let digitToConvert = scaleToConvertArr[lastDigitInScaleIndex]
     // Получить объект для выбора формы последнего разряда
-    let lastDigitDeclensionsObject: any = ordinalNumbersDeclensions.hundreds
+    let lastDigitDeclensionsObject: any = ORDINAL_NUMBERS_DECLENSIONS.hundreds
     // Если разряд единиц
     if (lastDigitInScale === 0) {
-      lastDigitDeclensionsObject = ordinalNumbersDeclensions.digits
+      lastDigitDeclensionsObject = ORDINAL_NUMBERS_DECLENSIONS.digits
     }
     // Если разряд десятков
     if (lastDigitInScale === 1) {
-      lastDigitDeclensionsObject = ordinalNumbersDeclensions.tens
+      lastDigitDeclensionsObject = ORDINAL_NUMBERS_DECLENSIONS.tens
     }
     // Если в десятках цифра 1 (число 10-19)
     if (scaleToConvertArr[1] === 1) {
-      lastDigitDeclensionsObject = ordinalNumbersDeclensions.tenToNineteen
+      lastDigitDeclensionsObject = ORDINAL_NUMBERS_DECLENSIONS.tenToNineteen
       digitToConvert = scaleToConvertArr[2]
     }
     // Получить последний разряд (в виде текста) в правильном падеже
     const lastDigitText = selectDataByDeclension(
-      lastDigitDeclensionsObject[digitToConvert][genders.FEMALE],
+      lastDigitDeclensionsObject[digitToConvert][GENDERS.FEMALE],
       declension,
-      unitNameForm === 0 ? false : true
+      unitNameForm === 0 ? false : true,
     )
     // Добавить текст к общему результату
     convertedResult += `${lastDigitText}` + ' '
   }
   return convertedResult.trim()
 }
-
-export default convertEachScaleToWordsSlash

@@ -5,16 +5,14 @@
  * @param {string | number} newSubStr - Строка, которую нужно вставить на место индекса.
  * @return {string} Измененная строка.
  */
-const replaceAt = (
+export default function replaceAt(
   string: string,
   index: number,
-  newSubStr: string | number
-): string => {
+  newSubStr: string | number,
+): string {
   return (
     string.substring(0, index) +
     newSubStr.toString() +
     string.substring(index + newSubStr.toString().length)
   )
 }
-
-export default replaceAt

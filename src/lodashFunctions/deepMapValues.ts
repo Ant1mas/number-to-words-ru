@@ -10,7 +10,10 @@ import set from 'lodash/set'
  * @param {Function} iteratee - Функция, вызываемая для каждой итерации.
  * @return {object} Новый объект.
  */
-const _deepMapValues = (object: object, iteratee: Function): object => {
+export default function _deepMapValues(
+  object: object,
+  iteratee: Function,
+): object {
   let result = cloneDeep(object)
   /**
    * Пройти по значениям объекта.
@@ -37,5 +40,3 @@ const _deepMapValues = (object: object, iteratee: Function): object => {
   // Вернуть новый объект с учетом изменений
   return result
 }
-
-export default _deepMapValues

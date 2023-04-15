@@ -1,7 +1,7 @@
-import { Declension } from 'src/units/declensions'
-import OptionCurrency from 'src/typeScript/types/OptionCurrency'
+import type { Declension } from 'src/units/declensions'
+import type { OptionCurrency } from 'src/typeScript/types/OptionCurrency'
 
-interface ConvertOptions {
+export type ConvertOptions = {
   /**
    * Select currency\
    * `'rub'` Russian ruble. 124 рубля 42 копейки\
@@ -119,5 +119,3 @@ interface ConvertOptions {
     fractional?: boolean
   }
 }
-
-export default ConvertOptions
