@@ -1,32 +1,32 @@
-import getFractionalUnitCurrencyNumber from './getFractionalUnitCurrencyNumber'
+import getFractionalUnitCurrencyNumber from 'src/units/functions/getFractionalUnitCurrencyNumber'
 
 test('test', () => {
   expect(getFractionalUnitCurrencyNumber(2, 5)).toEqual('тысячная')
   expect(getFractionalUnitCurrencyNumber(2, 5, 'nominative', 0)).toEqual(
-    'тысячная'
+    'тысячная',
   )
   expect(getFractionalUnitCurrencyNumber(2, 5, 'nominative', 0)).toEqual(
-    'тысячная'
+    'тысячная',
   )
   expect(getFractionalUnitCurrencyNumber(2, 5, 'nominative', 1)).toEqual(
-    'тысячных'
+    'тысячных',
   )
   expect(getFractionalUnitCurrencyNumber(2, 5, 'nominative', 2)).toEqual(
-    'тысячных'
+    'тысячных',
   )
   expect(getFractionalUnitCurrencyNumber(6, 5, 'nominative', 0)).toEqual(
-    'десятимиллионная'
+    'десятимиллионная',
   )
   expect(getFractionalUnitCurrencyNumber(7, 5, 'nominative', 0)).toEqual(
-    'стомиллионная'
+    'стомиллионная',
   )
   expect(getFractionalUnitCurrencyNumber(-200, 5, 'nominative', 0)).toEqual(
-    'десятая'
+    'десятая',
   )
   expect(getFractionalUnitCurrencyNumber(0, 0, 'nominative', 0)).toEqual(
-    'десятых'
+    'десятых',
   )
   expect(getFractionalUnitCurrencyNumber(2, 0, 'nominative', 0)).toEqual(
-    'тысячных'
+    'тысячных',
   )
 })

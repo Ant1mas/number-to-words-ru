@@ -1,4 +1,4 @@
-import getNumberScaleName from './getNumberScaleName'
+import getNumberScaleName from 'src/units/functions/getNumberScaleName'
 
 test('test', () => {
   expect(getNumberScaleName(0, 0, 'nominative')).toBe('')

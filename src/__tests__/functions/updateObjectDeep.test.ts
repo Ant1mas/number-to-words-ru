@@ -1,4 +1,4 @@
-import updateObjectDeep from './updateObjectDeep'
+import updateObjectDeep from 'src/functions/updateObjectDeep'
 
 test('test', () => {
   expect(
@@ -29,8 +29,8 @@ test('test', () => {
           },
         },
         k3: 999,
-      }
-    )
+      },
+    ),
   ).toEqual({
     k1: 'v1',
     k2: {

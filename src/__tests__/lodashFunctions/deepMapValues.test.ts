@@ -1,4 +1,4 @@
-import _deepMapValues from './deepMapValues'
+import _deepMapValues from 'src/lodashFunctions/deepMapValues'
 
 test('test', () => {
   expect(
@@ -27,8 +27,8 @@ test('test', () => {
       },
       (path: string[], key: string, value: string) => {
         return `${value} + ${key}:${value}[${path}]`
-      }
-    )
+      },
+    ),
   ).toEqual({
     k1: 'v1 + k1:v1[]',
     k2: {

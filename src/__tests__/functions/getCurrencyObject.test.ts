@@ -1,4 +1,4 @@
-import getCurrencyObject from './getCurrencyObject'
+import getCurrencyObject from 'src/functions/getCurrencyObject'
 
 test('test', () => {
   expect(getCurrencyObject()).toEqual({
@@ -32,7 +32,7 @@ test('test', () => {
         currencyNameCases: ['рубль1', 'рубля2', 'рублей3'],
         fractionalPartNameCases: ['копейка1', 'копейки2', 'копеек3'],
       },
-    })
+    }),
   ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', ''],

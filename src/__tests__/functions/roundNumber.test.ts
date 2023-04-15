@@ -1,4 +1,4 @@
-import roundNumber from './roundNumber'
+import roundNumber from 'src/functions/roundNumber'
 
 test('test', () => {
   expect(roundNumber(['-', '1234567890', '.', ''], 2)).toEqual([

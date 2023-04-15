@@ -1,4 +1,4 @@
-import replaceAt from './replaceAt'
+import replaceAt from 'src/functions/replaceAt'
 
 test('test', () => {
   expect(replaceAt('12345', 2, '67')).toBe('12675')

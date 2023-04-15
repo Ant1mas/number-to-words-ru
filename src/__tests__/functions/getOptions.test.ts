@@ -1,5 +1,4 @@
-import getOptions from './getOptions'
-import defaultOptions from 'src/defaultOptions'
+import getOptions from 'src/functions/getOptions'
 
 test('test', () => {
   expect(getOptions()).toEqual({
@@ -31,7 +30,7 @@ test('test', () => {
       showCurrency: {
         fractional: false,
       },
-    })
+    }),
   ).toEqual({
     currency: 'number',
     declension: 'nominative',
@@ -56,7 +55,7 @@ test('test', () => {
         currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],
         fractionalPartMinLength: 3,
       },
-    })
+    }),
   ).toEqual({
     currency: {
       currencyNameCases: ['рубль1', 'рубля1', 'рублей1'],

@@ -1,4 +1,4 @@
-import getCustomCurrency from './getCustomCurrency'
+import getCustomCurrency from 'src/functions/getCustomCurrency'
 
 test('test', () => {
   expect(
@@ -18,7 +18,7 @@ test('test', () => {
         },
         fractionalPartMinLength: 5,
       },
-    })
+    }),
   ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', ''],
@@ -59,7 +59,7 @@ test('test', () => {
         },
         fractionalPartMinLength: 5,
       },
-    })
+    }),
   ).toEqual({
     currencyNameDeclensions: {
       nominative: ['рубль1', ''],

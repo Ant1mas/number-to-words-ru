@@ -1,4 +1,4 @@
-import replaceDeprecatedOptions from './replaceDeprecatedOptions'
+import replaceDeprecatedOptions from 'src/functions/replaceDeprecatedOptions'
 
 test('deprecated convertNumbertToWords', () => {
   expect(
@@ -12,7 +12,7 @@ test('deprecated convertNumbertToWords', () => {
       showCurrency: {
         fractional: false,
       },
-    })
+    }),
   ).toEqual({
     currency: 'number',
     showNumberParts: {},
@@ -39,7 +39,7 @@ test('deprecated convertNumbertToWords', () => {
       showCurrency: {
         fractional: false,
       },
-    })
+    }),
   ).toEqual({
     currency: 'number',
     showNumberParts: {},
@@ -58,7 +58,7 @@ test('deprecated convertNumbertToWords', () => {
       showCurrency: {
         fractional: false,
       },
-    })
+    }),
   ).toEqual({
     currency: 'number',
     showNumberParts: {},

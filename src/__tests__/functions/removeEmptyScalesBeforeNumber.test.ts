@@ -1,4 +1,4 @@
-import removeEmptyScalesBeforeNumber from './removeEmptyScalesBeforeNumber'
+import removeEmptyScalesBeforeNumber from 'src/functions/removeEmptyScalesBeforeNumber'
 
 test('test', () => {
   expect(
@@ -10,7 +10,7 @@ test('test', () => {
       '000',
       '203',
       '000',
-    ])
+    ]),
   ).toEqual(['001', '000', '203', '000'])
   expect(removeEmptyScalesBeforeNumber(['001', '000', '203', '000'])).toEqual([
     '001',

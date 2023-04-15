@@ -1,4 +1,4 @@
-import selectDataByDeclension from './selectDataByDeclension'
+import selectDataByDeclension from 'src/functions/selectDataByDeclension'
 
 let testDeclensionsObject = {}
 beforeAll(() => {
@@ -14,26 +14,26 @@ beforeAll(() => {
 
 test('Обычные случаи', () => {
   expect(selectDataByDeclension(testDeclensionsObject, 'prepositional')).toBe(
-    'десятой'
+    'десятой',
   )
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'nominative', false)
+    selectDataByDeclension(testDeclensionsObject, 'nominative', false),
   ).toBe('десятая')
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'nominative', true)
+    selectDataByDeclension(testDeclensionsObject, 'nominative', true),
   ).toBe('десятых')
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'instrumental', false)
+    selectDataByDeclension(testDeclensionsObject, 'instrumental', false),
   ).toBe('десятой')
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'instrumental', true)
+    selectDataByDeclension(testDeclensionsObject, 'instrumental', true),
   ).toBe('десятыми')
 })
 test('Особые случаи', () => {
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'nominative', true)
+    selectDataByDeclension(testDeclensionsObject, 'nominative', true),
   ).toBe('десятых')
   expect(
-    selectDataByDeclension(testDeclensionsObject, 'accusative', true)
+    selectDataByDeclension(testDeclensionsObject, 'accusative', true),
   ).toBe('десятых')
 })

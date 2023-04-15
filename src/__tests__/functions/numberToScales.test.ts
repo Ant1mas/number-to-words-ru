@@ -1,4 +1,4 @@
-import numberToScales from './numberToScales'
+import numberToScales from 'src/functions/numberToScales'
 
 test('test', () => {
   expect(numberToScales('00000000001234567890000')).toEqual([

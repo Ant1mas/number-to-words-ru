@@ -1,4 +1,4 @@
-import getCurrencyWord from './getCurrencyWord'
+import getCurrencyWord from 'src/functions/getCurrencyWord'
 
 let currencyObject: any
 
@@ -25,27 +25,48 @@ beforeAll(() => {
 
 test('test', () => {
   expect(
-    getCurrencyWord(currencyObject, 'integer', 0, false, 'rub', 'nominative')
+    getCurrencyWord(currencyObject, 'integer', 0, false, 'rub', 'nominative'),
   ).toBe('рубль')
   expect(
-    getCurrencyWord(currencyObject, 'fractional', 0, false, 'rub', 'nominative')
+    getCurrencyWord(
+      currencyObject,
+      'fractional',
+      0,
+      false,
+      'rub',
+      'nominative',
+    ),
   ).toBe('копейка')
   expect(
-    getCurrencyWord(currencyObject, 'integer', 1, false, 'rub', 'prepositional')
+    getCurrencyWord(
+      currencyObject,
+      'integer',
+      1,
+      false,
+      'rub',
+      'prepositional',
+    ),
   ).toBe('рублях')
   expect(
-    getCurrencyWord(currencyObject, 'integer', 1, false, 'rub', 'nominative')
+    getCurrencyWord(currencyObject, 'integer', 1, false, 'rub', 'nominative'),
   ).toBe('рубля')
   expect(
-    getCurrencyWord(currencyObject, 'integer', 2, false, 'rub', 'accusative')
+    getCurrencyWord(currencyObject, 'integer', 2, false, 'rub', 'accusative'),
   ).toBe('рублей')
   expect(
-    getCurrencyWord(currencyObject, 'integer', 1, false, 'number', 'nominative')
+    getCurrencyWord(
+      currencyObject,
+      'integer',
+      1,
+      false,
+      'number',
+      'nominative',
+    ),
   ).toBe('рублей')
 })
 
 test('lastScaleIsZero === true', () => {
   expect(
-    getCurrencyWord(currencyObject, 'integer', 0, true, 'rub', 'nominative')
+    getCurrencyWord(currencyObject, 'integer', 0, true, 'rub', 'nominative'),
   ).toBe('рублей')
 })
