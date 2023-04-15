@@ -2,10 +2,13 @@
   "name": "number-to-words-ru",
   "version": "2.3.4",
   "description": "Convert a number to words on russian language.",
+  "author": "Anton Moskovskii <ant1mas.dev@gmail.com> (https://github.com/Ant1mas)",
+  "homepage": "https://number-to-words-ru.ant1mas.dev/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ant1mas/number-to-words-ru.git"
+  },
   "license": "MIT",
-  "repository": "Ant1mas/number-to-words-ru",
-  "homepage": "https://ant1mas.github.io/number-to-words-ru/",
-  "author": "Anton Moskovskiy",
   "main": "dist/bundle.js",
   "types": "index.d.ts",
   "scripts": {
