@@ -31,7 +31,7 @@
 
 # Demo
 
-[Demo page](https://ant1mas.github.io/number-to-words-ru/)
+[Demo page](https://number-to-words-ru.ant1mas.dev/)
 
 # Features
 
