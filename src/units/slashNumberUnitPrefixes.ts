@@ -1,11 +1,11 @@
-export interface SlashNumberUnitPrefixes {
+export type SlashNumberUnitPrefixes = {
   digit: string[]
   tenToNineteen: string[]
   tens: string[]
   hundreds: string[]
 }
 
-export const slashNumberUnitPrefixes: SlashNumberUnitPrefixes = {
+export const SLASH_NUMBER_UNIT_PREFIXES: SlashNumberUnitPrefixes = {
   digit: [
     '',
     'одно',
@@ -55,5 +55,3 @@ export const slashNumberUnitPrefixes: SlashNumberUnitPrefixes = {
     'девятисот',
   ],
 }
-
-export default slashNumberUnitPrefixes

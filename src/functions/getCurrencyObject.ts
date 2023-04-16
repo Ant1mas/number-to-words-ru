@@ -1,20 +1,22 @@
-import stringCurrencies from 'src/units/stringCurrencies'
-import defaultOptions from 'src/defaultOptions'
+import { STRING_CURRENCIES } from 'src/units/stringCurrencies'
+import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import getCustomCurrency from 'src/functions/getCustomCurrency'
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
-import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 /**
  * Получить объект с данными валюты.
  * @param {ConvertOptions} convertOptions - Параметры конвертирования числа.
  * @return {CustomCurrency} Данные валюты.
  */
-const getCurrencyObject = (convertOptions?: ConvertOptions): CustomCurrency => {
-  let currencyObject: CustomCurrency
-  const currency = convertOptions?.currency || defaultOptions.currency
+export default function getCurrencyObject(
+  convertOptions: ConvertOptions = {},
+): CustomCurrency {
+  let currencyObject: CustomCurrency = {}
+  const currency = convertOptions?.currency || DEFAULT_OPTIONS.currency
   // Если валюта указана словами
   if (typeof currency === 'string') {
-    currencyObject = stringCurrencies[currency]
+    currencyObject = STRING_CURRENCIES[currency]
   }
   // Если валюта описана объектом
   if (typeof currency === 'object') {
@@ -22,5 +24,3 @@ const getCurrencyObject = (convertOptions?: ConvertOptions): CustomCurrency => {
   }
   return currencyObject
 }
-
-export default getCurrencyObject

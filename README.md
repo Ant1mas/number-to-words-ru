@@ -31,7 +31,7 @@
 
 # Демонстрация работы
 
-[Страница демонстрации работы модуля](https://ant1mas.github.io/number-to-words-ru/)
+[Страница демонстрации работы модуля](https://number-to-words-ru.ant1mas.dev/ru)
 
 # Возможности
 

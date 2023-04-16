@@ -1,6 +1,7 @@
-import { declensions, Declension } from 'src/units/declensions'
-import OptionCurrency from 'src/typeScript/types/OptionCurrency'
-import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
+import { DECLENSIONS } from 'src/units/declensions'
+import type { Declension } from 'src/units/declensions'
+import type { OptionCurrency } from 'src/typeScript/types/OptionCurrency'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 type numberParts = 'integer' | 'fractional'
 
@@ -14,40 +15,38 @@ type numberParts = 'integer' | 'fractional'
  * @param {Declension} declension - Падеж.
  * @return {string} Валюта в виде текста ("рубля", "рублей", "копеек" и т.д.).
  */
-const getCurrencyWord = (
+export default function getCurrencyWord(
   currencyObject: CustomCurrency,
   numberPart: numberParts,
   unitNameForm: number,
   lastScaleIsZero: boolean,
   currency: OptionCurrency,
-  declension: Declension
-): string => {
+  declension: Declension,
+): string {
   const declensionsObject =
     numberPart === 'integer'
       ? currencyObject.currencyNameDeclensions
       : currencyObject.fractionalPartNameDeclensions
   let resultCurrencyWord =
-    declensionsObject[declension][unitNameForm === 0 ? 0 : 1]
+    declensionsObject?.[declension]?.[unitNameForm === 0 ? 0 : 1]
   // Если падеж "именительный" или "винительный" и множественное число
   if (
-    (declension === declensions.NOMINATIVE ||
-      declension === declensions.ACCUSATIVE) &&
+    (declension === DECLENSIONS.NOMINATIVE ||
+      declension === DECLENSIONS.ACCUSATIVE) &&
     unitNameForm >= 1
   ) {
     // Использовать родительный падеж.
     resultCurrencyWord =
-      declensionsObject[declensions.GENITIVE][unitNameForm === 1 ? 0 : 1]
+      declensionsObject?.[DECLENSIONS.GENITIVE]?.[unitNameForm === 1 ? 0 : 1]
     // Если валюта указана как "number"
     if (currency === 'number') {
-      resultCurrencyWord = declensionsObject[declensions.GENITIVE][1]
+      resultCurrencyWord = declensionsObject?.[DECLENSIONS.GENITIVE]?.[1]
     }
   }
   // Если последний класс числа равен "000"
   if (lastScaleIsZero === true) {
     // Всегда родительный падеж и множественное число
-    resultCurrencyWord = declensionsObject[declensions.GENITIVE][1]
+    resultCurrencyWord = declensionsObject?.[DECLENSIONS.GENITIVE]?.[1]
   }
-  return resultCurrencyWord
+  return resultCurrencyWord || ''
 }
-
-export default getCurrencyWord

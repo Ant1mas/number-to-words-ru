@@ -1,30 +1,30 @@
-import { declensions } from 'src/units/declensions'
-import { CurrencyStringValues } from 'src/typeScript/interfaces/CurrencyStringValues'
+import { DECLENSIONS } from 'src/units/declensions'
+import type { CurrencyStringValues } from 'src/typeScript/types/CurrencyStringValues'
 
-const defaultParams = {
+const DEFAULT_PARAMS = {
   fractionalPartMinLength: 2,
 }
 
-export const stringCurrencies: CurrencyStringValues = {
+export const STRING_CURRENCIES: CurrencyStringValues = {
   number: {
     fractionalPartMinLength: 0,
     currencyNameCases: ['целая', 'целых', 'целых'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['целая', ''],
-      [declensions.GENITIVE]: ['целой', 'целых'],
-      [declensions.DATIVE]: ['целой', 'целым'],
-      [declensions.ACCUSATIVE]: ['целую', 'целые'],
-      [declensions.INSTRUMENTAL]: ['целой', 'целыми'],
-      [declensions.PREPOSITIONAL]: ['целой', 'целых'],
+      [DECLENSIONS.NOMINATIVE]: ['целая', ''],
+      [DECLENSIONS.GENITIVE]: ['целой', 'целых'],
+      [DECLENSIONS.DATIVE]: ['целой', 'целым'],
+      [DECLENSIONS.ACCUSATIVE]: ['целую', 'целые'],
+      [DECLENSIONS.INSTRUMENTAL]: ['целой', 'целыми'],
+      [DECLENSIONS.PREPOSITIONAL]: ['целой', 'целых'],
     },
     fractionalPartNameCases: ['', '', ''],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['', ''],
-      [declensions.GENITIVE]: ['', ''],
-      [declensions.DATIVE]: ['', ''],
-      [declensions.ACCUSATIVE]: ['', ''],
-      [declensions.INSTRUMENTAL]: ['', ''],
-      [declensions.PREPOSITIONAL]: ['', ''],
+      [DECLENSIONS.NOMINATIVE]: ['', ''],
+      [DECLENSIONS.GENITIVE]: ['', ''],
+      [DECLENSIONS.DATIVE]: ['', ''],
+      [DECLENSIONS.ACCUSATIVE]: ['', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['', ''],
+      [DECLENSIONS.PREPOSITIONAL]: ['', ''],
     },
     currencyNounGender: {
       integer: 1,
@@ -32,24 +32,24 @@ export const stringCurrencies: CurrencyStringValues = {
     },
   },
   rub: {
-    ...defaultParams,
+    ...DEFAULT_PARAMS,
     currencyNameCases: ['рубль', 'рубля', 'рублей'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['рубль', ''],
-      [declensions.GENITIVE]: ['рубля', 'рублей'],
-      [declensions.DATIVE]: ['рублю', 'рублям'],
-      [declensions.ACCUSATIVE]: ['рубль', ''],
-      [declensions.INSTRUMENTAL]: ['рублём', 'рублями'],
-      [declensions.PREPOSITIONAL]: ['рубле', 'рублях'],
+      [DECLENSIONS.NOMINATIVE]: ['рубль', ''],
+      [DECLENSIONS.GENITIVE]: ['рубля', 'рублей'],
+      [DECLENSIONS.DATIVE]: ['рублю', 'рублям'],
+      [DECLENSIONS.ACCUSATIVE]: ['рубль', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['рублём', 'рублями'],
+      [DECLENSIONS.PREPOSITIONAL]: ['рубле', 'рублях'],
     },
     fractionalPartNameCases: ['копейка', 'копейки', 'копеек'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['копейка', ''],
-      [declensions.GENITIVE]: ['копейки', 'копеек'],
-      [declensions.DATIVE]: ['копейке', 'копейкам'],
-      [declensions.ACCUSATIVE]: ['копейку', ''],
-      [declensions.INSTRUMENTAL]: ['копейкой', 'копейками'],
-      [declensions.PREPOSITIONAL]: ['копейке', 'копейках'],
+      [DECLENSIONS.NOMINATIVE]: ['копейка', ''],
+      [DECLENSIONS.GENITIVE]: ['копейки', 'копеек'],
+      [DECLENSIONS.DATIVE]: ['копейке', 'копейкам'],
+      [DECLENSIONS.ACCUSATIVE]: ['копейку', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['копейкой', 'копейками'],
+      [DECLENSIONS.PREPOSITIONAL]: ['копейке', 'копейках'],
     },
     currencyNounGender: {
       integer: 0, // Мужской род
@@ -57,24 +57,24 @@ export const stringCurrencies: CurrencyStringValues = {
     },
   },
   usd: {
-    ...defaultParams,
+    ...DEFAULT_PARAMS,
     currencyNameCases: ['доллар', 'доллара', 'долларов'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['доллар', ''],
-      [declensions.GENITIVE]: ['доллара', 'долларов'],
-      [declensions.DATIVE]: ['доллару', 'долларам'],
-      [declensions.ACCUSATIVE]: ['доллар', ''],
-      [declensions.INSTRUMENTAL]: ['долларом', 'долларами'],
-      [declensions.PREPOSITIONAL]: ['долларе', 'долларах'],
+      [DECLENSIONS.NOMINATIVE]: ['доллар', ''],
+      [DECLENSIONS.GENITIVE]: ['доллара', 'долларов'],
+      [DECLENSIONS.DATIVE]: ['доллару', 'долларам'],
+      [DECLENSIONS.ACCUSATIVE]: ['доллар', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['долларом', 'долларами'],
+      [DECLENSIONS.PREPOSITIONAL]: ['долларе', 'долларах'],
     },
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['цент', ''],
-      [declensions.GENITIVE]: ['цента', 'центов'],
-      [declensions.DATIVE]: ['центу', 'центам'],
-      [declensions.ACCUSATIVE]: ['цент', ''],
-      [declensions.INSTRUMENTAL]: ['центом', 'центами'],
-      [declensions.PREPOSITIONAL]: ['центе', 'центах'],
+      [DECLENSIONS.NOMINATIVE]: ['цент', ''],
+      [DECLENSIONS.GENITIVE]: ['цента', 'центов'],
+      [DECLENSIONS.DATIVE]: ['центу', 'центам'],
+      [DECLENSIONS.ACCUSATIVE]: ['цент', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['центом', 'центами'],
+      [DECLENSIONS.PREPOSITIONAL]: ['центе', 'центах'],
     },
     currencyNounGender: {
       integer: 0,
@@ -82,24 +82,24 @@ export const stringCurrencies: CurrencyStringValues = {
     },
   },
   eur: {
-    ...defaultParams,
+    ...DEFAULT_PARAMS,
     currencyNameCases: ['евро', 'евро', 'евро'],
     currencyNameDeclensions: {
-      [declensions.NOMINATIVE]: ['евро', ''],
-      [declensions.GENITIVE]: ['евро', 'евро'],
-      [declensions.DATIVE]: ['евро', 'евро'],
-      [declensions.ACCUSATIVE]: ['евро', ''],
-      [declensions.INSTRUMENTAL]: ['евро', 'евро'],
-      [declensions.PREPOSITIONAL]: ['евро', 'евро'],
+      [DECLENSIONS.NOMINATIVE]: ['евро', ''],
+      [DECLENSIONS.GENITIVE]: ['евро', 'евро'],
+      [DECLENSIONS.DATIVE]: ['евро', 'евро'],
+      [DECLENSIONS.ACCUSATIVE]: ['евро', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['евро', 'евро'],
+      [DECLENSIONS.PREPOSITIONAL]: ['евро', 'евро'],
     },
     fractionalPartNameCases: ['цент', 'цента', 'центов'],
     fractionalPartNameDeclensions: {
-      [declensions.NOMINATIVE]: ['цент', ''],
-      [declensions.GENITIVE]: ['цента', 'центов'],
-      [declensions.DATIVE]: ['центу', 'центам'],
-      [declensions.ACCUSATIVE]: ['цент', ''],
-      [declensions.INSTRUMENTAL]: ['центом', 'центами'],
-      [declensions.PREPOSITIONAL]: ['центе', 'центах'],
+      [DECLENSIONS.NOMINATIVE]: ['цент', ''],
+      [DECLENSIONS.GENITIVE]: ['цента', 'центов'],
+      [DECLENSIONS.DATIVE]: ['центу', 'центам'],
+      [DECLENSIONS.ACCUSATIVE]: ['цент', ''],
+      [DECLENSIONS.INSTRUMENTAL]: ['центом', 'центами'],
+      [DECLENSIONS.PREPOSITIONAL]: ['центе', 'центах'],
     },
     currencyNounGender: {
       integer: 0,
@@ -107,5 +107,3 @@ export const stringCurrencies: CurrencyStringValues = {
     },
   },
 }
-
-export default stringCurrencies

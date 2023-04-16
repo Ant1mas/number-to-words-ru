@@ -1,9 +1,9 @@
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
-import declensions from 'src/units/declensions'
+import { DECLENSIONS } from 'src/units/declensions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
-const defaultOptions: ConvertOptions = {
+export const DEFAULT_OPTIONS: ConvertOptions = {
   currency: 'rub',
-  declension: declensions.NOMINATIVE,
+  declension: DECLENSIONS.NOMINATIVE,
   roundNumber: -1,
   convertMinusSignToWord: true,
   showNumberParts: {
@@ -19,5 +19,3 @@ const defaultOptions: ConvertOptions = {
     fractional: true,
   },
 }
-
-export default defaultOptions

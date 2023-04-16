@@ -3,7 +3,7 @@
  * @param {string | number} number - Число, которое нужно обработать.
  * @return {string[]} Обработанное число в виде ['-', '150', '/', '25'].
  */
-const splitNumberToArray = (number: string | number): string[] => {
+export default function splitNumberToArray(number: string | number): string[] {
   // Максимальная длинна целой части числа
   const maxIntegerPartLength = 306
   // Конвертировать в String
@@ -62,5 +62,3 @@ const splitNumberToArray = (number: string | number): string[] => {
   }
   return numberArray
 }
-
-export default splitNumberToArray

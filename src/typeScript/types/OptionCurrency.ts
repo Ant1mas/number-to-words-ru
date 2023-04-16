@@ -1,5 +1,3 @@
-import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
-type OptionCurrency = 'rub' | 'usd' | 'eur' | 'number' | CustomCurrency
-
-export default OptionCurrency
+export type OptionCurrency = 'rub' | 'usd' | 'eur' | 'number' | CustomCurrency

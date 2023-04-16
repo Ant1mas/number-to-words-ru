@@ -1,38 +1,40 @@
-import { declensions } from 'src/units/declensions'
+import { DECLENSIONS } from 'src/units/declensions'
+import type { DeclensionsData } from 'src/units/declensions'
 
-export const fractionalUnitsDeclensions = [
+export const FRACTIONAL_UNITS_DECLENSIONS = [
   {
-    [declensions.NOMINATIVE]: ['десятая', 'десятые'],
-    [declensions.GENITIVE]: ['десятой', 'десятых'],
-    [declensions.DATIVE]: ['десятой', 'десятым'],
-    [declensions.ACCUSATIVE]: ['десятую', 'десятых'],
-    [declensions.INSTRUMENTAL]: ['десятой', 'десятыми'],
-    [declensions.PREPOSITIONAL]: ['десятой', 'десятых'],
+    [DECLENSIONS.NOMINATIVE]: ['десятая', 'десятые'],
+    [DECLENSIONS.GENITIVE]: ['десятой', 'десятых'],
+    [DECLENSIONS.DATIVE]: ['десятой', 'десятым'],
+    [DECLENSIONS.ACCUSATIVE]: ['десятую', 'десятых'],
+    [DECLENSIONS.INSTRUMENTAL]: ['десятой', 'десятыми'],
+    [DECLENSIONS.PREPOSITIONAL]: ['десятой', 'десятых'],
   },
   {
-    [declensions.NOMINATIVE]: ['сотая', 'сотые'],
-    [declensions.GENITIVE]: ['сотой', 'сотых'],
-    [declensions.DATIVE]: ['сотой', 'сотым'],
-    [declensions.ACCUSATIVE]: ['сотую', 'сотых'],
-    [declensions.INSTRUMENTAL]: ['сотой', 'сотыми'],
-    [declensions.PREPOSITIONAL]: ['сотой', 'сотых'],
+    [DECLENSIONS.NOMINATIVE]: ['сотая', 'сотые'],
+    [DECLENSIONS.GENITIVE]: ['сотой', 'сотых'],
+    [DECLENSIONS.DATIVE]: ['сотой', 'сотым'],
+    [DECLENSIONS.ACCUSATIVE]: ['сотую', 'сотых'],
+    [DECLENSIONS.INSTRUMENTAL]: ['сотой', 'сотыми'],
+    [DECLENSIONS.PREPOSITIONAL]: ['сотой', 'сотых'],
   },
 ]
 
 // Массив корней для составления слова
-export const fractionalUnitsBases = [
+export const FRACTIONAL_UNITS_BASES = [
   'тысяч',
   // 'миллион',
   // 'миллиард',
   // ...
 ]
 
-export const fractionalUnitPrefixes = ['', 'десяти', 'сто']
-export const fractionalUnitEndings = {
-  [declensions.NOMINATIVE]: ['ная', 'ные'],
-  [declensions.GENITIVE]: ['ной', 'ных'],
-  [declensions.DATIVE]: ['ной', 'ным'],
-  [declensions.ACCUSATIVE]: ['ную', 'ные'],
-  [declensions.INSTRUMENTAL]: ['ной', 'ными'],
-  [declensions.PREPOSITIONAL]: ['ной', 'ных'],
+export const FRACTIONAL_UNIT_PREFIXES = ['', 'десяти', 'сто']
+
+export const FRACTIONAL_UNIT_ENDINGS: DeclensionsData = {
+  [DECLENSIONS.NOMINATIVE]: ['ная', 'ные'],
+  [DECLENSIONS.GENITIVE]: ['ной', 'ных'],
+  [DECLENSIONS.DATIVE]: ['ной', 'ным'],
+  [DECLENSIONS.ACCUSATIVE]: ['ную', 'ные'],
+  [DECLENSIONS.INSTRUMENTAL]: ['ной', 'ными'],
+  [DECLENSIONS.PREPOSITIONAL]: ['ной', 'ных'],
 }

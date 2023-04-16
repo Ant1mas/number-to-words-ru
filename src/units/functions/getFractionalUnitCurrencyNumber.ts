@@ -1,13 +1,15 @@
 import set from 'lodash/set'
+
 import {
-  fractionalUnitsDeclensions,
-  fractionalUnitsBases,
-  fractionalUnitPrefixes,
-  fractionalUnitEndings,
+  FRACTIONAL_UNITS_DECLENSIONS,
+  FRACTIONAL_UNITS_BASES,
+  FRACTIONAL_UNIT_PREFIXES,
+  FRACTIONAL_UNIT_ENDINGS,
 } from 'src/units/fractionalCurrencyNumber'
-import unitNames from 'src/units/unitNames'
-import { declensions, Declension } from 'src/units/declensions'
+import { UNIT_NAMES } from 'src/units/unitNames'
+import { DECLENSIONS } from 'src/units/declensions'
 import selectDataByDeclension from 'src/functions/selectDataByDeclension'
+import type { Declension } from 'src/units/declensions'
 
 /**
  * Получить единицу измерения дробной части в виде слова.
@@ -18,20 +20,20 @@ import selectDataByDeclension from 'src/functions/selectDataByDeclension'
  * @param {number} unitNameForm - Форма валюты (0 | 1 | 2).
  * @return {string} Единица измерения дробной части числа. ('десятая', 'стотысячных', 'десятимиллионная' и т.д.).
  */
-const getFractionalUnitCurrencyNumber = (
+export default function getFractionalUnitCurrencyNumber(
   index: number,
   digitToConvert: number,
   declension: Declension = 'nominative',
-  unitNameForm: number = 0
-): string => {
+  unitNameForm: number = 0,
+): string {
   if (index < 0) {
     index = 0
   }
   let result = ''
   let unitDeclensionsObject: any = {}
   // Если такой разряд есть в массиве, то просто взять его объект падежей как есть
-  if (index <= fractionalUnitsDeclensions.length - 1) {
-    unitDeclensionsObject = fractionalUnitsDeclensions[index]
+  if (index <= FRACTIONAL_UNITS_DECLENSIONS.length - 1) {
+    unitDeclensionsObject = FRACTIONAL_UNITS_DECLENSIONS[index]
     // Если такого разряда нет в массиве, то сгенерировать его объект падежей
   } else {
     // Определить класс числа
@@ -42,19 +44,20 @@ const getFractionalUnitCurrencyNumber = (
     const digitIndexInScale = index - numberScale * 3 + 1
     // Получить корень названия класса числа
     const unitNameBase =
-      numberScale <= fractionalUnitsBases.length
-        ? fractionalUnitsBases[numberScale - 1]
-        : unitNames[numberScale - 2]
+      numberScale <= FRACTIONAL_UNITS_BASES.length
+        ? FRACTIONAL_UNITS_BASES[numberScale - 1]
+        : UNIT_NAMES[numberScale - 2]
     // Получить приставку к числу
-    const unitNamePrefix = fractionalUnitPrefixes[digitIndexInScale]
+    const unitNamePrefix = FRACTIONAL_UNIT_PREFIXES[digitIndexInScale]
     // Составить объект с падежами
-    Object.keys(fractionalUnitEndings).forEach((key) => {
-      const declensionEndings = fractionalUnitEndings[key]
-      declensionEndings.forEach((ending, index) => {
+    Object.keys(FRACTIONAL_UNIT_ENDINGS).forEach((declension) => {
+      // @ts-expect-error
+      const declensionEndings = FRACTIONAL_UNIT_ENDINGS[declension]
+      declensionEndings.forEach((ending: string, index: number) => {
         set(
           unitDeclensionsObject,
-          [key, index],
-          `${unitNamePrefix}${unitNameBase}${ending}`
+          [declension, index],
+          `${unitNamePrefix}${unitNameBase}${ending}`,
         )
       })
     })
@@ -63,14 +66,12 @@ const getFractionalUnitCurrencyNumber = (
   result = selectDataByDeclension(
     unitDeclensionsObject,
     declension,
-    unitNameForm === 0 ? false : true
+    unitNameForm === 0 ? false : true,
   )
   // Если цифра для конвертирования === 0
   if (digitToConvert === 0) {
     // Использовать родительный падеж.
-    result = unitDeclensionsObject[declensions.GENITIVE][1]
+    result = unitDeclensionsObject[DECLENSIONS.GENITIVE]?.[1]
   }
   return result
 }
-
-export default getFractionalUnitCurrencyNumber

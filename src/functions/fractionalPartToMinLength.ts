@@ -1,4 +1,4 @@
-import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
+import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
 /**
  * Сделать так, чтобы у дробной части числа
@@ -7,16 +7,16 @@ import CustomCurrency from 'src/typeScript/interfaces/CustomCurrency'
  * @param {object} currencyObject - Объект с параметрами валюты.
  * @return {string[]} Обновленный массив числа.
  */
-const fractionalPartToMinLength = (
+export default function fractionalPartToMinLength(
   numberArray: string[],
-  currencyObject: CustomCurrency
-): string[] => {
+  currencyObject: CustomCurrency,
+): string[] {
   // Если разделитель - дробная черта
   if (numberArray[2] === '/') {
     return numberArray
   }
   const updatedNumberArray = [...numberArray]
-  const fractionalPartMinLength = currencyObject.fractionalPartMinLength
+  const fractionalPartMinLength = currencyObject.fractionalPartMinLength || 0
   // Если в дробной части цифр меньше, чем fractionalPartMinLength
   if (updatedNumberArray[3].length < fractionalPartMinLength) {
     // Заполнить нулями
@@ -26,5 +26,3 @@ const fractionalPartToMinLength = (
   }
   return updatedNumberArray
 }
-
-export default fractionalPartToMinLength

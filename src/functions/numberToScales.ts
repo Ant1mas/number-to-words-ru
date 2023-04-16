@@ -3,7 +3,7 @@
  * @param {string} number - Число, которое нужно разделить.
  * @return {string[]} Разделенное число, например ['009', '876', '543', ...].
  */
-const numberToScales = (number: string): string[] => {
+export default function numberToScales(number: string): string[] {
   // Сделать количество цифр числа кратным 3
   const numberLength = number.length
   const numberScales = Math.ceil(numberLength / 3)
@@ -19,5 +19,3 @@ const numberToScales = (number: string): string[] => {
   }
   return cutNumber
 }
-
-export default numberToScales

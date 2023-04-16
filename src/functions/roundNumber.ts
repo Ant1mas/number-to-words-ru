@@ -6,7 +6,10 @@ import replaceAt from 'src/functions/replaceAt'
  * @param {number} precision - Точность. Сколько знаков после запятой.
  * @return {string[]} Округленное число в виде массива.
  */
-const roundNumber = (numberArray: string[], precision = 2): string[] => {
+export default function roundNumber(
+  numberArray: string[],
+  precision = 2,
+): string[] {
   // Если разделитель - дробная черта то не округлять
   if (numberArray[2] === '/') {
     return numberArray
@@ -43,7 +46,7 @@ const roundNumber = (numberArray: string[], precision = 2): string[] => {
             numberPartToRound = replaceAt(
               numberPartToRound,
               index,
-              currentDigit + 1
+              currentDigit + 1,
             )
             increaseDigit = false
             break
@@ -79,5 +82,3 @@ const roundNumber = (numberArray: string[], precision = 2): string[] => {
   }
   return resultNumberArray
 }
-
-export default roundNumber

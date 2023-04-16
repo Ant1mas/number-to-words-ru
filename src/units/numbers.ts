@@ -1,5 +1,5 @@
-import genders from 'src/units/genders'
-import { declensions } from 'src/units/declensions'
+import { GENDERS } from 'src/units/genders'
+import { DECLENSIONS } from 'src/units/declensions'
 
 type DeclensionNumbers =
   | string
@@ -7,7 +7,7 @@ type DeclensionNumbers =
       [key: string]: string
     }
 
-export interface DeclensionNumbersArray {
+export type DeclensionNumbersArray = {
   [key: string]: [
     DeclensionNumbers,
     DeclensionNumbers,
@@ -18,33 +18,32 @@ export interface DeclensionNumbersArray {
     DeclensionNumbers,
     DeclensionNumbers,
     DeclensionNumbers,
-    DeclensionNumbers
+    DeclensionNumbers,
   ]
 }
 
-interface Numbers {
+type Numbers = {
   numbers: DeclensionNumbersArray
   tenToNineteen: DeclensionNumbersArray
   tens: DeclensionNumbersArray
   hundreds: DeclensionNumbersArray
 }
 
-export const minus = 'минус'
+export const MINUS = 'минус'
 
-// Правила взяты отсюда http://www.fio.ru/pravila/grammatika/sklonenie-imen-chislitelnykh/
-export const numbers: Numbers = {
+export const NUMBERS: Numbers = {
   numbers: {
-    [declensions.NOMINATIVE]: [
+    [DECLENSIONS.NOMINATIVE]: [
       'ноль',
       {
-        [genders.MALE]: 'один',
-        [genders.NEUTER]: 'одно',
-        [genders.FEMALE]: 'одна',
+        [GENDERS.MALE]: 'один',
+        [GENDERS.NEUTER]: 'одно',
+        [GENDERS.FEMALE]: 'одна',
       },
       {
-        [genders.MALE]: 'два',
-        [genders.NEUTER]: 'два',
-        [genders.FEMALE]: 'две',
+        [GENDERS.MALE]: 'два',
+        [GENDERS.NEUTER]: 'два',
+        [GENDERS.FEMALE]: 'две',
       },
       'три',
       'четыре',
@@ -54,12 +53,12 @@ export const numbers: Numbers = {
       'восемь',
       'девять',
     ],
-    [declensions.GENITIVE]: [
+    [DECLENSIONS.GENITIVE]: [
       'ноля',
       {
-        [genders.MALE]: 'одного',
-        [genders.NEUTER]: 'одного',
-        [genders.FEMALE]: 'одной',
+        [GENDERS.MALE]: 'одного',
+        [GENDERS.NEUTER]: 'одного',
+        [GENDERS.FEMALE]: 'одной',
       },
       'двух',
       'трёх',
@@ -70,12 +69,12 @@ export const numbers: Numbers = {
       'восьми',
       'девяти',
     ],
-    [declensions.DATIVE]: [
+    [DECLENSIONS.DATIVE]: [
       'нолю',
       {
-        [genders.MALE]: 'одному',
-        [genders.NEUTER]: 'одному',
-        [genders.FEMALE]: 'одной',
+        [GENDERS.MALE]: 'одному',
+        [GENDERS.NEUTER]: 'одному',
+        [GENDERS.FEMALE]: 'одной',
       },
       'двум',
       'трём',
@@ -86,17 +85,17 @@ export const numbers: Numbers = {
       'восьми',
       'девяти',
     ],
-    [declensions.ACCUSATIVE]: [
+    [DECLENSIONS.ACCUSATIVE]: [
       'ноль',
       {
-        [genders.MALE]: 'один',
-        [genders.NEUTER]: 'одно',
-        [genders.FEMALE]: 'одну',
+        [GENDERS.MALE]: 'один',
+        [GENDERS.NEUTER]: 'одно',
+        [GENDERS.FEMALE]: 'одну',
       },
       {
-        [genders.MALE]: 'два',
-        [genders.NEUTER]: 'два',
-        [genders.FEMALE]: 'две',
+        [GENDERS.MALE]: 'два',
+        [GENDERS.NEUTER]: 'два',
+        [GENDERS.FEMALE]: 'две',
       },
       'три',
       'четыре',
@@ -106,12 +105,12 @@ export const numbers: Numbers = {
       'восемь',
       'девять',
     ],
-    [declensions.INSTRUMENTAL]: [
+    [DECLENSIONS.INSTRUMENTAL]: [
       'нолём',
       {
-        [genders.MALE]: 'одним',
-        [genders.NEUTER]: 'одним',
-        [genders.FEMALE]: 'одной',
+        [GENDERS.MALE]: 'одним',
+        [GENDERS.NEUTER]: 'одним',
+        [GENDERS.FEMALE]: 'одной',
       },
       'двумя',
       'тремя',
@@ -122,12 +121,12 @@ export const numbers: Numbers = {
       'восемью',
       'девятью',
     ],
-    [declensions.PREPOSITIONAL]: [
+    [DECLENSIONS.PREPOSITIONAL]: [
       'ноле',
       {
-        [genders.MALE]: 'одном',
-        [genders.NEUTER]: 'одном',
-        [genders.FEMALE]: 'одной',
+        [GENDERS.MALE]: 'одном',
+        [GENDERS.NEUTER]: 'одном',
+        [GENDERS.FEMALE]: 'одной',
       },
       'двух',
       'трёх',
@@ -140,7 +139,7 @@ export const numbers: Numbers = {
     ],
   },
   tenToNineteen: {
-    [declensions.NOMINATIVE]: [
+    [DECLENSIONS.NOMINATIVE]: [
       'десять',
       'одиннадцать',
       'двенадцать',
@@ -152,7 +151,7 @@ export const numbers: Numbers = {
       'восемнадцать',
       'девятнадцать',
     ],
-    [declensions.GENITIVE]: [
+    [DECLENSIONS.GENITIVE]: [
       'десяти',
       'одиннадцати',
       'двенадцати',
@@ -164,7 +163,7 @@ export const numbers: Numbers = {
       'восемнадцати',
       'девятнадцати',
     ],
-    [declensions.DATIVE]: [
+    [DECLENSIONS.DATIVE]: [
       'десяти',
       'одиннадцати',
       'двенадцати',
@@ -176,7 +175,7 @@ export const numbers: Numbers = {
       'восемнадцати',
       'девятнадцати',
     ],
-    [declensions.ACCUSATIVE]: [
+    [DECLENSIONS.ACCUSATIVE]: [
       'десять',
       'одиннадцать',
       'двенадцать',
@@ -188,7 +187,7 @@ export const numbers: Numbers = {
       'восемнадцать',
       'девятнадцать',
     ],
-    [declensions.INSTRUMENTAL]: [
+    [DECLENSIONS.INSTRUMENTAL]: [
       'десятью',
       'одиннадцатью',
       'двенадцатью',
@@ -200,7 +199,7 @@ export const numbers: Numbers = {
       'восемнадцатью',
       'девятнадцатью',
     ],
-    [declensions.PREPOSITIONAL]: [
+    [DECLENSIONS.PREPOSITIONAL]: [
       'десяти',
       'одиннадцати',
       'двенадцати',
@@ -214,7 +213,7 @@ export const numbers: Numbers = {
     ],
   },
   tens: {
-    [declensions.NOMINATIVE]: [
+    [DECLENSIONS.NOMINATIVE]: [
       '',
       '',
       'двадцать',
@@ -226,7 +225,7 @@ export const numbers: Numbers = {
       'восемьдесят',
       'девяносто',
     ],
-    [declensions.GENITIVE]: [
+    [DECLENSIONS.GENITIVE]: [
       '',
       '',
       'двадцати',
@@ -238,7 +237,7 @@ export const numbers: Numbers = {
       'восьмидесяти',
       'девяноста',
     ],
-    [declensions.DATIVE]: [
+    [DECLENSIONS.DATIVE]: [
       '',
       '',
       'двадцати',
@@ -250,7 +249,7 @@ export const numbers: Numbers = {
       'восьмидесяти',
       'девяноста',
     ],
-    [declensions.ACCUSATIVE]: [
+    [DECLENSIONS.ACCUSATIVE]: [
       '',
       '',
       'двадцать',
@@ -262,7 +261,7 @@ export const numbers: Numbers = {
       'восемьдесят',
       'девяносто',
     ],
-    [declensions.INSTRUMENTAL]: [
+    [DECLENSIONS.INSTRUMENTAL]: [
       '',
       '',
       'двадцатью',
@@ -274,7 +273,7 @@ export const numbers: Numbers = {
       'восемьюдесятью',
       'девяноста',
     ],
-    [declensions.PREPOSITIONAL]: [
+    [DECLENSIONS.PREPOSITIONAL]: [
       '',
       '',
       'двадцати',
@@ -288,7 +287,7 @@ export const numbers: Numbers = {
     ],
   },
   hundreds: {
-    [declensions.NOMINATIVE]: [
+    [DECLENSIONS.NOMINATIVE]: [
       '',
       'сто',
       'двести',
@@ -300,7 +299,7 @@ export const numbers: Numbers = {
       'восемьсот',
       'девятьсот',
     ],
-    [declensions.GENITIVE]: [
+    [DECLENSIONS.GENITIVE]: [
       '',
       'ста',
       'двухсот',
@@ -312,7 +311,7 @@ export const numbers: Numbers = {
       'восьмисот',
       'девятисот',
     ],
-    [declensions.DATIVE]: [
+    [DECLENSIONS.DATIVE]: [
       '',
       'ста',
       'двумстам',
@@ -324,7 +323,7 @@ export const numbers: Numbers = {
       'восьмистам',
       'девятистам',
     ],
-    [declensions.ACCUSATIVE]: [
+    [DECLENSIONS.ACCUSATIVE]: [
       '',
       'сто',
       'двести',
@@ -336,7 +335,7 @@ export const numbers: Numbers = {
       'восемьсот',
       'девятьсот',
     ],
-    [declensions.INSTRUMENTAL]: [
+    [DECLENSIONS.INSTRUMENTAL]: [
       '',
       'ста',
       'двумястами',
@@ -348,7 +347,7 @@ export const numbers: Numbers = {
       'восемьюстами',
       'девятьюстами',
     ],
-    [declensions.PREPOSITIONAL]: [
+    [DECLENSIONS.PREPOSITIONAL]: [
       '',
       'ста',
       'двухстах',
@@ -362,5 +361,3 @@ export const numbers: Numbers = {
     ],
   },
 }
-
-export default numbers

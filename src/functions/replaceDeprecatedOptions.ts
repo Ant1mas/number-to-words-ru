@@ -1,13 +1,13 @@
 import cloneDeep from 'lodash/cloneDeep'
 
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Заменить устаревшие переменные на новые.
  * @param {object} options - Параметры конвертирования.
  * @return {object} Обновленный объект параметров конвертирования.
  */
-const replaceDeprecatedOptions = (options: ConvertOptions = {}) => {
+export default function replaceDeprecatedOptions(options: ConvertOptions = {}) {
   let resultOptions = cloneDeep(options)
   if (!resultOptions.convertNumberToWords) {
     if (resultOptions.convertNumbertToWords) {
@@ -17,5 +17,3 @@ const replaceDeprecatedOptions = (options: ConvertOptions = {}) => {
   delete resultOptions.convertNumbertToWords
   return resultOptions
 }
-
-export default replaceDeprecatedOptions

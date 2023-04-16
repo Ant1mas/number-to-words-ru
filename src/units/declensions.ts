@@ -10,11 +10,16 @@ export type DeclensionsData = {
   [key in Declension]?: [string, string]
 }
 
-export interface Declensions {
-  [key: string]: Declension
+export type Declensions = {
+  NOMINATIVE: 'nominative'
+  GENITIVE: 'genitive'
+  DATIVE: 'dative'
+  ACCUSATIVE: 'accusative'
+  INSTRUMENTAL: 'instrumental'
+  PREPOSITIONAL: 'prepositional'
 }
 
-export const declensions: Declensions = {
+export const DECLENSIONS: Declensions = {
   NOMINATIVE: 'nominative', // именительный
   GENITIVE: 'genitive', // родительный
   DATIVE: 'dative', // дательный
@@ -22,5 +27,3 @@ export const declensions: Declensions = {
   INSTRUMENTAL: 'instrumental', // творительный
   PREPOSITIONAL: 'prepositional', // предложный
 }
-
-export default declensions

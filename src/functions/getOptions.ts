@@ -1,19 +1,22 @@
 import get from 'lodash/get'
 import has from 'lodash/has'
+
+import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import replaceDeprecatedOptions from 'src/functions/replaceDeprecatedOptions'
 import _deepMapValues from 'src/lodashFunctions/deepMapValues'
-import defaultOptions from 'src/defaultOptions'
-import ConvertOptions from 'src/typeScript/interfaces/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 /**
  * Получить опции конвертирования.
  * @param {object} options - Опции, выбранные пользователем.
  * @return {ConvertOptions} Опции конвертирования.
  */
-const getOptions = (options: ConvertOptions = {}): ConvertOptions => {
+export default function getOptions(
+  options: ConvertOptions = {},
+): ConvertOptions {
   const updatedOptions = replaceDeprecatedOptions(options)
   const resultOptions: ConvertOptions = _deepMapValues(
-    defaultOptions,
+    DEFAULT_OPTIONS,
     (path: string[], key: string, value: string) => {
       // Если есть обновления для этой опции
       if (has(updatedOptions, [...path, key])) {
@@ -22,9 +25,7 @@ const getOptions = (options: ConvertOptions = {}): ConvertOptions => {
       } else {
         return value
       }
-    }
+    },
   )
   return resultOptions
 }
-
-export default getOptions

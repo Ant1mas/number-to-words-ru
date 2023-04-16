@@ -1,4 +1,4 @@
-export const unitNames = [
+export const UNIT_NAMES = [
   'миллион',
   'миллиард',
   'триллион',
@@ -100,5 +100,3 @@ export const unitNames = [
   'новемнонагинтиллион', // 10^300
   'центиллион', // 10^303
 ]
-
-export default unitNames
