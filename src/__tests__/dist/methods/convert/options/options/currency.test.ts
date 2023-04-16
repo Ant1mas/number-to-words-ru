@@ -1,50 +1,50 @@
-const root = '../../../../../';
-const convertNumberToWords = require(`${root}dist/bundle`).convert;
+//@ts-expect-error
+import { convert as convertNumberToWordsRu } from 'dist/index.umd.cjs'
 
 describe('currency', () => {
   describe('string values', () => {
     test(`'rub'`, () => {
-      expect(convertNumberToWords('1234567.12345', {
+      expect(convertNumberToWordsRu('1234567.12345', {
         currency: 'rub',
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12 копеек');
     });
     test(`'usd'`, () => {
-      expect(convertNumberToWords('1234567.12345', {
+      expect(convertNumberToWordsRu('1234567.12345', {
         currency: 'usd',
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12 центов');
     });
     test(`'eur'`, () => {
-      expect(convertNumberToWords('1234567.12345', {
+      expect(convertNumberToWordsRu('1234567.12345', {
         currency: 'eur',
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь евро 12 центов');
     });
     test(`'number'`, () => {
-      expect(convertNumberToWords('1234567.12345', {
+      expect(convertNumberToWordsRu('1234567.12345', {
         currency: 'number',
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь целых 12345 стотысячных');
-      expect(convertNumberToWords('1.8000', {
+      expect(convertNumberToWordsRu('1.8000', {
         currency: 'number',
       }))
         .toBe('Одна целая 8 десятых');
-      expect(convertNumberToWords('1234567.12345', {
+      expect(convertNumberToWordsRu('1234567.12345', {
         currency: 'number',
         convertNumberToWords: {
           fractional: true,
         },
       }))
         .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь целых двенадцать тысяч триста сорок пять стотысячных');
-      expect(convertNumberToWords('1.8000', {
+      expect(convertNumberToWordsRu('1.8000', {
         currency: 'number',
         convertNumberToWords: {
           fractional: true,
         },
       }))
         .toBe('Одна целая восемь десятых');
-      expect(convertNumberToWords('1.00000', {
+      expect(convertNumberToWordsRu('1.00000', {
         currency: 'number',
         convertNumberToWords: {
           fractional: true,
@@ -54,7 +54,7 @@ describe('currency', () => {
     });
   });
   describe('object values', () => {
-    expect(convertNumberToWords('1234567.12345', {
+    expect(convertNumberToWordsRu('1234567.12345', {
       currency: {
         currencyNameCases: ['доллар', 'доллара', 'долларов'],
         fractionalPartNameCases: ['цент', 'цента', 'центов'],
@@ -65,7 +65,7 @@ describe('currency', () => {
       },
     }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12345 центов');
-    expect(convertNumberToWords('1.6789', {
+    expect(convertNumberToWordsRu('1.6789', {
       currency: {
         currencyNameCases: ['доллар', 'доллара', 'долларов'],
         fractionalPartNameCases: ['цент', 'цента', 'центов'],
@@ -74,7 +74,7 @@ describe('currency', () => {
       roundNumber: 0,
     }))
       .toBe('Два доллара 0 центов');
-    expect(convertNumberToWords('1.6789', {
+    expect(convertNumberToWordsRu('1.6789', {
       currency: {
         currencyNameCases: ['доллар', 'доллара', 'долларов'],
         fractionalPartNameCases: ['цент', 'цента', 'центов'],
@@ -84,7 +84,7 @@ describe('currency', () => {
     }))
       .toBe('Два доллара');
     test('Средний род (currencyNounGender == 2)', () => {
-      expect(convertNumberToWords('1231.52', {
+      expect(convertNumberToWordsRu('1231.52', {
         currency: {
           currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
           fractionalPartNameCases: ['яблоко', 'яблока', 'яблок'],
@@ -96,7 +96,7 @@ describe('currency', () => {
       }))
         .toBe('Одна тысяча двести тридцать одно сообщение 52 яблока');
     });
-    expect(convertNumberToWords('1234561.12345', {
+    expect(convertNumberToWordsRu('1234561.12345', {
       currency: {
         currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
         currencyNounGender: {
@@ -105,7 +105,7 @@ describe('currency', () => {
       },
     }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят одно сообщение 12345 копеек');
-    expect(convertNumberToWords('1234567.12345', {
+    expect(convertNumberToWordsRu('1234567.12345', {
       currency: {},
     }))
       .toBe('Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12345 копеек');

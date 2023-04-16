@@ -1,8 +1,8 @@
-const root = '../../../../../';
-const convertNumberToWords = require(`${root}dist/bundle`).convert;
+//@ts-expect-error
+import { convert as convertNumberToWordsRu } from 'dist/index.umd.cjs'
 
 test('combined options', () => {
-  expect(convertNumberToWords('1234567.12345', {
+  expect(convertNumberToWordsRu('1234567.12345', {
     showNumberParts: {
       integer: false,
     },
@@ -13,7 +13,7 @@ test('combined options', () => {
       fractional: false,
     },
   })).toBe('Двенадцать');
-  expect(convertNumberToWords('1234567.12345', {
+  expect(convertNumberToWordsRu('1234567.12345', {
     currency: 'number',
     showNumberParts: {
       fractional: false,
