@@ -1,4 +1,5 @@
 import { DECLENSIONS } from 'src/units/declensions'
+import type { DeclensionsData } from 'src/units/declensions'
 
 export const FRACTIONAL_UNITS_DECLENSIONS = [
   {
@@ -29,7 +30,7 @@ export const FRACTIONAL_UNITS_BASES = [
 
 export const FRACTIONAL_UNIT_PREFIXES = ['', 'десяти', 'сто']
 
-export const FRACTIONAL_UNIT_ENDINGS = {
+export const FRACTIONAL_UNIT_ENDINGS: DeclensionsData = {
   [DECLENSIONS.NOMINATIVE]: ['ная', 'ные'],
   [DECLENSIONS.GENITIVE]: ['ной', 'ных'],
   [DECLENSIONS.DATIVE]: ['ной', 'ным'],

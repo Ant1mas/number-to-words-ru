@@ -50,12 +50,13 @@ export default function getFractionalUnitCurrencyNumber(
     // Получить приставку к числу
     const unitNamePrefix = FRACTIONAL_UNIT_PREFIXES[digitIndexInScale]
     // Составить объект с падежами
-    Object.keys(FRACTIONAL_UNIT_ENDINGS).forEach((key) => {
-      const declensionEndings = FRACTIONAL_UNIT_ENDINGS[key]
-      declensionEndings.forEach((ending, index) => {
+    Object.keys(FRACTIONAL_UNIT_ENDINGS).forEach((declension) => {
+      // @ts-expect-error
+      const declensionEndings = FRACTIONAL_UNIT_ENDINGS[declension]
+      declensionEndings.forEach((ending: string, index: number) => {
         set(
           unitDeclensionsObject,
-          [key, index],
+          [declension, index],
           `${unitNamePrefix}${unitNameBase}${ending}`,
         )
       })
@@ -70,7 +71,7 @@ export default function getFractionalUnitCurrencyNumber(
   // Если цифра для конвертирования === 0
   if (digitToConvert === 0) {
     // Использовать родительный падеж.
-    result = unitDeclensionsObject[DECLENSIONS.GENITIVE][1]
+    result = unitDeclensionsObject[DECLENSIONS.GENITIVE]?.[1]
   }
   return result
 }

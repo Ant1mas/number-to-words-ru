@@ -16,7 +16,7 @@ export default function fractionalPartToMinLength(
     return numberArray
   }
   const updatedNumberArray = [...numberArray]
-  const fractionalPartMinLength = currencyObject.fractionalPartMinLength
+  const fractionalPartMinLength = currencyObject.fractionalPartMinLength || 0
   // Если в дробной части цифр меньше, чем fractionalPartMinLength
   if (updatedNumberArray[3].length < fractionalPartMinLength) {
     // Заполнить нулями

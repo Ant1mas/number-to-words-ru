@@ -2,7 +2,7 @@ import { DECLENSIONS } from 'src/units/declensions'
 import { UNIT_NAMES } from 'src/units/unitNames'
 import type { Declension } from 'src/units/declensions'
 
-const integerWordEndings = {
+const INTEGER_WORD_ENDINGS = {
   [DECLENSIONS.NOMINATIVE]: ['', 'ы'],
   [DECLENSIONS.GENITIVE]: ['а', 'ов'],
   [DECLENSIONS.DATIVE]: ['у', 'ам'],
@@ -12,10 +12,10 @@ const integerWordEndings = {
 }
 
 type UnitName = {
-  [key in Declension]?: [string, string]
+  [key in Declension]: [string, string]
 }
 
-let thousandNames: UnitName = {
+const THOUSAND_NAMES: UnitName = {
   [DECLENSIONS.NOMINATIVE]: ['тысяча', 'тысячи'],
   [DECLENSIONS.GENITIVE]: ['тысячи', 'тысяч'],
   [DECLENSIONS.DATIVE]: ['тысяче', 'тысячам'],
@@ -54,10 +54,10 @@ export default function getNumberScaleName(
     return ''
   } else if (scale === 1) {
     // Класс тысяч
-    return thousandNames[scaleDeclension][scalePlural]
+    return THOUSAND_NAMES[scaleDeclension][scalePlural]
   }
   // Класс миллионов и так далее
-  const ending = integerWordEndings[scaleDeclension][scalePlural]
+  const ending = INTEGER_WORD_ENDINGS[scaleDeclension][scalePlural]
   const base = UNIT_NAMES[scale - 2]
   return base + ending
 }

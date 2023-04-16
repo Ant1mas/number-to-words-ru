@@ -10,9 +10,9 @@ import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
  * @return {CustomCurrency} Данные валюты.
  */
 export default function getCurrencyObject(
-  convertOptions?: ConvertOptions,
+  convertOptions: ConvertOptions = {},
 ): CustomCurrency {
-  let currencyObject: CustomCurrency
+  let currencyObject: CustomCurrency = {}
   const currency = convertOptions?.currency || DEFAULT_OPTIONS.currency
   // Если валюта указана словами
   if (typeof currency === 'string') {

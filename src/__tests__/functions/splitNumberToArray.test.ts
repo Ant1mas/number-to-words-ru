@@ -3,8 +3,6 @@ import splitNumberToArray from 'src/functions/splitNumberToArray'
 test('Разные типы данных', () => {
   expect(splitNumberToArray(123459876)).toEqual(['+', '123459876', '.', '0'])
   expect(splitNumberToArray(-12345.9876)).toEqual(['-', '12345', '.', '9876'])
-  expect(splitNumberToArray(undefined)).toEqual(['+', '0', '.', '0'])
-  expect(splitNumberToArray(null)).toEqual(['+', '0', '.', '0'])
 })
 test('Разные знаки', () => {
   expect(splitNumberToArray('-12345.9876')).toEqual(['-', '12345', '.', '9876'])

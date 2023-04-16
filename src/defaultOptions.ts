@@ -1,5 +1,5 @@
 import { DECLENSIONS } from 'src/units/declensions'
-import type { ConvertOptions } from '@/src/typeScript/types/ConvertOptions'
+import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 
 export const DEFAULT_OPTIONS: ConvertOptions = {
   currency: 'rub',

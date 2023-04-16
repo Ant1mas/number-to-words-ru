@@ -28,7 +28,7 @@ export default function getCurrencyWord(
       ? currencyObject.currencyNameDeclensions
       : currencyObject.fractionalPartNameDeclensions
   let resultCurrencyWord =
-    declensionsObject[declension][unitNameForm === 0 ? 0 : 1]
+    declensionsObject?.[declension]?.[unitNameForm === 0 ? 0 : 1]
   // Если падеж "именительный" или "винительный" и множественное число
   if (
     (declension === DECLENSIONS.NOMINATIVE ||
@@ -37,16 +37,16 @@ export default function getCurrencyWord(
   ) {
     // Использовать родительный падеж.
     resultCurrencyWord =
-      declensionsObject[DECLENSIONS.GENITIVE][unitNameForm === 1 ? 0 : 1]
+      declensionsObject?.[DECLENSIONS.GENITIVE]?.[unitNameForm === 1 ? 0 : 1]
     // Если валюта указана как "number"
     if (currency === 'number') {
-      resultCurrencyWord = declensionsObject[DECLENSIONS.GENITIVE][1]
+      resultCurrencyWord = declensionsObject?.[DECLENSIONS.GENITIVE]?.[1]
     }
   }
   // Если последний класс числа равен "000"
   if (lastScaleIsZero === true) {
     // Всегда родительный падеж и множественное число
-    resultCurrencyWord = declensionsObject[DECLENSIONS.GENITIVE][1]
+    resultCurrencyWord = declensionsObject?.[DECLENSIONS.GENITIVE]?.[1]
   }
-  return resultCurrencyWord
+  return resultCurrencyWord || ''
 }

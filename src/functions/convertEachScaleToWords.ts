@@ -130,6 +130,7 @@ export default function convertEachScaleToWords(
       .trim()
     // Добавить текущий разобранный класс к общему результату
     convertedResult += ` ${scaleResult}`
+    return
   })
   // Вернуть полученный результат и форму падежа для валюты
   return {

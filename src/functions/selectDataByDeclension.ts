@@ -3,7 +3,7 @@ import type { Declension, DeclensionsData } from 'src/units/declensions'
 
 /**
  * Конвертировать в текст массив числа с разделителем "/".
- * @param {Declensions} declensionsObject - Объект с падежами.
+ * @param {DeclensionsData} declensionsObject - Объект с падежами.
  * @param {Declension} declension - Падеж.
  * @param {boolean} isPlural - Множественное ли число.
  * @return {string} Конвертированный результат (текст).
@@ -13,7 +13,7 @@ export default function selectDataByDeclension(
   declension: Declension,
   isPlural: boolean = false,
 ): string {
-  let result = declensionsObject[declension][isPlural ? 1 : 0]
+  let result = declensionsObject[declension]?.[isPlural ? 1 : 0]
   // Если падеж "именительный" или "винительный" и множественное число
   if (
     isPlural === true &&
@@ -21,7 +21,7 @@ export default function selectDataByDeclension(
       declension === DECLENSIONS.ACCUSATIVE)
   ) {
     // Использовать родительный падеж.
-    result = declensionsObject[declensions.GENITIVE][1]
+    result = declensionsObject[DECLENSIONS.GENITIVE]?.[1]
   }
-  return result
+  return result || ''
 }

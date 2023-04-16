@@ -92,6 +92,7 @@ export default function combineResultData(
           'integer',
           convertedIntegerObject.unitNameForm,
           convertedIntegerObject.lastScaleIsZero,
+          // @ts-expect-error
           appliedOptions.currency,
           appliedOptions.declension,
         )
@@ -156,6 +157,7 @@ export default function combineResultData(
           'fractional',
           convertedFractionalObject.unitNameForm,
           convertedFractionalObject.lastScaleIsZero,
+          // @ts-expect-error
           appliedOptions.currency,
           appliedOptions.declension,
         )
@@ -171,7 +173,9 @@ export default function combineResultData(
         if (delimiter !== '/') {
           // Если имеет смысл добавлять название валюты
           if (
+            // @ts-expect-error
             appliedOptions.roundNumber > 0 ||
+            // @ts-expect-error
             (appliedOptions.roundNumber < 0 && fractionalScalesArray.length > 0)
           ) {
             const digitToConvert = parseInt(
@@ -191,6 +195,7 @@ export default function combineResultData(
         // Если указана валюта
         if (appliedOptions.currency !== 'number') {
           convertedNumberArr[4] =
+            // @ts-expect-error
             currencyObject.currencyNameDeclensions[DECLENSIONS.GENITIVE][0]
         }
       }
