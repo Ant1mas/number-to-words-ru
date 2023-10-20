@@ -1,6 +1,5 @@
-import isPlainObject from 'lodash/isPlainObject'
-
 import forOwn from 'src/functions/forOwn'
+import isPlainObject from 'src/functions/isPlainObject'
 import set from 'src/functions/set'
 
 /**
