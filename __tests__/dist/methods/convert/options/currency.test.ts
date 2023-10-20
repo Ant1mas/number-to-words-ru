@@ -72,72 +72,76 @@ describe('currency', () => {
     })
   })
   describe('object values', () => {
-    expect(
-      convertNumberToWordsRu('1234567.12345', {
-        currency: {
-          currencyNameCases: ['доллар', 'доллара', 'долларов'],
-          fractionalPartNameCases: ['цент', 'цента', 'центов'],
-          currencyNounGender: {
-            integer: 0, // Мужской род
-            fractionalPart: 1, // Женский род
-          },
-        },
-      }),
-    ).toBe(
-      'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12345 центов',
-    )
-    expect(
-      convertNumberToWordsRu('1.6789', {
-        currency: {
-          currencyNameCases: ['доллар', 'доллара', 'долларов'],
-          fractionalPartNameCases: ['цент', 'цента', 'центов'],
-          fractionalPartMinLength: 1,
-        },
-        roundNumber: 0,
-      }),
-    ).toBe('Два доллара 0 центов')
-    expect(
-      convertNumberToWordsRu('1.6789', {
-        currency: {
-          currencyNameCases: ['доллар', 'доллара', 'долларов'],
-          fractionalPartNameCases: ['цент', 'цента', 'центов'],
-          fractionalPartMinLength: 0,
-        },
-        roundNumber: 0,
-      }),
-    ).toBe('Два доллара')
-    test('Средний род (currencyNounGender == 2)', () => {
+    test('object values', () => {
       expect(
-        convertNumberToWordsRu('1231.52', {
+        convertNumberToWordsRu('1234567.12345', {
           currency: {
-            currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
-            fractionalPartNameCases: ['яблоко', 'яблока', 'яблок'],
+            currencyNameCases: ['доллар', 'доллара', 'долларов'],
+            fractionalPartNameCases: ['цент', 'цента', 'центов'],
             currencyNounGender: {
-              integer: 2, // Средний род
-              fractionalPart: 2,
+              integer: 0, // Мужской род
+              fractionalPart: 1, // Женский род
             },
           },
         }),
-      ).toBe('Одна тысяча двести тридцать одно сообщение 52 яблока')
-    })
-    expect(
-      convertNumberToWordsRu('1234561.12345', {
-        currency: {
-          currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
-          currencyNounGender: {
-            integer: 2, // Средний род
+      ).toBe(
+        'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь долларов 12345 центов',
+      )
+      expect(
+        convertNumberToWordsRu('1.6789', {
+          currency: {
+            currencyNameCases: ['доллар', 'доллара', 'долларов'],
+            fractionalPartNameCases: ['цент', 'цента', 'центов'],
+            fractionalPartMinLength: 1,
           },
-        },
-      }),
-    ).toBe(
-      'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят одно сообщение 12345 копеек',
-    )
-    expect(
-      convertNumberToWordsRu('1234567.12345', {
-        currency: {},
-      }),
-    ).toBe(
-      'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12345 копеек',
-    )
+          roundNumber: 0,
+        }),
+      ).toBe('Два доллара 0 центов')
+      expect(
+        convertNumberToWordsRu('1.6789', {
+          currency: {
+            currencyNameCases: ['доллар', 'доллара', 'долларов'],
+            fractionalPartNameCases: ['цент', 'цента', 'центов'],
+            fractionalPartMinLength: 0,
+          },
+          roundNumber: 0,
+        }),
+      ).toBe('Два доллара')
+    })
+    describe('Средний род (currencyNounGender == 2)', () => {
+      test('Средний род (currencyNounGender == 2)', () => {
+        expect(
+          convertNumberToWordsRu('1231.52', {
+            currency: {
+              currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
+              fractionalPartNameCases: ['яблоко', 'яблока', 'яблок'],
+              currencyNounGender: {
+                integer: 2, // Средний род
+                fractionalPart: 2,
+              },
+            },
+          }),
+        ).toBe('Одна тысяча двести тридцать одно сообщение 52 яблока')
+      })
+      expect(
+        convertNumberToWordsRu('1234561.12345', {
+          currency: {
+            currencyNameCases: ['сообщение', 'сообщения', 'сообщений'],
+            currencyNounGender: {
+              integer: 2, // Средний род
+            },
+          },
+        }),
+      ).toBe(
+        'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят одно сообщение 12345 копеек',
+      )
+      expect(
+        convertNumberToWordsRu('1234567.12345', {
+          currency: {},
+        }),
+      ).toBe(
+        'Один миллион двести тридцать четыре тысячи пятьсот шестьдесят семь рублей 12345 копеек',
+      )
+    })
   })
 })
