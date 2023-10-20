@@ -1,5 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep'
-
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import objectGet from 'src/functions/objectGet'
 import set from 'src/functions/set'
@@ -18,12 +16,14 @@ import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 export default function getCustomCurrency(
   convertOptions: ConvertOptions,
 ): CustomCurrency {
-  const userCurrencyObject: any = cloneDeep(convertOptions.currency)
+  const userCurrencyObject: any = structuredClone(convertOptions.currency)
   // Название валюты по умолчанию
   const defaultCurrency: any = DEFAULT_OPTIONS.currency
   // Объект валюты по умолчанию
   const defaultCurrencyObject = STRING_CURRENCIES[defaultCurrency]
-  let editedCurrencyObject: CustomCurrency = cloneDeep(defaultCurrencyObject)
+  let editedCurrencyObject: CustomCurrency = structuredClone(
+    defaultCurrencyObject,
+  )
   // Обновить объект по умолчанию новыми значениями
   editedCurrencyObject = updateObjectDeep(
     editedCurrencyObject,

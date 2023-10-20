@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep'
 import forOwn from 'lodash/forOwn'
 import isPlainObject from 'lodash/isPlainObject'
 
@@ -15,7 +14,7 @@ export default function _deepMapValues(
   object: object,
   iteratee: Function,
 ): object {
-  let result = cloneDeep(object)
+  let result = structuredClone(object)
   /**
    * Пройти по значениям объекта.
    * Если значение не является вложенным объектом, то применить к нему итератор.
