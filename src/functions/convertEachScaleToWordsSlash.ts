@@ -1,17 +1,17 @@
-import isEqual from 'lodash/isEqual'
-
-import { GENDERS } from 'src/units/genders'
+import arraysAreEqual from 'src/functions/arraysAreEqual'
+import convertEachScaleToWords from 'src/functions/convertEachScaleToWords'
+import removeEmptyScalesBeforeNumber from 'src/functions/removeEmptyScalesBeforeNumber'
+import selectDataByDeclension from 'src/functions/selectDataByDeclension'
 import { DECLENSIONS } from 'src/units/declensions'
-import { SLASH_NUMBER_UNIT_PREFIXES } from 'src/units/slashNumberUnitPrefixes'
 import {
   FRACTIONAL_UNITS_BASES,
   FRACTIONAL_UNIT_ENDINGS,
 } from 'src/units/fractionalCurrencyNumber'
-import { UNIT_NAMES } from 'src/units/unitNames'
+import { GENDERS } from 'src/units/genders'
 import { ORDINAL_NUMBERS_DECLENSIONS } from 'src/units/ordinalNumbers/ordinalNumbers'
-import convertEachScaleToWords from 'src/functions/convertEachScaleToWords'
-import removeEmptyScalesBeforeNumber from 'src/functions/removeEmptyScalesBeforeNumber'
-import selectDataByDeclension from 'src/functions/selectDataByDeclension'
+import { SLASH_NUMBER_UNIT_PREFIXES } from 'src/units/slashNumberUnitPrefixes'
+import { UNIT_NAMES } from 'src/units/unitNames'
+
 import type { Declension } from 'src/units/declensions'
 
 /**
@@ -93,7 +93,7 @@ export default function convertEachScaleToWordsSlash(
     /* Если весь класс равен === 001
     и до него не было значений */
     if (
-      isEqual(scaleToConvertArr, [0, 0, 1]) &&
+      arraysAreEqual(scaleToConvertArr, [0, 0, 1]) &&
       updatedNumberScalesArr.length - 1 === lastScaleWihNumber
     ) {
       // Получится "тысячная" вместо "однотысячная".
