@@ -1,7 +1,6 @@
-import has from 'lodash/has'
-
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import get from 'src/functions/get'
+import has from 'src/functions/has'
 import replaceDeprecatedOptions from 'src/functions/replaceDeprecatedOptions'
 import _deepMapValues from 'src/lodashFunctions/deepMapValues'
 
