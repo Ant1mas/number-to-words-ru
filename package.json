@@ -1,6 +1,6 @@
 {
   "name": "number-to-words-ru",
-  "version": "2.3.6",
+  "version": "2.4.0",
   "description": "Convert a number to words on russian language.",
   "author": "Anton Moskovskii <ant1mas.dev@gmail.com> (https://github.com/Ant1mas)",
   "homepage": "https://number-to-words-ru.ant1mas.dev/",
