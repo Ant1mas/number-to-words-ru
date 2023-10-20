@@ -1,8 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep'
-import set from 'lodash/set'
 
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
 import objectGet from 'src/functions/objectGet'
+import set from 'src/functions/set'
 import updateObjectDeep from 'src/functions/updateObjectDeep'
 import { DECLENSIONS } from 'src/units/declensions'
 import { STRING_CURRENCIES } from 'src/units/stringCurrencies'

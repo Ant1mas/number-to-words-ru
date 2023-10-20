@@ -1,7 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep'
 import forOwn from 'lodash/forOwn'
 import isPlainObject from 'lodash/isPlainObject'
-import set from 'lodash/set'
+
+import set from 'src/functions/set'
 
 /**
  * Рекурсивная версия lodash.mapValues() [https://lodash.com/docs/#mapValues].

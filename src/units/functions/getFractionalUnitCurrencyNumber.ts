@@ -1,14 +1,14 @@
-import set from 'lodash/set'
-
+import selectDataByDeclension from 'src/functions/selectDataByDeclension'
+import set from 'src/functions/set'
+import { DECLENSIONS } from 'src/units/declensions'
 import {
-  FRACTIONAL_UNITS_DECLENSIONS,
   FRACTIONAL_UNITS_BASES,
-  FRACTIONAL_UNIT_PREFIXES,
+  FRACTIONAL_UNITS_DECLENSIONS,
   FRACTIONAL_UNIT_ENDINGS,
+  FRACTIONAL_UNIT_PREFIXES,
 } from 'src/units/fractionalCurrencyNumber'
 import { UNIT_NAMES } from 'src/units/unitNames'
-import { DECLENSIONS } from 'src/units/declensions'
-import selectDataByDeclension from 'src/functions/selectDataByDeclension'
+
 import type { Declension } from 'src/units/declensions'
 
 /**
