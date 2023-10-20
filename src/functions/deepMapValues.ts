@@ -9,7 +9,7 @@ import set from 'src/functions/set'
  * @param {Function} iteratee - Функция, вызываемая для каждой итерации.
  * @return {object} Новый объект.
  */
-export default function _deepMapValues(
+export default function deepMapValues(
   object: object,
   iteratee: Function,
 ): object {

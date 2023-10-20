@@ -1,8 +1,8 @@
-import _deepMapValues from 'src/lodashFunctions/deepMapValues'
+import deepMapValues from 'src/functions/deepMapValues'
 
 test('test', () => {
   expect(
-    _deepMapValues(
+    deepMapValues(
       {
         k1: 'v1',
         k2: {
