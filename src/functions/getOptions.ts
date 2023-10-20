@@ -1,7 +1,7 @@
 import has from 'lodash/has'
 
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
-import objectGet from 'src/functions/objectGet'
+import get from 'src/functions/get'
 import replaceDeprecatedOptions from 'src/functions/replaceDeprecatedOptions'
 import _deepMapValues from 'src/lodashFunctions/deepMapValues'
 
@@ -21,7 +21,7 @@ export default function getOptions(
     (path: string[], key: string, value: string) => {
       // Если есть обновления для этой опции
       if (has(updatedOptions, [...path, key])) {
-        const newValue = objectGet(updatedOptions, [...path, key])
+        const newValue = get(updatedOptions, [...path, key])
         return newValue
       } else {
         return value
