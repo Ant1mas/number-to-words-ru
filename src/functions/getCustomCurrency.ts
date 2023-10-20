@@ -1,11 +1,12 @@
 import cloneDeep from 'lodash/cloneDeep'
-import get from 'lodash/get'
 import set from 'lodash/set'
 
 import { DEFAULT_OPTIONS } from 'src/defaultOptions'
-import { STRING_CURRENCIES } from 'src/units/stringCurrencies'
-import { DECLENSIONS } from 'src/units/declensions'
+import objectGet from 'src/functions/objectGet'
 import updateObjectDeep from 'src/functions/updateObjectDeep'
+import { DECLENSIONS } from 'src/units/declensions'
+import { STRING_CURRENCIES } from 'src/units/stringCurrencies'
+
 import type { ConvertOptions } from 'src/typeScript/types/ConvertOptions'
 import type { CustomCurrency } from 'src/typeScript/types/CustomCurrency'
 
@@ -32,12 +33,12 @@ export default function getCustomCurrency(
   // данными из массива currencyNameCases
   // currencyNameCases[0]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'currencyNameDeclensions',
       DECLENSIONS.NOMINATIVE,
       0,
     ]) === undefined &&
-    get(userCurrencyObject, ['currencyNameCases', 0]) !== undefined
+    objectGet(userCurrencyObject, ['currencyNameCases', 0]) !== undefined
   ) {
     set(
       editedCurrencyObject,
@@ -47,12 +48,12 @@ export default function getCustomCurrency(
   }
   // currencyNameCases[1]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'currencyNameDeclensions',
       DECLENSIONS.GENITIVE,
       0,
     ]) === undefined &&
-    get(userCurrencyObject, ['currencyNameCases', 1]) !== undefined
+    objectGet(userCurrencyObject, ['currencyNameCases', 1]) !== undefined
   ) {
     set(
       editedCurrencyObject,
@@ -62,12 +63,12 @@ export default function getCustomCurrency(
   }
   // currencyNameCases[2]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'currencyNameDeclensions',
       DECLENSIONS.GENITIVE,
       1,
     ]) === undefined &&
-    get(userCurrencyObject, ['currencyNameCases', 2]) !== undefined
+    objectGet(userCurrencyObject, ['currencyNameCases', 2]) !== undefined
   ) {
     set(
       editedCurrencyObject,
@@ -79,12 +80,12 @@ export default function getCustomCurrency(
   // данными из массива fractionalPartNameCases
   // fractionalPartNameCases[0]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'fractionalPartNameDeclensions',
       DECLENSIONS.NOMINATIVE,
       0,
     ]) === undefined &&
-    get(userCurrencyObject, ['fractionalPartNameCases', 0]) !== undefined
+    objectGet(userCurrencyObject, ['fractionalPartNameCases', 0]) !== undefined
   ) {
     set(
       editedCurrencyObject,
@@ -94,12 +95,12 @@ export default function getCustomCurrency(
   }
   // fractionalPartNameCases[1]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'fractionalPartNameDeclensions',
       DECLENSIONS.GENITIVE,
       0,
     ]) === undefined &&
-    get(userCurrencyObject, ['fractionalPartNameCases', 1]) !== undefined
+    objectGet(userCurrencyObject, ['fractionalPartNameCases', 1]) !== undefined
   ) {
     set(
       editedCurrencyObject,
@@ -109,12 +110,12 @@ export default function getCustomCurrency(
   }
   // fractionalPartNameCases[2]
   if (
-    get(userCurrencyObject, [
+    objectGet(userCurrencyObject, [
       'fractionalPartNameDeclensions',
       DECLENSIONS.GENITIVE,
       1,
     ]) === undefined &&
-    get(userCurrencyObject, ['fractionalPartNameCases', 2]) !== undefined
+    objectGet(userCurrencyObject, ['fractionalPartNameCases', 2]) !== undefined
   ) {
     set(
       editedCurrencyObject,
