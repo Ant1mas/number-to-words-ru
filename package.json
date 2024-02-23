@@ -1,6 +1,6 @@
 {
   "name": "number-to-words-ru",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Convert a number to words on russian language.",
   "author": "Anton Moskovskii <ant1mas.dev@gmail.com> (https://github.com/Ant1mas)",
   "homepage": "https://number-to-words-ru.ant1mas.dev/",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.6",
+    "@types/ungap__structured-clone": "^1.2.0",
     "jest": "^29.7.0",
     "rollup-plugin-visualizer": "^5.9.2",
     "ts-jest": "^29.1.1",
@@ -42,5 +43,8 @@
   "files": [
     "index.d.ts",
     "dist/**"
-  ]
+  ],
+  "dependencies": {
+    "@ungap/structured-clone": "^1.2.0"
+  }
 }
